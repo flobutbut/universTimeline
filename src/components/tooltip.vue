@@ -5,9 +5,7 @@
   </div>
 </template>
 
-
-  
-  <script>
+<script>
 export default {
   name: 'Tooltip',
   props: {
@@ -37,9 +35,6 @@ export default {
     visible(newVal) {
       if (newVal) {
         this.$nextTick(() => {
-
-          console.log('Tooltip is now visible'); // Consol Log
-
           this.adjustPosition();
         });
       }
@@ -61,9 +56,6 @@ export default {
       const container = this.getParentContainer(tooltip);
       const containerRect = container.getBoundingClientRect();
 
-      console.log('Tooltip Rect:', tooltipRect); // Consol Log
-      console.log('Container Rect:', containerRect); // Consol Log
-
       // Reset styles first
       tooltip.style.left = '50%';
       tooltip.style.right = 'auto';
@@ -72,8 +64,6 @@ export default {
       if (tooltipRect.right > containerRect.right) {
         const overflowRight = tooltipRect.right - containerRect.right;
 
-        console.log('Overflow right:', overflowRight); // Consol Log
-
         tooltip.style.left = `calc(50% - ${overflowRight}px)`;
         tooltip.style.right = 'auto';
         tooltip.style.transform = 'translateX(-50%)';
@@ -81,8 +71,6 @@ export default {
 
       if (tooltipRect.left < containerRect.left) {
         const overflowLeft = containerRect.left - tooltipRect.left;
-
-        console.log('Overflow left:', overflowLeft); // Consol log
 
         tooltip.style.left = `calc(50% + ${overflowLeft}px)`;
         tooltip.style.right = 'auto';
