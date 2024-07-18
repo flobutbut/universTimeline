@@ -11,5 +11,8 @@ Commandes pour push github
     git commit -m "détail du commit"
     git push
 
-Récupérer les modifs sur une brnache
+Récupérer les modifs sur toutes les branches
     git pull
+
+Changer de branche
+    git checkout nomDelaBranche
