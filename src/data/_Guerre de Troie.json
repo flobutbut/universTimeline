@@ -1,0 +1,21 @@
+{
+  "mainTitle": "Guerre de Troie",
+  "startDate": "1250-01-01",
+  "endDate": "1240-01-01",
+  "periods": [
+    { "id": 1, "title": "Début de la guerre", "startDate": "1250-01-01", "endDate": "1249-01-01" },
+    { "id": 2, "title": "Le siège de Troie", "startDate": "1249-01-01", "endDate": "1241-01-01" },
+    { "id": 3, "title": "Chute de Troie", "startDate": "1241-01-01", "endDate": "1240-01-01" }
+  ],
+  "events": [
+    { "id": 1, "title": "Jugement de Pâris", "date": "1250-01-01" },
+    { "id": 2, "title": "Enlèvement d'Hélène", "date": "1250-01-01" },
+    { "id": 3, "title": "Déclaration de guerre contre Troie", "date": "1250-01-01" },
+    { "id": 4, "title": "Débarquement des Grecs à Troie", "date": "1249-01-01" },
+    { "id": 5, "title": "Mort de Patrocle", "date": "1242-01-01" },
+    { "id": 6, "title": "Achille tue Hector", "date": "1241-01-01" },
+    { "id": 7, "title": "Mort d'Achille", "date": "1240-01-01" },
+    { "id": 8, "title": "Utilisation du cheval de Troie", "date": "1240-01-01" },
+    { "id": 9, "title": "Chute de Troie", "date": "1240-01-01" }
+  ]
+}

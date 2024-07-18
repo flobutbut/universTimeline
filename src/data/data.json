@@ -1,0 +1,42 @@
+{
+  "mainTitle": "Guerres modernes",  
+  "startDate": "1914-07-28",
+    "endDate": "2024-07-18",
+    "periods": [
+      { "id": 1, "title": "Première Guerre mondiale", "startDate": "1914-07-28", "endDate": "1918-11-11" },
+      { "id": 2, "title": "Seconde Guerre mondiale", "startDate": "1939-09-01", "endDate": "1945-09-02" },
+      { "id": 3, "title": "Guerre froide et conflits associés", "startDate": "1945-09-03", "endDate": "1991-12-26" },
+      { "id": 4, "title": "Guerre du Golfe", "startDate": "1991-01-17", "endDate": "1991-02-28" },
+      { "id": 5, "title": "Guerre des Balkans", "startDate": "1992-04-06", "endDate": "1995-12-14" },
+      { "id": 6, "title": "Attentats du 11 septembre", "startDate": "2001-09-11", "endDate": "2001-09-11" },
+      { "id": 7, "title": "Guerre en Afghanistan", "startDate": "2001-10-07", "endDate": "2021-08-30" },
+      { "id": 8, "title": "Invasion de l'Irak", "startDate": "2003-03-20", "endDate": "2011-12-18" },
+      { "id": 9, "title": "Guerre civile syrienne", "startDate": "2011-03-15", "endDate": "2023-12-31" },
+      { "id": 10, "title": "Conflit en Ukraine", "startDate": "2014-02-20", "endDate": "2023-12-31" }
+    ],
+    "events": [
+      { "id": 1, "title": "Assassinat de l'archiduc François-Ferdinand", "date": "1914-06-28" },
+      { "id": 2, "title": "Début de la Première Guerre mondiale", "date": "1914-07-28" },
+      { "id": 3, "title": "Armistice de la Première Guerre mondiale", "date": "1918-11-11" },
+      { "id": 4, "title": "Traité de Versailles", "date": "1919-06-28" },
+      { "id": 5, "title": "Invasion de la Pologne", "date": "1939-09-01" },
+      { "id": 6, "title": "Déclaration de guerre du Royaume-Uni et de la France à l'Allemagne", "date": "1939-09-03" },
+      { "id": 7, "title": "Attaque de Pearl Harbor", "date": "1941-12-07" },
+      { "id": 8, "title": "Débarquement de Normandie (D-Day)", "date": "1944-06-06" },
+      { "id": 9, "title": "Bombardements atomiques sur Hiroshima et Nagasaki", "date": "1945-08-06" },
+      { "id": 10, "title": "Fin de la Seconde Guerre mondiale", "date": "1945-09-02" },
+      { "id": 11, "title": "Début de la guerre froide", "date": "1947-03-12" },
+      { "id": 12, "title": "Guerre de Corée", "date": "1950-06-25" },
+      { "id": 13, "title": "Crise des missiles de Cuba", "date": "1962-10-16" },
+      { "id": 14, "title": "Guerre du Vietnam", "date": "1955-11-01" },
+      { "id": 15, "title": "Fin de la guerre froide", "date": "1991-12-26" },
+      { "id": 16, "title": "Guerre du Golfe", "date": "1991-01-17" },
+      { "id": 17, "title": "Attentats du 11 septembre", "date": "2001-09-11" },
+      { "id": 18, "title": "Invasion de l'Afghanistan", "date": "2001-10-07" },
+      { "id": 19, "title": "Invasion de l'Irak", "date": "2003-03-20" },
+      { "id": 20, "title": "Guerre civile syrienne", "date": "2011-03-15" },
+      { "id": 21, "title": "Conflit en Ukraine", "date": "2014-02-20" },
+      { "id": 22, "title": "Retrait des troupes américaines d'Afghanistan", "date": "2021-08-30" }
+    ]
+  }
+  

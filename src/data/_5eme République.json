@@ -1,0 +1,33 @@
+{
+  "mainTitle": "Cinquième république francaise",
+  "startDate": "1958-10-04",
+  "endDate": "2024-07-17",
+  "periods": [
+    { "id": 1, "title": "Fondation de la Cinquième République", "startDate": "1958-10-04", "endDate": "1959-01-08" },
+    { "id": 2, "title": "Présidence de Charles de Gaulle", "startDate": "1959-01-08", "endDate": "1969-04-28" },
+    { "id": 3, "title": "Présidence de Georges Pompidou", "startDate": "1969-04-28", "endDate": "1974-04-02" },
+    { "id": 4, "title": "Présidence de Valéry Giscard d'Estaing", "startDate": "1974-05-27", "endDate": "1981-05-21" },
+    { "id": 5, "title": "Présidence de François Mitterrand", "startDate": "1981-05-21", "endDate": "1995-05-17" },
+    { "id": 6, "title": "Présidence de Jacques Chirac", "startDate": "1995-05-17", "endDate": "2007-05-16" },
+    { "id": 7, "title": "Présidence de Nicolas Sarkozy", "startDate": "2007-05-16", "endDate": "2012-05-15" },
+    { "id": 8, "title": "Présidence de François Hollande", "startDate": "2012-05-15", "endDate": "2017-05-14" },
+    { "id": 9, "title": "Présidence d'Emmanuel Macron", "startDate": "2017-05-14", "endDate": "2024-07-17" }
+  ],
+  "events": [
+    { "id": 1, "title": "Adoption de la Constitution de la Cinquième République", "date": "1958-10-04" },
+    { "id": 2, "title": "Élection de Charles de Gaulle comme premier président", "date": "1959-01-08" },
+    { "id": 3, "title": "Référendum sur l'autodétermination de l'Algérie", "date": "1961-01-08" },
+    { "id": 4, "title": "Accords d'Évian et fin de la guerre d'Algérie", "date": "1962-03-18" },
+    { "id": 5, "title": "Référendum sur l'élection du président au suffrage universel direct", "date": "1962-10-28" },
+    { "id": 6, "title": "Mai 68 - Mouvement étudiant et social", "date": "1968-05-01" },
+    { "id": 7, "title": "Mort de Charles de Gaulle", "date": "1970-11-09" },
+    { "id": 8, "title": "Première cohabitation (Mitterrand-Chirac)", "date": "1986-03-16" },
+    { "id": 9, "title": "Traité de Maastricht et création de l'Union européenne", "date": "1992-02-07" },
+    { "id": 10, "title": "Deuxième cohabitation (Mitterrand-Balladur)", "date": "1993-03-28" },
+    { "id": 11, "title": "Troisième cohabitation (Chirac-Jospin)", "date": "1997-06-01" },
+    { "id": 12, "title": "Passage au quinquennat présidentiel", "date": "2000-09-24" },
+    { "id": 13, "title": "Élection d'Emmanuel Macron", "date": "2017-05-07" },
+    { "id": 14, "title": "Mouvement des Gilets jaunes", "date": "2018-11-17" }
+    ]
+  }
+  
