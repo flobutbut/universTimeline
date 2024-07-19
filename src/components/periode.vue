@@ -32,8 +32,8 @@ export default {
     calculatedDuration() {
       const start = this.parseDate(this.startDate);
       const end = this.parseDate(this.endDate);
-      console.log(`Start Date: ${start}, End Date: ${end}`); // Debugging log
-      return this.calculateDuration(start, end);
+      const duration = this.calculateDuration(start, end);
+      return this.formatDuration(duration);
     }
   },
   methods: {
@@ -41,26 +41,55 @@ export default {
       if (typeof date === 'string') {
         const parsedDate = new Date(date);
         return isNaN(parsedDate.getTime()) ? parseInt(date) : parsedDate.getTime();
-      } else {
-        return date;
+      } else if (typeof date === 'number') {
+        return date * 365.25 * 24 * 60 * 60 * 1000;
       }
+      return null;
     },
     calculateDuration(start, end) {
-      const durationInYears = Math.abs(end - start) / (1000 * 60 * 60 * 24 * 365.25);
-      console.log(`Duration in Years: ${durationInYears}`); // Debugging log
+      return Math.abs(end - start);
+    },
+    formatDuration(duration) {
+      const millisecondsInYear = 365.25 * 24 * 60 * 60 * 1000;
+      const millisecondsInMonth = 30.44 * 24 * 60 * 60 * 1000;
+      const millisecondsInDay = 24 * 60 * 60 * 1000;
+      const millisecondsInHour = 60 * 60 * 1000;
+      const millisecondsInMinute = 60 * 1000;
+      const millisecondsInSecond = 1000;
 
-      if (durationInYears >= 1e9) {
-        return `${(durationInYears / 1e9).toFixed(1)} milliard${durationInYears >= 2e9 ? 's' : ''} d'années`;
-      } else if (durationInYears >= 1e6) {
-        return `${(durationInYears / 1e6).toFixed(1)} million${durationInYears >= 2e6 ? 's' : ''} d'années`;
-      } else if (durationInYears >= 1e3) {
-        return `${(durationInYears / 1e3).toFixed(1)} mille ans`;
-      } else if (durationInYears >= 1) {
-        return `${Math.floor(durationInYears)} an${Math.floor(durationInYears) > 1 ? 's' : ''}`;
-      } else {
-        const durationInDays = Math.floor(Math.abs(end - start) / (1000 * 60 * 60 * 24));
-        return `${durationInDays} jour${durationInDays > 1 ? 's' : ''}`;
+      const years = duration / millisecondsInYear;
+      if (years >= 1e9) {
+        return `${(years / 1e9).toFixed(1)} milliard${years / 1e9 >= 2 ? 's' : ''} d'années`;
+      } else if (years >= 1e6) {
+        return `${(years / 1e6).toFixed(1)} million${years / 1e6 >= 2 ? 's' : ''} d'années`;
+      } else if (years >= 1e3) {
+        return `${(years / 1e3).toFixed(1)} mille ans`;
+      } else if (years >= 1) {
+        return `${Math.floor(years)} an${Math.floor(years) > 1 ? 's' : ''}`;
       }
+
+      const months = duration / millisecondsInMonth;
+      if (months >= 1) {
+        return `${Math.floor(months)} mois`;
+      }
+
+      const days = duration / millisecondsInDay;
+      if (days >= 1) {
+        return `${Math.floor(days)} jour${Math.floor(days) > 1 ? 's' : ''}`;
+      }
+
+      const hours = duration / millisecondsInHour;
+      if (hours >= 1) {
+        return `${Math.floor(hours)} heure${Math.floor(hours) > 1 ? 's' : ''}`;
+      }
+
+      const minutes = duration / millisecondsInMinute;
+      if (minutes >= 1) {
+        return `${Math.floor(minutes)} minute${Math.floor(minutes) > 1 ? 's' : ''}`;
+      }
+
+      const seconds = duration / millisecondsInSecond;
+      return `${Math.floor(seconds)} seconde${Math.floor(seconds) > 1 ? 's' : ''}`;
     },
     showTooltip() {
       this.hover = true;

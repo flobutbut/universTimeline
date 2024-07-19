@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      mainTitle: data.mainTitle, 
+      mainTitle: data.mainTitle,
       startDate: this.parseDate(data.startDate),
       endDate: this.parseDate(data.endDate),
       events: [],
@@ -93,10 +93,6 @@ export default {
   }
 }
 </script>
-
-
-
-
 
 <style scoped>
 .timeline-container {
