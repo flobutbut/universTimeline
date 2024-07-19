@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     formatYear(year) {
-      console.log('Year type:', typeof year, 'Value:', year); // Debugging line
 
       if (typeof year === 'string') {
         // Attempt to convert string to number if possible

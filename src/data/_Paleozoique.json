@@ -1,0 +1,22 @@
+{
+  "mainTitle": "Période Paléozoïque",
+  "startDate": -541000000,
+  "endDate": -252000000,
+  "periods": [
+    { "id": 1, "title": "Cambrien", "startDate": -541000000, "endDate": -485400000, "child": "_Cambrien" },
+    { "id": 2, "title": "Ordovicien", "startDate": -485400000, "endDate": -443800000, "child": "_Ordovicien" },
+    { "id": 3, "title": "Silurien", "startDate": -443800000, "endDate": -419200000, "child": "_Silurien" },
+    { "id": 4, "title": "Dévonien", "startDate": -419200000, "endDate": -358900000, "child": "_Devonien" },
+    { "id": 5, "title": "Carbonifère", "startDate": -358900000, "endDate": -298900000, "child": "_Carbonifere" },
+    { "id": 6, "title": "Permien", "startDate": -298900000, "endDate": -252000000, "child": "_Permien" }
+  ],
+  "events": [
+    { "id": 1, "title": "Explosion cambrienne", "date": -541000000 },
+    { "id": 2, "title": "Premiers poissons", "date": -530000000 },
+    { "id": 3, "title": "Colonisation des terres par les plantes", "date": -470000000 },
+    { "id": 4, "title": "Apparition des insectes", "date": -400000000 },
+    { "id": 5, "title": "Apparition des premiers amphibiens", "date": -370000000 },
+    { "id": 6, "title": "Formation de la Pangée", "date": -335000000 },
+    { "id": 7, "title": "Apparition des reptiles", "date": -320000000 }
+  ]
+}

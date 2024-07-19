@@ -3,7 +3,7 @@
   "startDate": "1943-07-10",
   "endDate": "1945-05-08",
   "periods": [
-    { "id": 1, "title": "Début de la contre-offensive des Alliés", "startDate": "1942-06-04", "endDate": "1943-02-02", "child": "identifiant vers un autre fichier" },
+    { "id": 1, "title": "Début de la contre-offensive des Alliés", "startDate": "1942-06-04", "endDate": "1943-02-02"},
     { "id": 2, "title": "Campagne en Afrique du Nord", "startDate": "1942-10-23", "endDate": "1943-05-13" },
     { "id": 3, "title": "Invasion de l'Italie", "startDate": "1943-07-10", "endDate": "1945-05-02" },
     { "id": 4, "title": "Débarquement en Normandie et libération de la France", "startDate": "1944-06-06", "endDate": "1944-08-25" },

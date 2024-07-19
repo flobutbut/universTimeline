@@ -1,27 +1,23 @@
 <template>
-  <div class="periode" :style="{ left: position, width: width }" @mouseover="showTooltip" @mouseleave="hideTooltip">
+  <div class="periode" :style="{ left: position, width: width }" @click="handleClick">
     <div class="periode-bar">
       <p class="textMedium textBlack spacing_xs">{{ title }}</p>
       <p class="textMedium textDimmed">{{ calculatedDuration }}</p>
     </div>
-    <Tooltip :visible="hover" :title="title" :text="calculatedDuration" placement="top"></Tooltip>
   </div>
 </template>
 
 <script>
-import Tooltip from './tooltip.vue';
 
 export default {
   name: 'Periode',
-  components: {
-    Tooltip
-  },
   props: {
     title: String,
     startDate: [String, Number],
     endDate: [String, Number],
     position: String,
-    width: String
+    width: String,
+    child: String // Ajout de la propriété child
   },
   data() {
     return {
@@ -36,7 +32,11 @@ export default {
       return this.formatDuration(duration);
     }
   },
+
+  //METHODES ---------------------------------------------------------------------------
   methods: {
+
+    // ... METHODE parseDate
     parseDate(date) {
       if (typeof date === 'string') {
         const parsedDate = new Date(date);
@@ -46,9 +46,12 @@ export default {
       }
       return null;
     },
+
+    // ... METHODE calculateDuration
     calculateDuration(start, end) {
       return Math.abs(end - start);
     },
+    // ... METHODE formatDuration
     formatDuration(duration) {
       const millisecondsInYear = 365.25 * 24 * 60 * 60 * 1000;
       const millisecondsInMonth = 30.44 * 24 * 60 * 60 * 1000;
@@ -91,11 +94,12 @@ export default {
       const seconds = duration / millisecondsInSecond;
       return `${Math.floor(seconds)} seconde${Math.floor(seconds) > 1 ? 's' : ''}`;
     },
-    showTooltip() {
-      this.hover = true;
-    },
-    hideTooltip() {
-      this.hover = false;
+
+    // ... METHODE handleClick
+    handleClick() {
+      if (this.child) {
+        this.$emit('load-child', this.child);
+      }
     }
   }
 }
@@ -118,6 +122,14 @@ export default {
   align-items: center;
   height: 100%;
   border-radius: 3px;
+}
+.periode-bar:hover {
+  background-color: rgb(210, 210, 210);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .textMedium {
   margin-left: 4px;

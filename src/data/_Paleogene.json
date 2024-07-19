@@ -1,0 +1,15 @@
+{
+  "mainTitle": "Période Paléogène",
+  "startDate": -66000000,
+  "endDate": -23030000,
+  "periods": [
+    { "id": 1, "title": "Paléocène", "startDate": -66000000, "endDate": -56000000, "child": "_Paleocene" },
+    { "id": 2, "title": "Éocène", "startDate": -56000000, "endDate": -33900000, "child": "_Eocene" },
+    { "id": 3, "title": "Oligocène", "startDate": -33900000, "endDate": -23030000, "child": "_Oligocene" }
+  ],
+  "events": [
+    { "id": 1, "title": "Extinction des dinosaures", "date": -66000000 },
+    { "id": 2, "title": "Apparition des premiers primates", "date": -55000000 },
+    { "id": 3, "title": "Formation de l'Himalaya", "date": -50000000 }
+  ]
+}

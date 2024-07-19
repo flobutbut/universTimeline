@@ -1,0 +1,16 @@
+{
+  "mainTitle": "Mésozoïque",
+  "startDate": -252000000,
+  "endDate": -66000000,
+  "periods": [
+    { "id": 1, "title": "Trias", "startDate": -252000000, "endDate": -201300000, "child": "_Trias" },
+    { "id": 2, "title": "Jurassique", "startDate": -201300000, "endDate": -145000000, "child": "_Jurassique" },
+    { "id": 3, "title": "Crétacé", "startDate": -145000000, "endDate": -66000000, "child": "_Cretace" }
+  ],
+  "events": [
+    { "id": 1, "title": "Apparition des dinosaures", "date": -230000000 },
+    { "id": 2, "title": "Séparation de la Pangée", "date": -175000000 },
+    { "id": 3, "title": "Apparition des premiers mammifères", "date": -160000000 },
+    { "id": 4, "title": "Extinction des dinosaures", "date": -66000000 }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "mainTitle": "Période Néogène",
+  "startDate": -23030000,
+  "endDate": -2580000,
+  "periods": [
+    { "id": 1, "title": "Miocène", "startDate": -23030000, "endDate": -5330000, "child": "_Miocene" },
+    { "id": 2, "title": "Pliocène", "startDate": -5330000, "endDate": -2580000, "child": "_Pliocene" }
+  ],
+  "events": [
+    { "id": 1, "title": "Apparition des premiers hominidés", "date": -7000000 }
+  ]
+}

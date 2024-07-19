@@ -3,10 +3,10 @@
   "startDate": -4600000000,
   "endDate": 2024,
   "periods": [
-    { "id": 1, "title": "Hadéen", "startDate": -4600000000, "endDate": -4000000000 },
-    { "id": 2, "title": "Archéen", "startDate": -4000000000, "endDate": -2500000000 },
-    { "id": 3, "title": "Protérozoïque", "startDate": -2500000000, "endDate": -541000000 },
-    { "id": 4, "title": "Phanérozoïque", "startDate": -541000000, "endDate": 2024 }
+    { "id": 1, "title": "Hadéen", "startDate": -4600000000, "endDate": -4000000000,  "child": "_Hadeen" },
+    { "id": 2, "title": "Archéen", "startDate": -4000000000, "endDate": -2500000000,  "child": "_Archeen" },
+    { "id": 3, "title": "Protérozoïque", "startDate": -2500000000, "endDate": -541000000,  "child": "_Proterozoique" },
+    { "id": 4, "title": "Phanérozoïque", "startDate": -541000000, "endDate": 2024,  "child": "_Phanerozoique"}
   ],
   "events": [
     { "id": 1, "title": "Formation de la Terre", "date": -4600000000 },
@@ -19,9 +19,19 @@
     { "id": 8, "title": "Explosion cambrienne", "date": -541000000 },
     { "id": 9, "title": "Premiers poissons", "date": -530000000 },
     { "id": 10, "title": "Colonisation des terres par les plantes", "date": -470000000 },
-    { "id": 11, "title": "Apparition des dinosaures", "date": -230000000 },
-    { "id": 12, "title": "Extinction des dinosaures", "date": -66000000 },
-    { "id": 13, "title": "Apparition des premiers hominidés", "date": -7000000 },
-    { "id": 14, "title": "Apparition de l'Homo sapiens", "date": -300000 }
+    { "id": 11, "title": "Apparition des insectes", "date": -400000000 },
+    { "id": 12, "title": "Apparition des premiers amphibiens", "date": -370000000 },
+    { "id": 13, "title": "Formation de la Pangée", "date": -335000000 },
+    { "id": 14, "title": "Apparition des reptiles", "date": -320000000 },
+    { "id": 15, "title": "Apparition des dinosaures", "date": -230000000 },
+    { "id": 16, "title": "Séparation de la Pangée", "date": -175000000 },
+    { "id": 17, "title": "Apparition des premiers mammifères", "date": -160000000 },
+    { "id": 18, "title": "Extinction des dinosaures", "date": -66000000 },
+    { "id": 19, "title": "Apparition des premiers primates", "date": -55000000 },
+    { "id": 20, "title": "Formation de l'Himalaya", "date": -50000000 },
+    { "id": 21, "title": "Apparition des premiers hominidés", "date": -7000000 },
+    { "id": 22, "title": "Apparition de l'Homo sapiens", "date": -300000 },
+    { "id": 23, "title": "Début de l'agriculture", "date": -12000 },
+    { "id": 24, "title": "Révolution industrielle", "date": 1760 }
   ]
 }
