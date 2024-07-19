@@ -1,26 +1,27 @@
 {
-  "mainTitle": "Formation du Système Solaire",
+  "mainTitle": "Formation de la terre",
   "startDate": -4600000000,
-  "endDate": -4000000000,
+  "endDate": 2024,
   "periods": [
-    { "id": 1, "title": "Nébuleuse Solaire", "startDate": -4600000000, "endDate": -4568000000 },
-    { "id": 2, "title": "Accrétion Planétaire", "startDate": -4568000000, "endDate": -4500000000 },
-    { "id": 3, "title": "Formation des Planètes", "startDate": -4500000000, "endDate": -4000000000 }
+    { "id": 1, "title": "Hadéen", "startDate": -4600000000, "endDate": -4000000000 },
+    { "id": 2, "title": "Archéen", "startDate": -4000000000, "endDate": -2500000000 },
+    { "id": 3, "title": "Protérozoïque", "startDate": -2500000000, "endDate": -541000000 },
+    { "id": 4, "title": "Phanérozoïque", "startDate": -541000000, "endDate": 2024 }
   ],
   "events": [
-    { "id": 1, "title": "Formation de la nébuleuse solaire", "date": -4600000000 },
-    { "id": 2, "title": "Effondrement gravitationnel de la nébuleuse", "date": -4570000000 },
-    { "id": 3, "title": "Formation du Soleil", "date": -4568000000 },
-    { "id": 4, "title": "Formation des planétésimaux", "date": -4565000000 },
-    { "id": 5, "title": "Formation de la Lune", "date": -4530000000 },
-    { "id": 6, "title": "Formation de Mercure", "date": -4500000000 },
-    { "id": 7, "title": "Formation de Vénus", "date": -4500000000 },
-    { "id": 8, "title": "Formation de la Terre", "date": -4500000000 },
-    { "id": 9, "title": "Formation de Mars", "date": -4500000000 },
-    { "id": 10, "title": "Formation de Jupiter", "date": -4500000000 },
-    { "id": 11, "title": "Formation de Saturne", "date": -4500000000 },
-    { "id": 12, "title": "Formation d'Uranus", "date": -4500000000 },
-    { "id": 13, "title": "Formation de Neptune", "date": -4500000000 },
-    { "id": 14, "title": "Fin du bombardement intense tardif", "date": -4000000000 }
+    { "id": 1, "title": "Formation de la Terre", "date": -4600000000 },
+    { "id": 2, "title": "Formation de la Lune", "date": -4530000000 },
+    { "id": 3, "title": "Premières traces de vie", "date": -4100000000 },
+    { "id": 4, "title": "Premiers stromatolites", "date": -3700000000 },
+    { "id": 5, "title": "Apparition de l'oxygène atmosphérique (Grande Oxydation)", "date": -2400000000 },
+    { "id": 6, "title": "Apparition des premiers eucaryotes", "date": -2000000000 },
+    { "id": 7, "title": "Apparition des premiers animaux (faune d'Édiacara)", "date": -600000000 },
+    { "id": 8, "title": "Explosion cambrienne", "date": -541000000 },
+    { "id": 9, "title": "Premiers poissons", "date": -530000000 },
+    { "id": 10, "title": "Colonisation des terres par les plantes", "date": -470000000 },
+    { "id": 11, "title": "Apparition des dinosaures", "date": -230000000 },
+    { "id": 12, "title": "Extinction des dinosaures", "date": -66000000 },
+    { "id": 13, "title": "Apparition des premiers hominidés", "date": -7000000 },
+    { "id": 14, "title": "Apparition de l'Homo sapiens", "date": -300000 }
   ]
 }
