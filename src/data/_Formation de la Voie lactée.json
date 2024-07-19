@@ -1,0 +1,21 @@
+{
+  "mainTitle": "Formation de la Voie lactée",
+  "startDate": -13700000000,
+  "endDate": 2024,
+  "periods": [
+    { "id": 1, "title": "Époque de la Réionisation", "startDate": -13700000000, "endDate": -13000000000 },
+    { "id": 2, "title": "Formation du disque galactique", "startDate": -11000000000, "endDate": -8000000000 },
+    { "id": 3, "title": "Époque de la Fusion", "startDate": -8000000000, "endDate": -5000000000 },
+    { "id": 4, "title": "Stabilisation de la Voie lactée", "startDate": -5000000000, "endDate": -4000000000 }
+  ],
+  "events": [
+    { "id": 1, "title": "Formation des premières étoiles", "date": -13700000000 },
+    { "id": 2, "title": "Formation de la première supernova", "date": -13500000000 },
+    { "id": 3, "title": "Formation des amas globulaires", "date": -13000000000 },
+    { "id": 4, "title": "Formation du bulbe galactique", "date": -11000000000 },
+    { "id": 5, "title": "Formation du disque épais", "date": -10000000000 },
+    { "id": 6, "title": "Fusion avec la galaxie naine de Sagittaire", "date": -8000000000 },
+    { "id": 7, "title": "Stabilisation de la structure spirale", "date": -5000000000 },
+    { "id": 8, "title": "Formation du système solaire", "date": -4600000000 }
+  ]
+}

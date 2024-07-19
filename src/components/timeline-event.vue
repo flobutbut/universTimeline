@@ -1,16 +1,16 @@
 <template>
   <div class="timeline-event" :style="{ left: `calc(${position} - 5px)` }" @mouseover="showTooltip" @mouseleave="hideTooltip" @click="toggleActive">
     <div class="circle"></div>
-    <Tooltip :visible="hover && !active" :title="title" :text="date"></Tooltip>
+    <Tooltip :visible="hover && !active" :title="title" :text="date" :formattedYear="formattedYear"></Tooltip>
     <div class="content" :class="{ active: active }">
       <p class="textMedium textBlack spacing_xs">{{ title }}</p>
-      <p class="textMedium textDimmed">{{ date }}</p>
+      <p class="textMedium textDimmed">{{ formattedYear }}</p>
     </div>
   </div>
 </template>
 
-
-<script>import Tooltip from './tooltip.vue';
+<script>
+import Tooltip from './tooltip.vue';
 
 export default {
   name: 'TimelineEvent',
@@ -28,7 +28,47 @@ export default {
       active: false
     };
   },
+  computed: {
+    formattedYear() {
+      return this.formatYear(this.date);
+    }
+  },
   methods: {
+    formatYear(year) {
+      console.log('Year type:', typeof year, 'Value:', year); // Debugging line
+
+      if (typeof year === 'string') {
+        // Attempt to convert string to number if possible
+        if (!isNaN(year)) {
+          year = Number(year);
+        } else {
+          // Check if the string is in the format yyyy-mm-dd
+          const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+          if (datePattern.test(year)) {
+            const [yyyy, mm, dd] = year.split('-');
+            return `${dd}/${mm}/${yyyy}`;
+          } else {
+            return year; // If it's a string but not in the date format, return it as it is
+          }
+        }
+      }
+      
+      if (typeof year === 'number') {
+        const absYear = Math.abs(year);
+        if (absYear >= 1e9) {
+          return `${(year / 1e9).toFixed(1)} milliards d'années`;
+        } else if (absYear >= 1e6) {
+          return `${(year / 1e6).toFixed(1)} millions d'années`;
+        } else if (absYear >= 1e3) {
+          return `${(year / 1e3).toFixed(1)} milliers d'années`;
+        } else {
+          return `${year} années`;
+        }
+      }
+      
+      // If the input doesn't match any expected format, return it as it is
+      return year;
+    },
     showTooltip() {
       this.hover = true;
     },

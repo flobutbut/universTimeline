@@ -1,7 +1,7 @@
 {
   "mainTitle": "Exode", 
   "startDate": "-1500-01-01",
-  "endDate": -1200,
+  "endDate": "-1200-01-01",
   "periods": [
     { "id": 1, "title": "Oppression des Hébreux en Égypte", "startDate": "-1500-01-01", "endDate": "-1450-01-01" },
     { "id": 2, "title": "Vie de Moïse en Égypte et en exil", "startDate": "-1450-01-01", "endDate": "-1400-01-01" },

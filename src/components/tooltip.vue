@@ -1,9 +1,11 @@
 <template>
   <div class="tooltip" ref="tooltip" v-show="visible" :class="[placementClass, { 'tooltip-visible': visible }]">
     <p class="textMedium textWhite spacing_xs">{{ title }}</p>
-    <p class="textMedium textDimmed">{{ text }}</p>
+    <p class="textMedium textDimmed">{{ formattedYear }}</p>
   </div>
 </template>
+
+
 
 <script>
 export default {
@@ -17,8 +19,8 @@ export default {
       type: String,
       required: true
     },
-    text: {
-      type: [String, Number],
+    formattedYear: {
+      type: [String],
       required: true
     },
     placement: {
