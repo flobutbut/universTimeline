@@ -1,8 +1,7 @@
 <template>
   <div class="timeline-container">
     <div class="timeline-head">
-      <Button v-if="history.length > 0" @click="goBack" type="default" class="back-button">Retour</Button>
-      <div class="h2">{{ mainTitle }}</div>
+      <Breadcrumb :items="breadcrumbItems" :historyLength="history.length" @navigate="navigateTo" @back="goBack"></Breadcrumb>
     </div>
     <div class="timeline"></div>
     <div class="periods">
@@ -33,7 +32,7 @@
 <script>
 import TimelineEvent from './timeline-event.vue';
 import Periode from './periode.vue';
-import Button from './button.vue'; // Assurez-vous que le chemin est correct
+import Breadcrumb from './breadcrumb.vue';
 import data from '../data/data.json';
 
 export default {
@@ -41,7 +40,7 @@ export default {
   components: {
     TimelineEvent,
     Periode,
-    Button // Ajout du composant Button
+    Breadcrumb
   },
 
   data() {
@@ -53,6 +52,12 @@ export default {
       periods: [],
       history: [] // Pour stocker l'historique des états précédents
     };
+  },
+
+  computed: {
+    breadcrumbItems() {
+      return this.history.map(state => state.mainTitle).concat(this.mainTitle);
+    }
   },
 
   created() {
@@ -74,16 +79,12 @@ export default {
 
     async loadChildPeriod(childFile) {
       console.log('Loading child period:', childFile); // Debugging line
-
       try {
         // Ajouter l'état actuel à l'historique avant de charger les nouvelles données
-        this.history.push({
-          mainTitle: this.mainTitle,
-          startDate: this.startDate,
-          endDate: this.endDate,
-          events: this.events,
-          periods: this.periods
-        });
+        const currentState = this.getCurrentState();
+        console.log('Current state to push:', JSON.stringify(currentState, null, 2)); // Debugging line
+        this.history.push(currentState);
+        console.log('History after push:', JSON.stringify(this.history, null, 2)); // Debugging line
 
         // Utilisation de l'importation dynamique
         const childData = await import(`../data/${childFile}.json`);
@@ -93,14 +94,53 @@ export default {
       }
     },
 
+    getCurrentState() {
+      return {
+        mainTitle: this.mainTitle,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        events: this.events,
+        periods: this.periods
+      };
+    },
+
     goBack() {
-      const previousState = this.history.pop();
-      if (previousState) {
-        this.mainTitle = previousState.mainTitle;
-        this.startDate = previousState.startDate;
-        this.endDate = previousState.endDate;
-        this.events = previousState.events;
-        this.periods = previousState.periods;
+      if (this.history.length > 0) {
+        console.log('History before pop:', JSON.stringify(this.history, null, 2)); // Debugging line
+        const previousState = this.history[this.history.length - 1]; // Obtenir l'état précédent sans le supprimer
+        this.history.pop(); // Supprimer l'état après l'avoir récupéré
+        console.log('Restoring state:', JSON.stringify(previousState, null, 2)); // Debugging line
+        this.restoreState(previousState);
+        console.log('History after pop:', JSON.stringify(this.history, null, 2)); // Debugging line
+      } else {
+        console.log('No history to go back to.');
+      }
+    },
+
+    restoreState(state) {
+      if (state) {
+        this.mainTitle = state.mainTitle;
+        this.startDate = state.startDate;
+        this.endDate = state.endDate;
+        this.events = state.events.map(event => ({
+          ...event,
+          position: this.calculatePosition(this.parseDate(event.date))
+        }));
+        this.periods = this.calculateScaledWidths(state.periods);
+      }
+    },
+
+    navigateTo(index) {
+      if (index < this.history.length) {
+        console.log('Navigating to index:', index); // Debugging line
+        const targetState = this.history[index];
+        console.log('Target state:', JSON.stringify(targetState, null, 2)); // Debugging line
+        this.history = this.history.slice(0, index);
+        console.log('History after slice:', JSON.stringify(this.history, null, 2)); // Debugging line
+        this.restoreState(targetState);
+        console.log('History after restoration:', JSON.stringify(this.history, null, 2)); // Debugging line
+      } else {
+        console.log('Index out of range:', index);
       }
     },
 
@@ -147,6 +187,9 @@ export default {
 }
 </script>
 
+
+
+
 <style scoped>
 .timeline-container {
   position: relative;
@@ -188,12 +231,8 @@ export default {
 
 .timeline-head {
   display: flex;
-  align-items: center;
   color: black;
   margin-top: 16px;
   margin-left: 16px;
-}
-.back-button{
-  margin-right: 8px;
 }
 </style>
