@@ -190,12 +190,14 @@ export default {
 
 
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/styles/main.scss";
+
 .timeline-container {
   position: relative;
   width: 100%;
   height: 300px;
-  background-color: white;
+  background-color: $white-unlock;
   border: solid 1px rgb(230, 230, 230);
   border-radius: 8px;
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
@@ -209,7 +211,7 @@ export default {
   left: 0;
   right: 0;
   height: 2px;
-  background-color: black;
+  background-color: $neutral-highest;
   transform: translateY(-50%);
 }
 
@@ -231,7 +233,7 @@ export default {
 
 .timeline-head {
   display: flex;
-  color: black;
+  color: $neutral-highest;
   margin-top: 16px;
   margin-left: 16px;
 }

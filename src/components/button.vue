@@ -39,7 +39,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/styles/main.scss";
+
 /* Vous pouvez supprimer ou commenter les styles locaux si vous utilisez les styles globaux */
 .btn {
   padding: 4px 8px;
@@ -53,18 +55,31 @@ export default {
 }
 
 .btn-default {
-  background-color: rgb(220, 220, 220);
-  color: #333;
+  background-color: $neutral-hight;
+  color: $white-unlock;
+}
+.btn-default:hover:not(.btn-disabled) {
+  background-color: $neutral-highest;
+  color: $white-unlock;
 }
 
 .btn-primary {
-  background-color: #007bff;
-  color: white;
+  background-color: $primary-medium;
+  color: $white-lock;
+}
+.btn-primary:hover:not(.btn-disabled) {
+  background-color: $primary-highter;
+  color: $white-unlock;
 }
 
+
 .btn-secondary {
-  background-color: #6c757d;
-  color: white;
+  background-color: $neutral-medium;
+  color: $white-lock;
+}
+.btn-secondary:hover:not(.btn-disabled) {
+  background-color: $neutral-highter;
+  color: $white-lock;
 }
 
 .btn-disabled {
@@ -73,8 +88,5 @@ export default {
   cursor: not-allowed;
 }
 
-.btn-default:hover:not(.btn-disabled) {
-  background-color: rgb(210, 210, 210);
-  color: #333;
-}
+
 </style>

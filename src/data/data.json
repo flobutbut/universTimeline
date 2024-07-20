@@ -3,10 +3,10 @@
   "startDate": -4600000000,
   "endDate": 2024,
   "periods": [
-    { "id": 1, "title": "Hadéen", "startDate": -4600000000, "endDate": -4000000000,  "child": "_Hadeen" },
-    { "id": 2, "title": "Archéen", "startDate": -4000000000, "endDate": -2500000000,  "child": "_Archeen" },
-    { "id": 3, "title": "Protérozoïque", "startDate": -2500000000, "endDate": -541000000,  "child": "_Proterozoique" },
-    { "id": 4, "title": "Phanérozoïque", "startDate": -541000000, "endDate": 2024,  "child": "_Phanerozoique"}
+    { "id": 1, "title": "Hadéen", "startDate": -4600000000, "endDate": -4000000000, "child": "_Hadeen" },
+    { "id": 2, "title": "Archéen", "startDate": -4000000000, "endDate": -2500000000, "child": "_Archeen" },
+    { "id": 3, "title": "Protérozoïque", "startDate": -2500000000, "endDate": -541000000, "child": "_Proterozoique" },
+    { "id": 4, "title": "Phanérozoïque", "startDate": -541000000, "endDate": 2024, "child": "_Phanerozoique"}
   ],
   "events": [
     { "id": 1, "title": "Formation de la Terre", "date": -4600000000 },

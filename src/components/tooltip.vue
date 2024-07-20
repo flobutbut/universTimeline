@@ -1,7 +1,7 @@
 <template>
   <div class="tooltip" ref="tooltip" v-show="visible" :class="[placementClass, { 'tooltip-visible': visible }]">
-    <p class="textMedium textWhite spacing_xs">{{ title }}</p>
-    <p class="textMedium textDimmed">{{ formattedYear }}</p>
+    <p class="textRegular textWhite spacing_xs">{{ title }}</p>
+    <p class="textRegular textDimmed">{{ formattedYear }}</p>
   </div>
 </template>
 
@@ -85,12 +85,14 @@ export default {
 
 
   
-  <style scoped>
+<style scoped lang="scss">
+@import "@/styles/main.scss";
+
 .tooltip {
   margin: 0;
   position: absolute;
-  background-color: black;
-  color: white;
+  background-color: $neutral-highest;
+  color: $white-unlock;
   padding: 8px;
   border-radius: 5px;
   white-space: nowrap;

@@ -1,8 +1,8 @@
 <template>
   <div class="periode" :style="{ left: position, width: width }" @click="handleClick">
     <div class="periode-bar">
-      <p class="textMedium textBlack spacing_xs">{{ title }}</p>
-      <p class="textMedium textDimmed">{{ calculatedDuration }}</p>
+      <p class="marginLeft textRegular textBlack spacing_xs">{{ title }}</p>
+      <p class="marginLeft ellipsis textRegular textDimmed">{{ calculatedDuration }}</p>
     </div>
   </div>
 </template>
@@ -105,10 +105,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/styles/main.scss";
+
 .periode {
   position: absolute;
-  background-color: white;
   transform: translateY(-30px);
   padding: 1px;
   height: 28px;
@@ -117,27 +118,22 @@ export default {
   box-sizing: border-box;
 }
 .periode-bar {
-  background-color: rgb(220, 220, 220);
+  background-color: $neutral-lower;
   display: flex;
   align-items: center;
   height: 100%;
   border-radius: 3px;
 }
 .periode-bar:hover {
-  background-color: rgb(210, 210, 210);
+  background-color: $neutral-low;
   display: flex;
   align-items: center;
   height: 100%;
   border-radius: 3px;
   cursor: pointer;
 }
-.textMedium {
-  margin-left: 4px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+p.marginLeft {
+  margin-left: 6px;
 }
-.textBlack {
-  margin-right: 0px;
-}
+
 </style>

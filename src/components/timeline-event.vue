@@ -3,8 +3,8 @@
     <div class="circle"></div>
     <Tooltip :visible="hover && !active" :title="title" :text="date" :formattedYear="formattedYear"></Tooltip>
     <div class="content" :class="{ active: active }">
-      <p class="textMedium textBlack spacing_xs">{{ title }}</p>
-      <p class="textMedium textDimmed">{{ formattedYear }}</p>
+      <p class="textRegular textBlack spacing_xs">{{ title }}</p>
+      <p class="textLight textDimmed">{{ formattedYear }}</p>
     </div>
   </div>
 </template>
@@ -84,7 +84,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/styles/main.scss";
+
 .timeline-event {
   position: absolute;
   transform: translateY(-50%);
@@ -93,8 +95,8 @@ export default {
 .circle {
   width: 10px;
   height: 10px;
-  background-color: black;
-  border: 1px solid white;
+  background-color: $neutral-highest;
+  border: 1px solid $white-unlock;
   border-radius: 50%;
   position: relative;
   z-index: 2;
@@ -111,10 +113,10 @@ export default {
   transition: border-color 0.15s;
 }
 .hover-circle::after {
-  border-color: white;
+  border-color: $white-unlock;
 }
 .active-circle::after {
-  border-color: white;
+  border-color: $white-unlock;
   z-index: 999;
 }
 .content {
@@ -129,9 +131,9 @@ export default {
 }
 .content.active {
   display: flex;
-  color: black;
+  color: $neutral-highest;
   padding: 24px 0 0 4px; /* Adjust padding as necessary */
-  border-left: 2px solid black;
+  border-left: 2px solid $neutral-highest;
   max-height: 200px; /* Set a maximum height for the active content */
   overflow: auto; /* Allows scrolling if the content exceeds the max height */
   margin-left: 5px;

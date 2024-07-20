@@ -15,6 +15,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "@/styles/main.scss";
 /* Styles globaux si nécessaire */
 </style>

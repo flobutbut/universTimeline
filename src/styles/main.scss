@@ -1,0 +1,104 @@
+/* Ajoutez vos styles globaux ici */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+// src/assets/styles/main.scss
+$neutral-highest: #0F172A;
+$neutral-highter: #1E292B;
+$neutral-hight:#64748B;
+$neutral-medium:#94A3B8;
+$neutral-low:#CBD5E1;
+$neutral-lower:#E2E8F0;
+$neutral-lowest:#F8FAFC;
+
+$white-lock: white;
+$white-unlock: white;
+
+$primary-highest: #080F7A;
+$primary-highter: #0E1793;
+$primary-hight: #2132DB;
+$primary-medium: #2E43FF;
+$primary-low: #6273FF;
+$primary-lower: #ABB6FF;
+$primary-lowest: #F4F6FF;
+
+$secondary-highest: #540670;
+$secondary-highter: #720B88;
+$secondary-hight: #CA1AC8;
+$secondary-medium: #EB24D7;
+$secondary-low: #F358D5;
+$secondary-lower: #FDA7DC;
+$secondary-lowest: #FFF0F8;
+
+body {
+    font-family: inter;
+    margin: 0;
+    padding: 0;
+}
+
+#app{
+    background-color: rgb(240, 240, 240);
+    padding: 8px;
+}
+
+.h1 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+.h4 {
+    margin: 0;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 500;
+}
+
+
+.textRegular {
+    margin: 0;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+}
+.textLight {
+    margin: 0;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+}
+
+.textBlack {
+    color: $neutral-highest;
+}
+.textDimmed {
+    color: $neutral-medium;
+}
+.textWhite {
+    color: $white-unlock
+}
+
+.spacing_xs{
+    margin-bottom: 2px;
+}
+.spacing_sm{
+    margin-bottom: 4px;
+}
+.spacing_md{
+    margin-bottom: 8px;
+}
+
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container {
+    padding: 20px;
+}
+
