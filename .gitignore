@@ -5,3 +5,4 @@ dist
 draft.vue
 Ressources
 src/draft.js
+vue.config.js
