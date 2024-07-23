@@ -1,0 +1,179 @@
+[
+    {
+      "id": "cosmologie",
+      "name": "Cosmologie",
+      "tags": ["univers", "galaxies", "étoiles"],
+      "relatedBranches": ["geologie", "astrophysique"],
+      "subBranches": [
+        {
+          "id": "formation_univers",
+          "name": "Formation de l'Univers",
+          "tags": ["big_bang", "inflation", "nucléosynthèse"],
+          "relatedEvents": [1, 2, 3],
+          "relatedPeriods": [1, 2]
+        },
+        {
+          "id": "evolution_galaxies",
+          "name": "Évolution des galaxies",
+          "tags": ["formation_galaxies", "fusion_galaxies", "voie_lactée"],
+          "relatedEvents": [4, 5, 6, 7, 8],
+          "relatedPeriods": [3]
+        }
+      ]
+    },
+    {
+      "id": "geologie",
+      "name": "Géologie",
+      "tags": ["tectonique", "roches", "minéraux"],
+      "relatedBranches": ["climatologie", "evolution_vie"],
+      "subBranches": [
+        {
+          "id": "tectonique_plaques",
+          "name": "Tectonique des plaques",
+          "tags": ["continents", "dérive", "subduction"],
+          "relatedEvents": [31, 34, 39],
+          "relatedPeriods": [16, 17, 21]
+        },
+        {
+          "id": "formation_terre",
+          "name": "Formation de la Terre",
+          "tags": ["croûte", "manteau", "noyau"],
+          "relatedEvents": [11, 12, 13, 14, 15],
+          "relatedPeriods": [5, 6]
+        }
+      ]
+    },
+    {
+      "id": "evolution_vie",
+      "name": "Évolution de la vie",
+      "tags": ["biodiversité", "espèces", "adaptation"],
+      "relatedBranches": ["geologie", "paleontologie"],
+      "subBranches": [
+        {
+          "id": "apparition_especes",
+          "name": "Apparition des espèces",
+          "tags": ["premiers_organismes", "diversification"],
+          "relatedEvents": [18, 19, 21, 26, 27, 28, 29, 30],
+          "relatedPeriods": [7, 10, 15, 16]
+        },
+        {
+          "id": "extinctions",
+          "name": "Extinctions massives",
+          "tags": ["extinction", "crise_biologique"],
+          "relatedEvents": [36, 37],
+          "relatedPeriods": [16, 17]
+        }
+      ]
+    },
+    {
+      "id": "climatologie",
+      "name": "Climatologie",
+      "tags": ["climat", "atmosphère", "glaciations"],
+      "relatedBranches": ["geologie", "evolution_vie"],
+      "subBranches": [
+        {
+          "id": "ere_glaciaire",
+          "name": "Ères glaciaires",
+          "tags": ["glaciation", "période_interglaciaire"],
+          "relatedEvents": [22, 24, 41],
+          "relatedPeriods": [28, 40, 41]
+        }
+      ]
+    },
+    {
+      "id": "anthropologie",
+      "name": "Anthropologie",
+      "tags": ["humains", "cultures", "sociétés"],
+      "relatedBranches": ["evolution_vie", "histoire"],
+      "subBranches": [
+        {
+          "id": "evolution_humaine",
+          "name": "Évolution humaine",
+          "tags": ["hominidés", "homo_sapiens"],
+          "relatedEvents": [40, 42, 44],
+          "relatedPeriods": [25, 40, 41]
+        },
+        {
+          "id": "developpement_culturel",
+          "name": "Développement culturel",
+          "tags": ["art", "langage", "outils"],
+          "relatedEvents": [43, 45],
+          "relatedPeriods": [42]
+        }
+      ]
+    },
+    {
+      "id": "histoire",
+      "name": "Histoire",
+      "tags": ["civilisations", "événements", "périodes"],
+      "relatedBranches": ["anthropologie", "technologie"],
+      "subBranches": [
+        {
+          "id": "civilisations_anciennes",
+          "name": "Civilisations anciennes",
+          "tags": ["mésopotamie", "égypte", "grèce", "rome"],
+          "relatedEvents": [48, 49, 51],
+          "relatedPeriods": [42]
+        },
+        {
+          "id": "ere_moderne",
+          "name": "Ère moderne",
+          "tags": ["renaissance", "révolutions", "mondialisation"],
+          "relatedEvents": [55, 56, 57],
+          "relatedPeriods": [42, 50]
+        }
+      ]
+    },
+    {
+      "id": "technologie",
+      "name": "Technologie",
+      "tags": ["inventions", "innovations", "progrès"],
+      "relatedBranches": ["histoire", "science"],
+      "subBranches": [
+        {
+          "id": "revolution_industrielle",
+          "name": "Révolution industrielle",
+          "tags": ["industrie", "machines", "production"],
+          "relatedEvents": [56],
+          "relatedPeriods": [42]
+        },
+        {
+          "id": "ere_spatiale",
+          "name": "Ère spatiale",
+          "tags": ["exploration_spatiale", "satellites", "missions"],
+          "relatedEvents": [60],
+          "relatedPeriods": [50]
+        }
+      ]
+    },
+    {
+      "id": "religion",
+      "name": "Religion",
+      "tags": ["croyances", "spiritualité", "traditions"],
+      "relatedBranches": ["histoire", "anthropologie"],
+      "subBranches": [
+        {
+          "id": "grandes_religions",
+          "name": "Grandes religions",
+          "tags": ["bouddhisme", "christianisme", "islam"],
+          "relatedEvents": [50, 52, 54],
+          "relatedPeriods": [42]
+        }
+      ]
+    },
+    {
+      "id": "conflits",
+      "name": "Conflits",
+      "tags": ["guerres", "révolutions", "tensions"],
+      "relatedBranches": ["histoire", "politique"],
+      "subBranches": [
+        {
+          "id": "guerres_mondiales",
+          "name": "Guerres mondiales",
+          "tags": ["première_guerre_mondiale", "seconde_guerre_mondiale"],
+          "relatedEvents": [58, 59],
+          "relatedPeriods": [42, 50]
+        }
+      ]
+    }
+  ]

@@ -5,8 +5,6 @@
   </div>
 </template>
 
-
-
 <script>
 export default {
   name: 'Tooltip',
@@ -25,12 +23,17 @@ export default {
     },
     placement: {
       type: String,
-      default: 'bottom' // Default to 'bottom', can be 'top' for periods
+      default: 'bottom'
     }
+  },
+  data() {
+    return {
+      adjustedPlacement: this.placement
+    };
   },
   computed: {
     placementClass() {
-      return this.placement === 'top' ? 'tooltip-top' : 'tooltip-bottom';
+      return `tooltip-${this.adjustedPlacement}`;
     }
   },
   watch: {
@@ -58,33 +61,37 @@ export default {
       const container = this.getParentContainer(tooltip);
       const containerRect = container.getBoundingClientRect();
 
-      // Reset styles first
+      // Reset styles
       tooltip.style.left = '50%';
       tooltip.style.right = 'auto';
       tooltip.style.transform = 'translateX(-50%)';
 
+      // Adjust horizontal position
       if (tooltipRect.right > containerRect.right) {
-        const overflowRight = tooltipRect.right - containerRect.right;
-
-        tooltip.style.left = `calc(50% - ${overflowRight}px)`;
-        tooltip.style.right = 'auto';
-        tooltip.style.transform = 'translateX(-50%)';
+        tooltip.style.left = 'auto';
+        tooltip.style.right = '0';
+        tooltip.style.transform = 'translateX(0)';
+      } else if (tooltipRect.left < containerRect.left) {
+        tooltip.style.left = '0';
+        tooltip.style.transform = 'translateX(0)';
       }
 
-      if (tooltipRect.left < containerRect.left) {
-        const overflowLeft = containerRect.left - tooltipRect.left;
+      // Adjust vertical position
+      const topSpace = tooltipRect.top - containerRect.top;
+      const bottomSpace = containerRect.bottom - tooltipRect.bottom;
 
-        tooltip.style.left = `calc(50% + ${overflowLeft}px)`;
-        tooltip.style.right = 'auto';
-        tooltip.style.transform = 'translateX(-50%)';
+      if (this.placement === 'bottom' && bottomSpace < 0) {
+        this.adjustedPlacement = 'top';
+      } else if (this.placement === 'top' && topSpace < 0) {
+        this.adjustedPlacement = 'bottom';
+      } else {
+        this.adjustedPlacement = this.placement;
       }
     }
   }
 }
 </script>
 
-
-  
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
@@ -99,14 +106,16 @@ export default {
   z-index: 1000;
   left: 50%;
   transform: translateX(-50%);
+  max-width: 200px; // Ajoutez une largeur maximale
+  word-wrap: break-word; // Permet le retour à la ligne des mots longs
 }
 
 .tooltip-bottom {
-  top: 16px; /* Adjust to align with the parent's bottom border */
+  top: 16px;
 }
 
 .tooltip-top {
-  bottom: 16px; /* Adjust to align with the parent's top border */
+  bottom: 16px;
 }
 
 .tooltip-visible {
@@ -114,5 +123,4 @@ export default {
   opacity: 1;
   transition: opacity 0.2s;
 }
-  </style>
-  
+</style>

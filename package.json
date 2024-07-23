@@ -8,6 +8,11 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^1.7.2",
+    "csv": "^6.3.9",
+    "csv-loader": "^3.0.5",
+    "loader": "^2.1.1",
+    "papaparse": "^5.4.1",
     "vue": "^3.2.0"
   },
   "devDependencies": {

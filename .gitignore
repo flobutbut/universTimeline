@@ -3,3 +3,5 @@ node_modules
 .vscode
 dist
 draft.vue
+Ressources
+src/draft.js
