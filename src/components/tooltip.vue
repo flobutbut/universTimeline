@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { formatDuration } from '@/utils/dateUtils';
+
 export default {
   name: 'Tooltip',
   props: {

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { parseDate, formatDuration } from '@/services/dateUtils';
+import { parseDate, formatDuration } from '@/utils/dateUtils';
 
 export default {
     name: 'TimelineCursor',

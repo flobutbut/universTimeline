@@ -1,18 +1,29 @@
 <template>
   <div id="app">
-    <Timeline />
+    <Timeline @error="handleError" />
   </div>
 </template>
 
 <script>
-import Timeline from './components/timeline.vue';
+import { defineComponent } from 'vue';
+import Timeline from '@/components/Timeline.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     Timeline
+  },
+  setup() {
+    const handleError = (error) => {
+      console.error("An error occurred in Timeline:", error);
+      // Ajoutez ici une logique pour afficher l'erreur à l'utilisateur si nécessaire
+    };
+
+    return {
+      handleError
+    };
   }
-}
+});
 </script>
 
 <style lang="scss">

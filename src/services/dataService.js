@@ -1,4 +1,4 @@
-import { parseDate, calculateDuration } from './dateUtils';
+import { parseDate } from '@/utils/dateUtils';
 
 const dataService = {
   async getEvents() {

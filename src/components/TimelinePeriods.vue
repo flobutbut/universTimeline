@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { parseDate, calculateDuration, formatDuration } from '@/services/dateUtils';
+import { parseDate, formatDuration, calculateDuration } from '@/utils/dateUtils';
 
 export default {
   name: 'PeriodsComponent',

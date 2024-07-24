@@ -27,8 +27,9 @@
 </template>
 
 <script>
-import tooltip from './tooltip.vue';
-import { parseDate, formatDuration } from '@/services/dateUtils';
+import tooltip from './Tooltip.vue';
+import { parseDate, formatDuration } from '@/utils/dateUtils';
+import { calculateEventPosition, shouldDisplayEvent } from '@/utils/timelineUtils';
 
 export default {
   name: 'EventsComponent',
