@@ -6,8 +6,8 @@ export function useTimelineCalculations() {
   const allPeriods = ref([]);
   const currentPeriods = ref([]);
   const events = ref([]);
-  const startDate = ref(null);
-  const endDate = ref(null);
+  const startDate = ref(-Infinity);
+  const endDate = ref(Infinity);
   const history = ref([]);
   const currentPeriodId = ref(null);
   const currentDepth = ref(0);
@@ -15,6 +15,8 @@ export function useTimelineCalculations() {
   const breadcrumbItems = ref([]);
   const activeEventId = ref(null);
   const highlightedEventIds = ref(new Set());
+
+
 
   const scaledPeriods = computed(() => 
     calculateScaledWidths(currentPeriods.value, startDate.value, endDate.value)
