@@ -17,7 +17,6 @@
             <p class="textRegular textDimmed period-duration">{{ formatDuration(calculateDuration(period.startDate, period.endDate)) }}</p>
           </div>
         </div>
-
     </div>
   </div>
 </template>
@@ -34,7 +33,6 @@ export default {
     }
   },
   methods: {
-
     hasChildren(period) {
       return period.childs && period.childs.length > 0;
     },
@@ -54,7 +52,7 @@ export default {
     },
     formatDuration,
     calculateDuration
-  }
+  }  
 }
 </script>
 
@@ -62,19 +60,16 @@ export default {
 @import "@/styles/main.scss";
 
 .periods-container {
-  position: relative;
   width: 100%;
-  height: 50px;
-  overflow: hidden;
-  margin-bottom: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 2px; // Espace entre les périodes et la ligne centrale
 }
 
 .period {
   position: absolute;
-  top: 0;
   height: 32px;
-  z-index: 1;
-  overflow: hidden;
   min-width: 2px;
   padding: 1px;
   box-sizing: border-box;

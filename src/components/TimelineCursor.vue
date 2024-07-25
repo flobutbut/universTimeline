@@ -1,84 +1,78 @@
 <template>
-    <div 
-    class="timeline-cursor" 
-    :style="{ 
-        left: `${positionX}px`, 
-        top: `${positionY}px`,
-        opacity: cursorOpacity
-    }"
+    <div
+      class="timeline-cursor"
+      :style="{
+        left: `${mouseX}px`,
+        top: `${mouseY}px`,
+      }"
     >
-    {{ formattedDate }}
+      {{ formattedDate }}
     </div>
-</template>
-
-<script>
-import { parseDate, formatDuration } from '@/utils/dateUtils';
-
-export default {
-    name: 'TimelineCursor',
+  </template>
+  
+  <script>
+  import { computed } from "vue";
+  import { parseDate, formatDuration } from "@/utils/dateUtils";
+  
+  export default {
+    name: "TimelineCursor",
     props: {
-    startDate: {
+      startDate: {
         type: [Number, String],
-        required: true
-    },
-    endDate: {
+        required: true,
+      },
+      endDate: {
         type: [Number, String],
-        required: true
-    },
-    timelineWidth: {
+        required: true,
+      },
+      timelineWidth: {
         type: Number,
-        required: true
-    },
-    mouseX: {
+        required: true,
+      },
+      mouseX: {
         type: Number,
-        required: true
-    },
-    mouseY: {
+        required: true,
+      },
+      mouseY: {
         type: Number,
-        required: true
-    }
+        required: true,
+      },
     },
-    computed: {
-    positionY() {
-        return this.mouseY + 182;
-    },
-    positionX() {
-        return this.mouseX;
-    },
-    cursorDate() {
-        const start = parseDate(this.startDate);
-        const end = parseDate(this.endDate);
+    setup(props) {
+      const cursorDate = computed(() => {
+        const start = parseDate(props.startDate);
+        const end = parseDate(props.endDate);
         const totalDuration = end - start;
-        const currentPosition = this.mouseX / this.timelineWidth;
-        return start + (totalDuration * currentPosition);
+        const currentPosition = props.mouseX / props.timelineWidth;
+        return Math.round(start + totalDuration * currentPosition);
+      });
+  
+      const formattedDate = computed(() => {
+        const yearsBefore = Math.abs(cursorDate.value);
+        if (cursorDate.value < 0) {
+          return `${formatDuration(yearsBefore)} avant aujourd'hui`;
+        } else {
+          return `${cursorDate.value}`;
+        }
+      });
+  
+      return {
+        formattedDate,
+      };
     },
-    formattedDate() {
-        return formatDuration(Math.abs(this.cursorDate));
-    },
-    cursorOpacity() {
-    const centerY = this.$parent.$el.offsetHeight / 2 - 16;
-    if (this.mouseY < centerY/20) {
-        return 0;
-    } else {
-        const distance = Math.abs(this.mouseY - centerY);
-        const maxDistance = this.$parent.$el.offsetHeight / 2 + 48; // La moitié inférieure de l'élément parent
-        return Math.min(1, distance / maxDistance);
-    }
-}
-    }
-};
-</script>
-
-<style scoped lang="scss">
-@import "@/styles/main.scss";
-
-.timeline-cursor {
+  };
+  </script>
+  
+  <style scoped>
+  .timeline-cursor {
     position: absolute;
-    transform: translate(-50%, -100%);
-    color: $neutral-highest;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
     font-size: 12px;
     pointer-events: none;
-    transition: opacity 0.1s ease-out;
-}
-</style>
-
+    z-index: 1000;
+    white-space: nowrap;
+  }
+  </style>

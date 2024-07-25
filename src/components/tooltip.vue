@@ -104,12 +104,18 @@ export default {
   color: $white-unlock;
   padding: 8px;
   border-radius: 5px;
-  white-space: nowrap;
   z-index: 1000;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 200px; // Ajoutez une largeur maximale
+  max-width: 200px; // Ajustez cette valeur selon vos besoins
+  width: max-content; // Permet au tooltip de s'ajuster à son contenu
   word-wrap: break-word; // Permet le retour à la ligne des mots longs
+  white-space: normal; // Permet le retour à la ligne automatique
+}
+
+.tooltip p {
+  margin: 0;
+  line-height: 1.4; // Ajoute un peu d'espace entre les lignes
 }
 
 .tooltip-bottom {

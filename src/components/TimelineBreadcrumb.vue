@@ -1,29 +1,37 @@
 <template>
   <div class="breadcrumb-container">
     <div class="breadcrumb">
-      <button v-if="historyLength > 0" @click="goBack" class="back-button"> </button>
-      <div class="breadcrumb-items">
-        <span v-for="(item, index) in items.slice(0, -1)" :key="index" class="breadcrumb-item">
-          <span @click="navigate(index)" class="breadcrumb-link textDimmed textRegular">
-            {{ item }}
+      <button v-if="historyLength > 0" @click="goBack" class="back-button">
+        <IconArrowLeft class="back-icon" />
+      </button>
+        <div class="breadcrumb-items">
+        <template v-for="(item, index) in items" :key="index">
+          <span v-if="index < items.length - 1" class="breadcrumb-item">
+            <span @click="navigate(index)" class="breadcrumb-link textDimmed textRegular truncate">
+              {{ item }}
+            </span>
+            <span class="separator textDimmed textRegular"> / </span>
           </span>
-          <span v-if="index < items.length - 2" class="textDimmed textRegular" > / </span>
-        </span>
+          <span v-else class="breadcrumb-item textRegular">
+            <span class="active-link truncate">
+              {{ item }}
+            </span>
+          </span>
+        </template>
       </div>
-    </div>
-    <div v-if="items.length > 0" class="active-item h2">
-      <span class="active-link">
-        {{ items[items.length - 1] }}
-      </span>
     </div>
   </div>
 </template>
 
 
-
 <script>
+import IconArrowLeft from '@/assets/icons/IconArrowLeft.vue';
+
 export default {
   name: 'Breadcrumb',
+  components: {
+    IconArrowLeft
+  },
   props: {
     items: {
       type: Array,
@@ -51,56 +59,73 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.active-item{
-  padding-left: 20px;
+.breadcrumb-container {
+  display: flex;
+  width: 100%;
 }
 
 .breadcrumb {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centre les éléments horizontalement */
+  width: 100%;
 }
 
 .breadcrumb-items {
   display: flex;
   align-items: center;
-  margin-left: 0px;
+  flex-grow: 1;
+  overflow: hidden;
+  margin-left: 16px;
 }
 
 .breadcrumb-item {
   display: flex;
   align-items: center;
-  margin-right: 5px;
+  white-space: nowrap;
+}
+
+.back-button {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  width: 12px;
+  height: 12px;
+  transition: color 0.3s ease;
+  color: $neutral-medium;
+}
+
+.back-button:hover .back-icon {
+  color: $neutral-highter
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px; // Ajustez selon vos besoins
+}
+
+.separator {
+  margin: 0 5px; // Ajoute un espace de chaque côté du séparateur
 }
 
 .breadcrumb-link {
-  text-decoration: none;
-}
-.breadcrumb-link:hover {
-  text-decoration: none;
-  color: $neutral-highest;
-}
-
-.breadcrumb-link.h2 {
-  text-decoration: none;
-  font-size: 16px;
-}
-.back-button {
-  background-image: url("../assets/icons/arrow-left.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-right: 8px;
-  border: none;
-  height: 12px;
-  width: 12px;
-  border-radius: 3px;
-  background-color: $white-unlock;
-  opacity: 0.3;
-}
-
-.back-button:hover {
   cursor: pointer;
-  opacity: 1;
+  &:hover {
+    text-decoration: none;
+    color: $neutral-highter;
+  }
 }
+
+// Autres styles inchangés...
 </style>

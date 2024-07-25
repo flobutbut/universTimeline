@@ -6,50 +6,43 @@
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
   >
-    <!-- reste du contenu -->
-
-    <div
-      class="timeline-container"
-      @mousemove="handleMouseMove"
-      @mouseleave="handleMouseLeave"
-    >
-      <div class="timeline-head">
-        <TimelineBreadcrumb
-          :items="breadcrumbItems"
-          :historyLength="history.length"
-          @navigate="navigateTo"
-          @back="goBack"
+    <div class="timeline-head">
+      <TimelineBreadcrumb
+        :items="breadcrumbItems"
+        :historyLength="history.length"
+        @navigate="navigateTo"
+        @back="goBack"
+      />
+    </div>
+    <div class="timeline-content" ref="timeline">
+      <div class="periods-container">
+        <TimelinePeriods
+          :periods="scaledPeriods"
+          @load-child="loadChildPeriod"
         />
       </div>
-      <div class="timeline" ref="timeline">
-        <div class="periods">
-          <TimelinePeriods
-            :periods="scaledPeriods"
-            @load-child="loadChildPeriod"
-          />
-        </div>
-        <div class="events" v-if="startDate !== null && endDate !== null">
-          <TimelineEvents
-            :events="filteredEvents"
-            :startDate="startDate"
-            :endDate="endDate"
-            :currentDepth="currentDepth"
-            :maxDepth="maxDepth"
-            :activeEventId="activeEventId"
-            :highlightedEventIds="highlightedEventIds"
-            @event-toggle="handleEventToggle"
-            @events-mouseenter="handleEventsMouseEnter"
-            @events-mouseleave="handleEventsMouseLeave"
-          />
-        </div>
+
+      <div class="timeline-line"></div>
+
+      <div
+        class="events-container"
+        v-if="startDate !== null && endDate !== null"
+      >
+        <TimelineEvents
+          :events="filteredEvents"
+          :startDate="startDate"
+          :endDate="endDate"
+          :currentDepth="currentDepth"
+          :maxDepth="maxDepth"
+          :activeEventId="activeEventId"
+          :highlightedEventIds="highlightedEventIds"
+          @event-toggle="handleEventToggle"
+          @events-mouseenter="handleEventsMouseEnter"
+          @events-mouseleave="handleEventsMouseLeave"
+        />
       </div>
       <TimelineCursor
-        v-if="
-          showCursor &&
-          !isHoveringEvents &&
-          startDate !== null &&
-          endDate !== null
-        "
+        v-if="showCursor"
         :startDate="startDate"
         :endDate="endDate"
         :timelineWidth="timelineWidth"
@@ -61,7 +54,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
 import { useTimelineCalculations } from "@/composables/useTimelineCalculations";
 import TimelinePeriods from "./TimelinePeriods.vue";
 import TimelineEvents from "./TimelineEvents.vue";
@@ -78,6 +71,7 @@ export default {
     TimelineBreadcrumb,
   },
   setup() {
+    console.log("Timeline setup started");
     const {
       allPeriods,
       currentPeriods,
@@ -108,17 +102,23 @@ export default {
     const timelineWidth = ref(0);
     const timelineRef = ref(null);
     const isLoading = ref(true);
+    const timelineHeight = ref(0);
 
     function handleMouseMove(event) {
-  if (timelineRef.value) {
-    const rect = timelineRef.value.getBoundingClientRect();
-    mouseX.value = event.clientX - rect.left;
-    mouseY.value = event.clientY - rect.top;
-    if (!isHoveringEvents.value) {
-      showCursor.value = true;
+      if (timelineRef.value) {
+        const rect = timelineRef.value.getBoundingClientRect();
+        mouseX.value = event.clientX - rect.left;
+        mouseY.value = event.clientY - rect.top;
+        showCursor.value = true;
+        console.log(
+          "Mouse moved:",
+          mouseX.value,
+          mouseY.value,
+          "Timeline width:",
+          timelineWidth.value
+        );
+      }
     }
-  }
-}
     function handleMouseLeave() {
       showCursor.value = false;
     }
@@ -135,35 +135,79 @@ export default {
       }
     }
 
-    function updateTimelineWidth() {
-      if (timelineRef.value) {
-        timelineWidth.value = timelineRef.value.offsetWidth;
-      }
+    function updateTimelineDimensions() {
+      const checkInterval = setInterval(() => {
+        if (timelineRef.value) {
+          clearInterval(checkInterval);
+          const newWidth = timelineRef.value.offsetWidth;
+          const newHeight = timelineRef.value.offsetHeight;
+          if (newWidth > 0 && newHeight > 0) {
+            timelineWidth.value = newWidth;
+            timelineHeight.value = newHeight;
+            console.log(
+              "Timeline dimensions updated:",
+              timelineWidth.value,
+              timelineHeight.value
+            );
+          } else {
+            console.error("Invalid timeline dimensions:", newWidth, newHeight);
+          }
+        }
+      }, 100); // Vérifier toutes les 100ms
+
+      // Arrêter l'intervalle après 5 secondes si la référence n'est toujours pas disponible
+      setTimeout(() => clearInterval(checkInterval), 5000);
     }
 
     async function initializeData() {
       try {
+        isLoading.value = true;
         allPeriods.value = await dataService.getPeriods();
         events.value = await dataService.getEvents();
         const rootPeriod = allPeriods.value.find((p) => p.id === 1);
         if (rootPeriod) {
           loadPeriod(rootPeriod);
+          startDate.value = rootPeriod.startDate;
+          endDate.value = rootPeriod.endDate;
         }
       } catch (error) {
         console.error("Error loading data:", error);
       } finally {
         isLoading.value = false;
+        nextTick(() => {
+          updateTimelineDimensions();
+        });
       }
     }
 
     onMounted(() => {
-      initializeData();
-      updateTimelineWidth();
-      window.addEventListener("resize", updateTimelineWidth);
+      console.log("Timeline mounted");
+      initializeData()
+        .then(() => {
+          updateTimelineDimensions();
+        })
+        .catch((error) => {
+          console.error("Error in initializeData:", error);
+        });
+
+      window.addEventListener("resize", updateTimelineDimensions);
     });
 
     onUnmounted(() => {
-      window.removeEventListener("resize", updateTimelineWidth);
+      window.removeEventListener("resize", updateTimelineDimensions);
+    });
+
+    watch(
+      [showCursor, isHoveringEvents, startDate, endDate],
+      ([show, hover, start, end]) => {
+        console.log("Cursor conditions changed:", { show, hover, start, end });
+      }
+    );
+    watch(timelineRef, (newRef) => {
+      if (newRef) {
+        console.log("Timeline ref is now available");
+        updateTimelineDimensions();
+      }
     });
 
     return {
@@ -182,6 +226,7 @@ export default {
       mouseX,
       mouseY,
       timelineWidth,
+      timelineHeight,
       timelineRef,
       loadChildPeriod,
       goBack,
@@ -191,6 +236,7 @@ export default {
       handleMouseLeave,
       handleEventsMouseEnter,
       handleEventsMouseLeave,
+      isLoading,
     };
   },
 };
@@ -209,30 +255,44 @@ export default {
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.timeline {
+.timeline-head {
+  position: relative;
+  padding: 16px 16px 0;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.timeline-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.timeline-line {
   position: absolute;
   top: 50%;
   left: 0;
   right: 0;
   height: 2px;
-  background-color: $neutral-highest;
-  transform: translateY(-50%);
-}
-
-.periods {
-  position: absolute;
-  top: 50%;
-  width: 100%;
+  background-color: black;
   transform: translateY(-50%);
   z-index: 1;
 }
 
-.timeline-head {
+.periods-container {
+  flex: 1;
   display: flex;
-  color: $neutral-highest;
-  margin-top: 16px;
-  margin-left: 16px;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+}
+
+.events-container {
+  flex: 1;
+  position: relative;
 }
 </style>
