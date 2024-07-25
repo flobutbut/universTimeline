@@ -9,13 +9,11 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
-    "csv": "^6.3.9",
-    "loader": "^2.1.1",
-    "papaparse": "^5.4.1",
-    "vue": "^3.2.0"
+    "vue": "^3.3.0"
   },
   "devDependencies": {
     "@vue/cli-service": "^5.0.0",
+    "@vue/compiler-sfc": "^3.3.0",
     "sass": "^1.77.8",
     "sass-loader": "^14.2.1"
   }
