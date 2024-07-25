@@ -1,10 +1,11 @@
+const path = require('path');
+
 module.exports = {
-  chainWebpack: config => {
-    config.module
-      .rule('csv')
-      .test(/\.csv$/)
-      .use('csv-loader')
-      .loader('csv-loader')
-      .end();
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src/')
+      }
+    }
   }
-};
+}
