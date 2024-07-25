@@ -6,7 +6,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import Timeline from '@/components/Timeline.vue';
+import Timeline from './components/Timeline.vue';
 
 export default defineComponent({
   name: 'App',
