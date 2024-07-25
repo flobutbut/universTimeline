@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import tooltip from "./Tooltip.vue";
+import tooltip from './Tooltip.vue';
 import { parseDate, formatDuration } from "@/utils/dateUtils";
 import {
   calculateEventPosition,
