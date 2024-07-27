@@ -1,53 +1,19 @@
-# universTimeline
+## Contribuer au projet Timeline
 
-## Structure du projet
+Je suis ravi de rendre ce projet open source pour permettre à la communauté de contribuer. Cependant, je tiens à maintenir la direction et la vision du projet.
 
-/project-root
-│
-src/
-|   |-- components/
-|   |   |-- TimelineBreadcrumb.vue
-|   |   |-- TimelineComponent.vue
-|   |   |-- TimelineCursor.vue
-|   |   |-- TimelineEvents.vue
-|   |   |-- TimelinePeriods.vue
-|   |-- composables/
-|   |   |-- useTimelineCalculations.js
-|   |   |-- useTimelineInteractions.js (nouveau)
-|   |-- services/
-|   |   |-- dataService.js
-|   |-- utils/
-|   |   |-- dateUtils.js
-|   |   |-- timelineUtils.js
-|   |-- hooks/ (nouveau)
-|   |   |-- useTimelineDimensions.js
-|   |-- constants/ (nouveau)
-|   |   |-- timelineConstants.js
-│
-├── public/
-│   └── index.html
-│
-└── package.json
+### Comment contribuer :
 
+1. **Visitez le [dépôt GitHub](https://github.com/votre-projet)**.
+2. **Faites un fork** pour créer votre propre copie.
+3. **Créez une branche** pour vos modifications.
+4. **Soumettez une pull request**.
 
-## À propos du projet
+### Règles de gouvernance :
 
-En tant que designer, je n'ai pas de connaissances approfondies en développement d'applications web. J'ai donc demandé l'aide de ChatGPT et claude pour ce projet.
+- **Suggestions** : Toutes les contributions et suggestions sont les bienvenues.
+- **Décisions** : Les décisions finales concernant la direction du projet et l'intégration des changements seront prises par moi-même pour garantir la cohérence et la vision du projet.
 
-## Commandes utiles
+📧 Pour des idées ou des discussions, envoyez-moi un email à [hello@florianbutour.com](mailto:hello@florianbutour.com).
 
-### Pour générer le .dist et lancer le projet
-yarn build
-yarn serve
-
-### Pour pusher sur GitHub
-git add 'nom du fichier'   # Ajouter des fichiers
-git status                 # Voir l'état de la branche
-git commit -m "détail du commit"
-git push
-
-### Pour récupérer les modifications sur toutes les branches
-git pull
-
-### Pour changer de branche
-git checkout nomDeLaBranche
+Ensemble, faisons évoluer ce projet tout en maintenant une direction claire et cohérente ! 🌌
