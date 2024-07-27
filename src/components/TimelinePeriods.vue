@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+//@import "@/styles/main.scss";
 
 .periods-container {
   width: 100%;

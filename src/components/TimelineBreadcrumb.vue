@@ -57,7 +57,7 @@ export default {
 
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+//@import "@/styles/main.scss";
 
 .breadcrumb-container {
   display: flex;

@@ -58,31 +58,33 @@ Les données sont structurées en trois fichiers JSON principaux :
 Composant racine de l'application.
 
 ### 2. TimelineComponant.vue
-Composant principal gérant l'affichage et l'interaction avec la timeline.
-- Utilise les composables `useTimelineCalculations`, `useTimelineInteractions`, et `useTimelineDimensions`.
-- Gère l'initialisation des données, l'affichage des périodes, des événements et du curseur.
-- Implémente la logique de chargement et de navigation entre les périodes.
+[Reste inchangé]
 
 ### 3. TimelinePeriods.vue
-Gère l'affichage des périodes sur la timeline.
+[Reste inchangé]
 
 ### 4. TimelineEvents.vue
-Gère l'affichage des événements sur la timeline.
+[Reste inchangé]
 
 ### 5. TimelineCursor.vue
-Affiche le curseur et la date correspondante lors du survol de la timeline.
-- Calcule dynamiquement la position et l'opacité du curseur.
-- Formate et affiche la date correspondant à la position du curseur.
+[Reste inchangé]
 
 ### 6. TimelineBreadcrumb.vue
-Affiche le fil d'Ariane pour la navigation dans les périodes.
+[Reste inchangé]
 
 ### 7. Button.vue
 Composant réutilisable pour les boutons.
+- Supporte différents types de boutons (default, primary, secondary).
+- Gère l'état désactivé.
+- Émet un événement de clic lorsqu'il est activé.
 
 ### 8. Tooltip.vue
-Gère l'affichage des infobulles pour les événements.
+[Reste inchangé]
 
+### 9. AppHeader.vue
+Composant d'en-tête de l'application.
+- Affiche le logo de l'application.
+- Contient un bouton pour accéder à la page de contribution.
 ## Services
 
 ### dataService.js

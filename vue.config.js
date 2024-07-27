@@ -7,5 +7,12 @@ module.exports = {
         '@': path.resolve(__dirname, 'src/')
       }
     }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `@import "@/styles/main.scss";`
+      }
+    }
   }
 }

@@ -2,26 +2,26 @@
   <div class="app">
     <AppHeader class="app__header"/>
     <main class="app__main">
-      <Timeline class="app__timeline" @error="handleError" />
+      <router-view v-slot="{ Component }">
+        <component :is="Component" @error="handleError" />
+      </router-view>
     </main>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import Timeline from './components/TimelineComponant.vue';
 import AppHeader from './components/AppHeader.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    Timeline,
     AppHeader
   },
   
   setup() {
     const handleError = (error) => {
-      console.error("An error occurred in Timeline:", error);
+      console.error("An error occurred:", error);
       // Ajoutez ici une logique pour afficher l'erreur à l'utilisateur si nécessaire
     };
 
@@ -47,12 +47,6 @@ export default defineComponent({
   &__main {
     flex-grow: 1;
     padding: 16px;
-  }
-  
-  &__timeline {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <header class="app-header">
-    <div class="logo">
+    <div class="logo" @click="goToHome">
       <img src="@/assets/Brand/logo.svg" alt="Logo" />
     </div>
     <Button type="default" @click="openContributePage">Contribuer au projet</Button>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Button from "./Button.vue"; // Assurez-vous que le chemin est correct
+import Button from "./Button.vue";
 
 export default {
   name: "AppHeader",
@@ -17,20 +17,20 @@ export default {
   },
   methods: {
     openContributePage() {
-      // Pour l'instant, nous allons juste afficher une alerte
-      alert("Page de contribution : À implémenter");
-      // Ici, vous pourriez ajouter la logique pour ouvrir la page de contribution
+      this.$router.push('/contribute');
     },
+    goToHome() {
+      this.$router.push('/');
+    }
   },
 };
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
 
 .app-header {
   display: flex;
-  align-items: center; // Centre verticalement les éléments
+  align-items: center;
   justify-content: space-between;
   padding: 16px;
   background-color: $white-lock;
@@ -38,11 +38,12 @@ export default {
 
 .logo {
   display: flex;
-  align-items: center; // Centre verticalement le logo
+  align-items: center;
+  cursor: pointer; // Ajoutez ceci pour indiquer que le logo est cliquable
 }
 
 .logo img {
-  max-height: 40px; // Ajustez selon la taille souhaitée
+  max-height: 40px;
   width: auto;
 }
 </style>

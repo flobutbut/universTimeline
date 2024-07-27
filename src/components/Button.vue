@@ -11,7 +11,7 @@ export default {
     type: {
       type: String,
       default: 'default',
-      validator: value => ['default', 'primary', 'secondary'].includes(value)
+      validator: value => ['default', 'primary', 'secondary', 'naked'].includes(value)
     },
     disabled: {
       type: Boolean,
@@ -25,6 +25,7 @@ export default {
         'btn-default': this.type === 'default',
         'btn-primary': this.type === 'primary',
         'btn-secondary': this.type === 'secondary',
+        'btn-naked': this.type === 'naked',
         'btn-disabled': this.disabled
       };
     }
@@ -40,7 +41,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
 
 /* Vous pouvez supprimer ou commenter les styles locaux si vous utilisez les styles globaux */
 .btn {
@@ -77,6 +77,14 @@ export default {
 .btn-secondary:hover:not(.btn-disabled) {
   background-color: $neutral-highter;
   color: $white-lock;
+}
+.btn-naked {
+  background-color: transparent;
+  color: $neutral-medium;
+}
+.btn-naked:hover:not(.btn-disabled) {
+  background-color: $neutral-lower;
+  color: $neutral-highter;
 }
 
 .btn-disabled {

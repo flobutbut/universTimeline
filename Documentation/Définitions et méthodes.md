@@ -409,3 +409,29 @@ src/
   - event: Object (événement)
   - currentDepth, maxDepth: Number
 - **Retour**: Boolean
+
+## 14. AppHeader.vue
+
+### Composants:
+- Button
+
+### Méthodes:
+#### openContributePage()
+- **Fonctionnalité**: Ouvre la page de contribution (actuellement affiche une alerte).
+
+## 15. Button.vue
+
+### Props:
+- type: String (default, primary, secondary)
+- disabled: Boolean
+
+### Computed Properties:
+#### buttonClass
+- **Fonctionnalité**: Détermine les classes CSS à appliquer au bouton.
+- **Retour**: Object (classes CSS)
+
+### Méthodes:
+#### handleClick(event)
+- **Fonctionnalité**: Gère le clic sur le bouton.
+- **Paramètres**: 
+  - event: Event (événement de clic)
