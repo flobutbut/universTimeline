@@ -43,6 +43,7 @@
 - **Valeur**: Importe automatiquement le fichier main.scss dans tous les composants.
 
 ## 2. Structure du projet
+```
 /project-root
 │
 src/
@@ -69,6 +70,7 @@ src/
 |   |-- index.html
 |
 |-- package.json
+```
 
 ## 3. Composants
 
