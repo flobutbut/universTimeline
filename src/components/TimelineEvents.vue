@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import tooltip from '@/components/Tooltip.vue';
+import tooltip from "@/components/Tooltip.vue";
 import { parseDate, formatDuration } from "@/utils/dateUtils";
 import {
   calculateEventPosition,
@@ -128,28 +128,30 @@ export default {
 
   methods: {
     isNearRightEdge(event) {
-    const position = parseFloat(this.calculatePosition(event.date));
-    const contentWidthPx = 200; // 200px de contenu + 24px d'espace supplémentaire
-    const timelineWidthPx = this.$el ? this.$el.offsetWidth : 1000; // Largeur réelle de la timeline ou valeur par défaut
-    
-    // Calculons la largeur du contenu en pourcentage de la timeline
-    const contentWidthPercentage = (contentWidthPx / timelineWidthPx) * 100;
-    
-    // Un événement est considéré comme "près du bord droit" si sa position
-    // plus la largeur du contenu dépasserait 95% de la largeur de la timeline
-    const isNearEdge = (position + contentWidthPercentage) > 100;
-        
-    return isNearEdge;
-  },
-  
+      const position = parseFloat(this.calculatePosition(event.date));
+      const contentWidthPx = 200; // 200px de contenu + 24px d'espace supplémentaire
+      const timelineWidthPx = this.$el ? this.$el.offsetWidth : 1000; // Largeur réelle de la timeline ou valeur par défaut
+
+      // Calculons la largeur du contenu en pourcentage de la timeline
+      const contentWidthPercentage = (contentWidthPx / timelineWidthPx) * 100;
+
+      // Un événement est considéré comme "près du bord droit" si sa position
+      // plus la largeur du contenu dépasserait 95% de la largeur de la timeline
+      const isNearEdge = position + contentWidthPercentage > 100;
+
+      return isNearEdge;
+    },
+
     handleMouseOver(event) {
       this.hoverEventId = event.id;
       this.$emit("event-mouseenter");
+      this.$emit("cursor-disable"); // Nouvelle émission
     },
 
     handleMouseLeave(event) {
       this.hoverEventId = null;
       this.$emit("event-mouseleave");
+      this.$emit("cursor-enable"); // Nouvelle émission
     },
 
     toggleActive(event) {

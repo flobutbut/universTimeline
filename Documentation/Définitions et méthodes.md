@@ -46,30 +46,40 @@
 ```
 /project-root
 │
-src/
-|   |-- components/
-|   |   |-- TimelineBreadcrumb.vue
-|   |   |-- TimelineComponent.vue
-|   |   |-- TimelineCursor.vue
-|   |   |-- TimelineEvents.vue
-|   |   |-- TimelinePeriods.vue
-|   |-- composables/
-|   |   |-- useTimelineCalculations.js
-|   |   |-- useTimelineInteractions.js
-|   |-- services/
-|   |   |-- dataService.js
-|   |-- utils/
-|   |   |-- dateUtils.js
-|   |   |-- timelineUtils.js
-|   |-- hooks/
-|   |   |-- useTimelineDimensions.js
-|   |-- constants/
-|   |   |-- timelineConstants.js
+├── src/
+│   ├── components/
+│   │   ├── TimelineBreadcrumb.vue
+│   │   ├── TimelineComponant.vue (note the spelling)
+│   │   ├── TimelineCursor.vue
+│   │   ├── TimelineEvents.vue
+│   │   ├── TimelinePeriods.vue
+│   │   ├── AppHeader.vue
+│   │   ├── Button.vue
+│   │   └── ContributePage.vue
+│   ├── composables/
+│   │   ├── useTimelineCalculations.js
+│   │   └── useTimelineInteractions.js
+│   ├── services/
+│   │   └── dataService.js
+│   ├── utils/
+│   │   ├── dateUtils.js
+│   │   └── timelineUtils.js
+│   ├── hooks/
+│   │   └── useTimelineDimensions.js
+│   ├── constants/
+│   │   └── timelineConstants.js
+│   ├── router/
+│   │   └── index.js
+│   ├── styles/
+│   │   └── main.scss
+│   ├── assets/
+│   ├── App.vue
+│   └── main.js
 │
-|-- public/
-|   |-- index.html
-|
-|-- package.json
+├── public/
+│   └── index.html
+│
+└── package.json
 ```
 
 ## 3. Composants

@@ -33,7 +33,7 @@
         ref="eventsContainerRef"
       >
         <TimelineCursor
-          v-if="showCursor && isHoveringEvents"
+          v-if="isCursorVisible && showCursor && !isHoveringEvent"
           :startDate="startDate"
           :endDate="endDate"
           :timelineWidth="timelineWidth"
@@ -44,6 +44,8 @@
           :containerHeight="timelineHeight"
         />
         <TimelineEvents
+          @cursor-disable="isCursorVisible = false"
+          @cursor-enable="isCursorVisible = true"
           :events="filteredEvents"
           :startDate="startDate"
           :endDate="endDate"
@@ -130,6 +132,17 @@ export default {
       }
     };
 
+    const isCursorVisible = ref(true);
+    const isHoveringEvent = ref(false);
+
+    const handleCursorDisable = () => {
+      isHoveringEvent.value = true;
+    };
+
+    const handleCursorEnable = () => {
+      isHoveringEvent.value = false;
+    };
+
     async function initializeData() {
       try {
         isLoading.value = true;
@@ -167,6 +180,14 @@ export default {
     });
 
     return {
+      // État et références de la timeline
+      isLoading,
+      timelineRef,
+      eventsContainerRef,
+      timelineWidth,
+      timelineHeight,
+
+      // Données de la timeline
       scaledPeriods,
       filteredEvents,
       startDate,
@@ -175,33 +196,38 @@ export default {
       currentDepth,
       maxDepth,
       breadcrumbItems,
+
+      // Gestion des événements
       activeEventId,
       highlightedEventIds,
+
+      // Méthodes de navigation et d'interaction
       loadChildPeriod,
       goBack,
       navigateTo,
       handleEventToggle,
-      timelineRef,
+
+      // Gestion du curseur et des interactions souris
       isHoveringEvents,
       showCursor,
-      handleMouseLeave,
-      eventsContainerRef,
+      isCursorVisible,
+      isHoveringEvent,
       relativeMouseX,
       relativeMouseY,
+
+      // Gestionnaires d'événements
+      handleMouseLeave,
       handleEventsMouseMove,
       handleEventsMouseEnter,
       handleEventsMouseLeave,
-      timelineWidth,
-      timelineHeight,
-      isLoading,
+      handleCursorDisable,
+      handleCursorEnable,
     };
   },
 };
 </script>
 
-
 <style scoped lang="scss">
-//@import "@/styles/main.scss";
 
 .timeline-container {
   position: relative;
@@ -217,7 +243,6 @@ export default {
   flex-direction: column;
   box-sizing: border-box;
 }
-
 
 .timeline-head {
   position: relative;
