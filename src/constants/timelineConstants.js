@@ -1,7 +1,5 @@
 // timelineConstants.js
 
-// src/constants/timelineConstants.js
-
 // Constantes pour l'état initial
 export const INITIAL_LOADING_STATE = true;
 export const INITIAL_SHOW_CURSOR_STATE = false;

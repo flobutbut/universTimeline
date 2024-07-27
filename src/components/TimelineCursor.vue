@@ -13,11 +13,12 @@
 
 <script>
 import { ref, computed, watch } from "vue";
-import { parseDate, formatDuration } from "@/utils/dateUtils";
+import { parseDate, formatDuration, formatTimelineDate } from "@/utils/dateUtils";
 import {
   NEGATIVE_INFINITY_DATE,
   INFINITY_DATE,
 } from "@/constants/timelineConstants";
+
 
 export default {
   name: "TimelineCursor",
@@ -76,23 +77,9 @@ export default {
     });
 
     const formattedDate = computed(() => {
-      if (cursorDate.value === null) return "";
-
-      const date = cursorDate.value;
-      if (date === NEGATIVE_INFINITY_DATE) {
-        return "Début de l'univers";
-      }
-      if (date === INFINITY_DATE) {
-        return "Aujourd'hui";
-      }
-      if (date < 0) {
-        return `Il y a ${formatDuration(Math.abs(date))}`;
-      } else if (date === 0) {
-        return "Aujourd'hui";
-      } else {
-        return `Dans ${formatDuration(date)}`;
-      }
-    });
+  if (cursorDate.value === null) return "";
+  return formatTimelineDate(cursorDate.value);
+});
 
     const opacity = computed(() => {
   // Calculez le ratio de position (0 en bas, 1 en haut)

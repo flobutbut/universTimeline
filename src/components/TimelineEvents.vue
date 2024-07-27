@@ -41,11 +41,13 @@
 
 <script>
 import tooltip from "@/components/Tooltip.vue";
-import { parseDate, formatDuration } from "@/utils/dateUtils";
+import { parseDate, formatDuration, formatTimelineDate } from "@/utils/dateUtils";
 import {
   calculateEventPosition,
   shouldDisplayEvent,
 } from "@/utils/timelineUtils";
+
+
 
 export default {
   name: "EventsComponent",
@@ -163,11 +165,7 @@ export default {
     },
 
     formatDate(date) {
-      const eventDate = parseDate(date);
-      if (typeof eventDate === "number") {
-        return formatDuration(Math.abs(eventDate));
-      }
-      return new Date(eventDate).toLocaleDateString();
+      return formatTimelineDate(parseDate(date));
     },
 
     shouldDisplayEvent(event) {

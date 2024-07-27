@@ -11,6 +11,26 @@ import {
   SECOND_IN_MILLISECONDS
 } from '@/constants/timelineConstants';
 
+
+export function formatTimelineDate(date) {
+  if (date === NEGATIVE_INFINITY_DATE) {
+    return "Début de l'univers";
+  }
+  if (date === INFINITY_DATE) {
+    return "Aujourd'hui";
+  }
+  if (typeof date === 'number') {
+    if (date < 0) {
+      return `Il y a ${formatDuration(Math.abs(date))}`;
+    } else if (date === 0) {
+      return "Aujourd'hui";
+    } else {
+      return `Dans ${formatDuration(date)}`;
+    }
+  }
+  return new Date(date).toLocaleDateString();
+}
+
 export function parseDate(date) {
   if (date === INFINITY_DATE) {
     return new Date().getFullYear();

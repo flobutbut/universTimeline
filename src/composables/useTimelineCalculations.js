@@ -2,7 +2,7 @@
 
 import { ref, computed } from 'vue';
 import { calculateScaledWidths, isRelatedEvent } from '@/utils/timelineUtils';
-import { parseDate } from '@/utils/dateUtils';
+import { parseDate, formatTimelineDate } from '@/utils/dateUtils';
 import {
   ROOT_PERIOD_ID,
   NEGATIVE_INFINITY_DATE,
@@ -10,6 +10,7 @@ import {
   EVENT_WEIGHT_BASE,
   MAX_DEPTH
 } from '@/constants/timelineConstants';
+
 
 export function useTimelineCalculations() {
   // État
