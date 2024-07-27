@@ -138,9 +138,7 @@ export default {
     // Un événement est considéré comme "près du bord droit" si sa position
     // plus la largeur du contenu dépasserait 95% de la largeur de la timeline
     const isNearEdge = (position + contentWidthPercentage) > 100;
-    
-    console.log(`Event: ${event.title}, Position: ${position.toFixed(2)}%, Content Width: ${contentWidthPercentage.toFixed(2)}%, Timeline Width: ${timelineWidthPx}px, Is near edge: ${isNearEdge}`);
-    
+        
     return isNearEdge;
   },
   

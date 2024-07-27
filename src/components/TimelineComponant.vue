@@ -14,7 +14,7 @@
         @back="goBack"
       />
     </div>
-    <div class="timeline-content" ref="timeline">
+    <div class="timeline-content" ref="timelineRef">
       <div class="periods-container">
         <TimelinePeriods
           :periods="scaledPeriods"
@@ -27,7 +27,22 @@
       <div
         class="events-container"
         v-if="startDate !== null && endDate !== null"
+        @mouseenter="handleEventsMouseEnter"
+        @mouseleave="handleEventsMouseLeave"
+        @mousemove="handleEventsMouseMove"
+        ref="eventsContainerRef"
       >
+        <TimelineCursor
+          v-if="showCursor && isHoveringEvents"
+          :startDate="startDate"
+          :endDate="endDate"
+          :timelineWidth="timelineWidth"
+          :mouseX="relativeMouseX"
+          :mouseY="relativeMouseY"
+          :isHoveringEvents="isHoveringEvents"
+          :showCursor="showCursor"
+          :containerHeight="timelineHeight"
+        />
         <TimelineEvents
           :events="filteredEvents"
           :startDate="startDate"
@@ -37,30 +52,24 @@
           :activeEventId="activeEventId"
           :highlightedEventIds="highlightedEventIds"
           @event-toggle="handleEventToggle"
-          @events-mouseenter="handleEventsMouseEnter"
-          @events-mouseleave="handleEventsMouseLeave"
         />
       </div>
-      <TimelineCursor
-        v-if="showCursor"
-        :startDate="startDate"
-        :endDate="endDate"
-        :timelineWidth="timelineWidth"
-        :mouseX="mouseX"
-        :mouseY="mouseY"
-      />
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
+import { ref, onMounted, onUnmounted, watch } from "vue";
+import { nextTick } from "vue";
 import { useTimelineCalculations } from "@/composables/useTimelineCalculations";
+import { useTimelineInteractions } from "@/composables/useTimelineInteractions";
+import { useTimelineDimensions } from "@/hooks/useTimelineDimensions";
 import TimelinePeriods from "./TimelinePeriods.vue";
 import TimelineEvents from "./TimelineEvents.vue";
 import TimelineCursor from "./TimelineCursor.vue";
 import TimelineBreadcrumb from "./TimelineBreadcrumb.vue";
 import dataService from "@/services/dataService";
+import { INITIAL_LOADING_STATE } from "@/constants/timelineConstants";
 
 export default {
   name: "Timeline",
@@ -71,15 +80,12 @@ export default {
     TimelineBreadcrumb,
   },
   setup() {
-    console.log("Timeline setup started");
     const {
       allPeriods,
-      currentPeriods,
       events,
       startDate,
       endDate,
       history,
-      currentPeriodId,
       currentDepth,
       maxDepth,
       breadcrumbItems,
@@ -93,71 +99,36 @@ export default {
       navigateTo,
       handleEventToggle,
       updateHighlightedEvents,
+      currentPeriodId,
+      currentPeriods,
     } = useTimelineCalculations();
 
-    const isHoveringEvents = ref(false);
-    const showCursor = ref(false);
-    const mouseX = ref(0);
-    const mouseY = ref(0);
-    const timelineWidth = ref(0);
     const timelineRef = ref(null);
-    const isLoading = ref(true);
-    const timelineHeight = ref(0);
+    const eventsContainerRef = ref(null);
+    const relativeMouseX = ref(0);
+    const relativeMouseY = ref(0);
 
-    function handleMouseMove(event) {
-      if (timelineRef.value) {
-        const rect = timelineRef.value.getBoundingClientRect();
-        mouseX.value = event.clientX - rect.left;
-        mouseY.value = event.clientY - rect.top;
-        showCursor.value = true;
-        console.log(
-          "Mouse moved:",
-          mouseX.value,
-          mouseY.value,
-          "Timeline width:",
-          timelineWidth.value
-        );
+    const {
+      isHoveringEvents,
+      showCursor,
+      handleMouseMove,
+      handleMouseLeave,
+      handleEventsMouseEnter,
+      handleEventsMouseLeave,
+    } = useTimelineInteractions(timelineRef);
+
+    const { timelineWidth, timelineHeight, updateTimelineDimensions } =
+      useTimelineDimensions(timelineRef);
+
+    const isLoading = ref(INITIAL_LOADING_STATE);
+
+    const handleEventsMouseMove = (event) => {
+      if (eventsContainerRef.value) {
+        const rect = eventsContainerRef.value.getBoundingClientRect();
+        relativeMouseX.value = event.clientX - rect.left;
+        relativeMouseY.value = event.clientY - rect.top;
       }
-    }
-    function handleMouseLeave() {
-      showCursor.value = false;
-    }
-
-    function handleEventsMouseEnter() {
-      isHoveringEvents.value = true;
-      showCursor.value = false;
-    }
-
-    function handleEventsMouseLeave() {
-      isHoveringEvents.value = false;
-      if (mouseX.value >= 0 && mouseX.value <= timelineWidth.value) {
-        showCursor.value = true;
-      }
-    }
-
-    function updateTimelineDimensions() {
-      const checkInterval = setInterval(() => {
-        if (timelineRef.value) {
-          clearInterval(checkInterval);
-          const newWidth = timelineRef.value.offsetWidth;
-          const newHeight = timelineRef.value.offsetHeight;
-          if (newWidth > 0 && newHeight > 0) {
-            timelineWidth.value = newWidth;
-            timelineHeight.value = newHeight;
-            console.log(
-              "Timeline dimensions updated:",
-              timelineWidth.value,
-              timelineHeight.value
-            );
-          } else {
-            console.error("Invalid timeline dimensions:", newWidth, newHeight);
-          }
-        }
-      }, 100); // Vérifier toutes les 100ms
-
-      // Arrêter l'intervalle après 5 secondes si la référence n'est toujours pas disponible
-      setTimeout(() => clearInterval(checkInterval), 5000);
-    }
+    };
 
     async function initializeData() {
       try {
@@ -167,46 +138,31 @@ export default {
         const rootPeriod = allPeriods.value.find((p) => p.id === 1);
         if (rootPeriod) {
           loadPeriod(rootPeriod);
-          startDate.value = rootPeriod.startDate;
-          endDate.value = rootPeriod.endDate;
         }
       } catch (error) {
         console.error("Error loading data:", error);
       } finally {
         isLoading.value = false;
-        nextTick(() => {
-          updateTimelineDimensions();
-        });
       }
     }
 
     onMounted(() => {
-      console.log("Timeline mounted");
-      initializeData()
-        .then(() => {
+      initializeData().then(() => {
+        nextTick(() => {
           updateTimelineDimensions();
-        })
-        .catch((error) => {
-          console.error("Error in initializeData:", error);
         });
-
-      window.addEventListener("resize", updateTimelineDimensions);
+      });
     });
 
     onUnmounted(() => {
-      window.removeEventListener("resize", updateTimelineDimensions);
+      // Clean up if necessary
     });
 
-    watch(
-      [showCursor, isHoveringEvents, startDate, endDate],
-      ([show, hover, start, end]) => {
-        console.log("Cursor conditions changed:", { show, hover, start, end });
-      }
-    );
     watch(timelineRef, (newRef) => {
       if (newRef) {
-        console.log("Timeline ref is now available");
-        updateTimelineDimensions();
+        nextTick(() => {
+          updateTimelineDimensions();
+        });
       }
     });
 
@@ -221,26 +177,28 @@ export default {
       breadcrumbItems,
       activeEventId,
       highlightedEventIds,
-      isHoveringEvents,
-      showCursor,
-      mouseX,
-      mouseY,
-      timelineWidth,
-      timelineHeight,
-      timelineRef,
       loadChildPeriod,
       goBack,
       navigateTo,
       handleEventToggle,
-      handleMouseMove,
+      timelineRef,
+      isHoveringEvents,
+      showCursor,
       handleMouseLeave,
+      eventsContainerRef,
+      relativeMouseX,
+      relativeMouseY,
+      handleEventsMouseMove,
       handleEventsMouseEnter,
       handleEventsMouseLeave,
+      timelineWidth,
+      timelineHeight,
       isLoading,
     };
   },
 };
 </script>
+
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
@@ -257,7 +215,9 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
+
 
 .timeline-head {
   position: relative;

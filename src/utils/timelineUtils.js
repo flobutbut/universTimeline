@@ -1,4 +1,12 @@
+// src/utils/timelineUtils.js
+
 import { parseDate } from './dateUtils';
+import {
+  INFINITY_DATE,
+  NEGATIVE_INFINITY_DATE,
+  MIN_PERIOD_WIDTH,
+  EVENT_WEIGHT_BASE
+} from '@/constants/timelineConstants';
 
 export function calculateScaledWidths(periods, parentStartDate, parentEndDate) {
   const today = new Date().getFullYear();
@@ -6,8 +14,8 @@ export function calculateScaledWidths(periods, parentStartDate, parentEndDate) {
   let lastEndPosition = 0;
 
   return sortedPeriods.map(period => {
-    const start = period.startDate === 'today' ? today : parseDate(period.startDate);
-    const end = period.endDate === 'today' ? today : parseDate(period.endDate);
+    const start = period.startDate === INFINITY_DATE ? today : parseDate(period.startDate);
+    const end = period.endDate === INFINITY_DATE ? today : parseDate(period.endDate);
 
     let width = calculateWidth(start, end, parentStartDate, parentEndDate);
     let position = calculatePosition(start, parentStartDate, parentEndDate);
@@ -37,7 +45,7 @@ export function calculateWidth(startDate, endDate, parentStartDate, parentEndDat
 
   const width = (periodDuration / totalDuration) * 100;
 
-  return Math.max(width, 0.5);
+  return Math.max(width, MIN_PERIOD_WIDTH);
 }
 
 export function calculatePosition(date, parentStartDate, parentEndDate) {
@@ -59,27 +67,20 @@ export function isRelatedEvent(activeEvent, otherEvent) {
   const activeBranches = new Set(activeEvent.branches);
   const otherBranches = new Set(otherEvent.branches);
 
-  for (let branch of activeBranches) {
-    if (otherBranches.has(branch)) {
-      return true;
-    }
-  }
-
-  return false;
+  return [...activeBranches].some(branch => otherBranches.has(branch));
 }
 
 export function calculateEventPosition(date, startDate, endDate) {
   const eventDate = parseDate(date);
-  const start = startDate === -Infinity ? parseDate(startDate) : parseDate(startDate);
-  const end = endDate === Infinity ? parseDate(endDate) : parseDate(endDate);
+  const start = startDate === NEGATIVE_INFINITY_DATE ? parseDate(startDate) : parseDate(startDate);
+  const end = endDate === INFINITY_DATE ? parseDate(endDate) : parseDate(endDate);
   const totalDuration = end - start;
   const position = ((eventDate - start) / totalDuration) * 100;
   return `${position}%`;
 }
 
 export function shouldDisplayEvent(event, currentDepth, maxDepth) {
-  const BASE = 4;
   const depthRatio = currentDepth / maxDepth;
-  const weightThreshold = (1 - Math.log(depthRatio + 1) / Math.log(BASE)) * maxDepth;
+  const weightThreshold = (1 - Math.log(depthRatio + 1) / Math.log(EVENT_WEIGHT_BASE)) * maxDepth;
   return event.weight >= weightThreshold;
 }

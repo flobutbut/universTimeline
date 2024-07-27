@@ -4,24 +4,25 @@
 
 /project-root
 │
-├── src/
-│   ├── components/
-│   │   ├── Timeline.vue
-│   │   ├── TimelinePeriods.vue
-│   │   ├── TimelineEvents.vue
-│   │   ├── TimelineCursor.vue
-│   │   ├── TimelineBreadcrumb.vue
-│   │   └── Tooltip.vue
-│   │
-│   ├── utils/
-│   │   ├── dateUtils.js
-│   │   └── timelineUtils.js
-│   │
-│   ├── services/
-│   │   └── dataService.js
-│   │
-│   └── composables/
-│       └── useTimelineCalculations.js
+src/
+|   |-- components/
+|   |   |-- TimelineBreadcrumb.vue
+|   |   |-- TimelineComponent.vue
+|   |   |-- TimelineCursor.vue
+|   |   |-- TimelineEvents.vue
+|   |   |-- TimelinePeriods.vue
+|   |-- composables/
+|   |   |-- useTimelineCalculations.js
+|   |   |-- useTimelineInteractions.js (nouveau)
+|   |-- services/
+|   |   |-- dataService.js
+|   |-- utils/
+|   |   |-- dateUtils.js
+|   |   |-- timelineUtils.js
+|   |-- hooks/ (nouveau)
+|   |   |-- useTimelineDimensions.js
+|   |-- constants/ (nouveau)
+|   |   |-- timelineConstants.js
 │
 ├── public/
 │   └── index.html

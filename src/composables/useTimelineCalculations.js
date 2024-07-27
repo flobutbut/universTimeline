@@ -1,33 +1,44 @@
+// src/composables/useTimelineCalculations.js
+
 import { ref, computed } from 'vue';
-import { calculateScaledWidths, calculateWidth, calculatePosition, isRelatedEvent } from '@/utils/timelineUtils';
-import { parseDate, formatDuration } from '@/utils/dateUtils';
+import { calculateScaledWidths, isRelatedEvent } from '@/utils/timelineUtils';
+import { parseDate } from '@/utils/dateUtils';
+import {
+  ROOT_PERIOD_ID,
+  NEGATIVE_INFINITY_DATE,
+  INFINITY_DATE,
+  EVENT_WEIGHT_BASE,
+  MAX_DEPTH
+} from '@/constants/timelineConstants';
 
 export function useTimelineCalculations() {
+  // État
   const allPeriods = ref([]);
   const currentPeriods = ref([]);
   const events = ref([]);
-  const startDate = ref(-Infinity);
-  const endDate = ref(Infinity);
+  const startDate = ref(NEGATIVE_INFINITY_DATE);
+  const endDate = ref(INFINITY_DATE);
   const history = ref([]);
-  const currentPeriodId = ref(null);
+  const currentPeriodId = ref(ROOT_PERIOD_ID);
   const currentDepth = ref(0);
-  const maxDepth = ref(0);
+  const maxDepth = ref(MAX_DEPTH);
   const breadcrumbItems = ref([]);
   const activeEventId = ref(null);
   const highlightedEventIds = ref(new Set());
 
-
-
+  // Calculs dérivés
   const scaledPeriods = computed(() => 
     calculateScaledWidths(currentPeriods.value, startDate.value, endDate.value)
   );
 
+  const filteredEvents = computed(() => updateFilteredEvents());
+
+  // Fonctions
   function loadPeriod(period) {
     currentPeriodId.value = period.id;
     startDate.value = period.startDate;
     endDate.value = period.endDate;
-    const childPeriods = getChildPeriods(period);
-    currentPeriods.value = childPeriods;
+    currentPeriods.value = getChildPeriods(period);
     maxDepth.value = calculateMaxDepth(period);
     updateBreadcrumb();
   }
@@ -41,19 +52,18 @@ export function useTimelineCalculations() {
   }
 
   function calculateMaxDepth(period) {
-    let depth = 0;
-    if (period.childs && period.childs.length > 0) {
-      depth = 1 + Math.max(...period.childs.map(calculateMaxDepth));
-    }
-    return depth;
+    if (!period.childs || period.childs.length === 0) return 0;
+    return 1 + Math.max(...period.childs.map(calculateMaxDepth));
   }
 
   function updateBreadcrumb() {
-    breadcrumbItems.value = history.value.map(id => {
-      const period = allPeriods.value.find(p => p.id === id);
-      return period ? period.title : '';
-    });
-    breadcrumbItems.value.push(allPeriods.value.find(p => p.id === currentPeriodId.value).title);
+    breadcrumbItems.value = [
+      ...history.value.map(id => {
+        const period = allPeriods.value.find(p => p.id === id);
+        return period ? period.title : '';
+      }),
+      allPeriods.value.find(p => p.id === currentPeriodId.value).title
+    ];
   }
 
   function loadChildPeriod(childId) {
@@ -82,20 +92,17 @@ export function useTimelineCalculations() {
   }
 
   function handleEventToggle(eventId) {
-    if (activeEventId.value === eventId) {
-      activeEventId.value = null;
-      highlightedEventIds.value.clear();
-    } else {
-      activeEventId.value = eventId;
-      updateHighlightedEvents(eventId);
-    }
+    activeEventId.value = activeEventId.value === eventId ? null : eventId;
+    updateHighlightedEvents(activeEventId.value);
   }
 
   function updateHighlightedEvents(activeEventId) {
+    highlightedEventIds.value.clear();
+    if (activeEventId === null) return;
+
     const activeEvent = events.value.find(e => e.id === activeEventId);
     if (!activeEvent) return;
 
-    highlightedEventIds.value.clear();
     events.value.forEach(event => {
       if (event.id !== activeEventId && isRelatedEvent(activeEvent, event)) {
         highlightedEventIds.value.add(event.id);
@@ -104,29 +111,29 @@ export function useTimelineCalculations() {
   }
 
   function shouldDisplayEvent(event) {
-    const BASE = 4;
     const depthRatio = currentDepth.value / maxDepth.value;
-    const weightThreshold = (1 - Math.log(depthRatio + 1) / Math.log(BASE)) * maxDepth.value;
+    const weightThreshold = (1 - Math.log(depthRatio + 1) / Math.log(EVENT_WEIGHT_BASE)) * maxDepth.value;
     return event.weight >= weightThreshold;
   }
 
   function updateFilteredEvents() {
-    const start = startDate.value === -Infinity ? -Infinity : parseDate(startDate.value);
-    const end = endDate.value === Infinity ? Infinity : parseDate(endDate.value);
-    return events.value.filter(event => {
-      const eventDate = parseDate(event.date);
-      return eventDate >= start && eventDate <= end && shouldDisplayEvent(event);
-    }).map(event => ({
-      ...event,
-      hover: false,
-      active: activeEventId.value === event.id,
-      highlight: highlightedEventIds.value.has(event.id)
-    }));
+    const start = startDate.value === NEGATIVE_INFINITY_DATE ? NEGATIVE_INFINITY_DATE : parseDate(startDate.value);
+    const end = endDate.value === INFINITY_DATE ? INFINITY_DATE : parseDate(endDate.value);
+    return events.value
+      .filter(event => {
+        const eventDate = parseDate(event.date);
+        return eventDate >= start && eventDate <= end && shouldDisplayEvent(event);
+      })
+      .map(event => ({
+        ...event,
+        hover: false,
+        active: activeEventId.value === event.id,
+        highlight: highlightedEventIds.value.has(event.id)
+      }));
   }
 
-  const filteredEvents = computed(() => updateFilteredEvents());
-
   return {
+    // État
     allPeriods,
     currentPeriods,
     events,
@@ -139,8 +146,10 @@ export function useTimelineCalculations() {
     breadcrumbItems,
     activeEventId,
     highlightedEventIds,
+    // Calculs dérivés
     scaledPeriods,
     filteredEvents,
+    // Fonctions
     loadPeriod,
     getChildPeriods,
     calculateMaxDepth,

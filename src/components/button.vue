@@ -1,5 +1,5 @@
 <template>
-  <button :class="buttonClass" @click="handleClick" :disabled="disabled">
+  <button class="textRegular" :class="buttonClass" @click="handleClick" :disabled="disabled">
     <slot></slot>
   </button>
 </template>
@@ -44,10 +44,7 @@ export default {
 
 /* Vous pouvez supprimer ou commenter les styles locaux si vous utilisez les styles globaux */
 .btn {
-  padding: 4px 8px;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 500;
+  padding: 6px 12px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
