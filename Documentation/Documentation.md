@@ -56,35 +56,50 @@ Les données sont structurées en trois fichiers JSON principaux :
 
 ### 1. App.vue
 Composant racine de l'application.
+- Contient le composant AppHeader et le router-view pour afficher les différentes pages.
+- Gère les erreurs globales de l'application.
 
 ### 2. TimelineComponant.vue
-[Reste inchangé]
+Composant principal gérant l'affichage et l'interaction avec la timeline.
+- Utilise les composables `useTimelineCalculations`, `useTimelineInteractions`, et `useTimelineDimensions`.
+- Gère l'initialisation des données, l'affichage des périodes, des événements et du curseur.
+- Implémente la logique de chargement et de navigation entre les périodes.
 
 ### 3. TimelinePeriods.vue
-[Reste inchangé]
+Gère l'affichage des périodes sur la timeline.
 
 ### 4. TimelineEvents.vue
-[Reste inchangé]
+Gère l'affichage des événements sur la timeline.
 
 ### 5. TimelineCursor.vue
-[Reste inchangé]
+Affiche le curseur et la date correspondante lors du survol de la timeline.
+- Calcule dynamiquement la position et l'opacité du curseur.
+- Formate et affiche la date correspondant à la position du curseur.
 
 ### 6. TimelineBreadcrumb.vue
-[Reste inchangé]
+Composant pour la navigation dans la hiérarchie des périodes.
+- Affiche le chemin actuel dans la hiérarchie des périodes.
+- Permet de naviguer vers les périodes parentes.
+- Inclut un bouton de retour.
 
 ### 7. Button.vue
 Composant réutilisable pour les boutons.
-- Supporte différents types de boutons (default, primary, secondary).
+- Supporte différents types de boutons (default, primary, secondary, naked).
 - Gère l'état désactivé.
 - Émet un événement de clic lorsqu'il est activé.
 
 ### 8. Tooltip.vue
-[Reste inchangé]
+Gère l'affichage des infobulles pour les événements.
+
+### 9. TimelineFlag.vue (désactivé)
+Composant pour afficher des drapeaux de début et de fin sur la timeline.
+- Actuellement désactivé dans l'application.
 
 ### 9. AppHeader.vue
 Composant d'en-tête de l'application.
 - Affiche le logo de l'application.
 - Contient un bouton pour accéder à la page de contribution.
+
 ## Services
 
 ### dataService.js

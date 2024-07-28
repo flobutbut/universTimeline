@@ -173,8 +173,6 @@ export default {
         if (rootPeriod) {
           loadPeriod(rootPeriod);
         }
-        console.log("startFlag:", startFlag.value);
-        console.log("endFlag:", endFlag.value);
       } catch (error) {
         console.error("Error loading data:", error);
       } finally {
