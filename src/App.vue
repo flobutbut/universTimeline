@@ -13,6 +13,9 @@
 import { defineComponent } from 'vue';
 import AppHeader from './components/AppHeader.vue';
 
+import { inject } from '@vercel/analytics';
+inject();
+
 export default defineComponent({
   name: 'App',
   components: {
