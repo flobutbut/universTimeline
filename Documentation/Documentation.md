@@ -1,32 +1,44 @@
 # Documentation du projet Timeline
 
 ## Structure du projet
+```
 /project-root
 │
-src/
-|   |-- components/
-|   |   |-- TimelineBreadcrumb.vue
-|   |   |-- TimelineComponent.vue
-|   |   |-- TimelineCursor.vue
-|   |   |-- TimelineEvents.vue
-|   |   |-- TimelinePeriods.vue
-|   |-- composables/
-|   |   |-- useTimelineCalculations.js
-|   |   |-- useTimelineInteractions.js (nouveau)
-|   |-- services/
-|   |   |-- dataService.js
-|   |-- utils/
-|   |   |-- dateUtils.js
-|   |   |-- timelineUtils.js
-|   |-- hooks/ (nouveau)
-|   |   |-- useTimelineDimensions.js
-|   |-- constants/ (nouveau)
-|   |   |-- timelineConstants.js
+├── src/
+│   ├── components/
+│   │   ├── TimelineBreadcrumb.vue
+│   │   ├── TimelineComponant.vue (note the spelling)
+│   │   ├── TimelineCursor.vue
+│   │   ├── TimelineEvents.vue
+│   │   ├── TimelinePeriods.vue
+│   │   ├── AppHeader.vue
+│   │   ├── Button.vue
+│   │   └── ContributePage.vue
+│   ├── composables/
+│   │   ├── useTimelineCalculations.js
+│   │   └── useTimelineInteractions.js
+│   ├── services/
+│   │   └── dataService.js
+│   ├── utils/
+│   │   ├── dateUtils.js
+│   │   └── timelineUtils.js
+│   ├── hooks/
+│   │   └── useTimelineDimensions.js
+│   ├── constants/
+│   │   └── timelineConstants.js
+│   ├── router/
+│   │   └── index.js
+│   ├── styles/
+│   │   └── main.scss
+│   ├── assets/
+│   ├── App.vue
+│   └── main.js
 │
-|-- public/
-|   |-- index.html
-|
-|-- package.json
+├── public/
+│   └── index.html
+│
+└── package.json
+```
 
 ## Objectif du projet
 Le projet Timeline est une application web interactive qui présente une chronologie détaillée de l'histoire de l'univers, de la Terre et de l'humanité. L'application permet aux utilisateurs de naviguer à travers différentes périodes historiques, d'explorer des événements spécifiques et de visualiser les relations entre différentes branches de connaissances.
