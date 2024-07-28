@@ -16,9 +16,25 @@
     </div>
     <div class="timeline-content" ref="timelineRef">
       <div class="periods-container">
+        <!-- Flag de début -->
+        <TimelineFlag
+          v-if="showFlags && startFlag.label"
+          :label="startFlag.label"
+          :eventTitle="startFlag.eventTitle"
+          :isStart="true"
+        />
+
         <TimelinePeriods
           :periods="scaledPeriods"
           @load-child="loadChildPeriod"
+        />
+
+        <!-- Flag de fin -->
+        <TimelineFlag
+          v-if="showFlags && endFlag.label"
+          :label="endFlag.label"
+          :eventTitle="endFlag.eventTitle"
+          :isStart="false"
         />
       </div>
 
@@ -70,8 +86,8 @@ import TimelinePeriods from "./TimelinePeriods.vue";
 import TimelineEvents from "./TimelineEvents.vue";
 import TimelineCursor from "./TimelineCursor.vue";
 import TimelineBreadcrumb from "./TimelineBreadcrumb.vue";
+import TimelineFlag from "./TimelineFlag.vue";
 import dataService from "@/services/dataService";
-import { INITIAL_LOADING_STATE } from "@/constants/timelineConstants";
 
 export default {
   name: "Timeline",
@@ -80,6 +96,7 @@ export default {
     TimelineEvents,
     TimelineCursor,
     TimelineBreadcrumb,
+    TimelineFlag,
   },
   setup() {
     const {
@@ -103,8 +120,11 @@ export default {
       updateHighlightedEvents,
       currentPeriodId,
       currentPeriods,
+      startFlag,
+      endFlag,
     } = useTimelineCalculations();
 
+    const showFlags = ref(false);
     const timelineRef = ref(null);
     const eventsContainerRef = ref(null);
     const relativeMouseX = ref(0);
@@ -122,7 +142,8 @@ export default {
     const { timelineWidth, timelineHeight, updateTimelineDimensions } =
       useTimelineDimensions(timelineRef);
 
-    const isLoading = ref(INITIAL_LOADING_STATE);
+    //const isLoading = ref(INITIAL_LOADING_STATE);
+    const isLoading = ref(true);
 
     const handleEventsMouseMove = (event) => {
       if (eventsContainerRef.value) {
@@ -152,6 +173,8 @@ export default {
         if (rootPeriod) {
           loadPeriod(rootPeriod);
         }
+        console.log("startFlag:", startFlag.value);
+        console.log("endFlag:", endFlag.value);
       } catch (error) {
         console.error("Error loading data:", error);
       } finally {
@@ -222,13 +245,15 @@ export default {
       handleEventsMouseLeave,
       handleCursorDisable,
       handleCursorEnable,
+      startFlag,
+      endFlag,
+      showFlags,
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
-
 .timeline-container {
   position: relative;
   width: 100%;
@@ -269,15 +294,37 @@ export default {
   z-index: 1;
 }
 
+.events-container {
+  flex: 1;
+  position: relative;
+}
+
+.timeline-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: $white-unlock;
+  border: solid 1px rgb(230, 230, 230);
+  border-radius: 8px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.timeline-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 .periods-container {
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-start;
-}
-
-.events-container {
-  flex: 1;
   position: relative;
 }
 </style>

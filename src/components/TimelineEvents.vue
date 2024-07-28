@@ -227,7 +227,6 @@ export default {
   align-items: flex-start;
   position: absolute;
   top: 8px;
-  margin-top: 4px;
   white-space: nowrap;
   width: auto;
   z-index: 2;
@@ -265,7 +264,7 @@ export default {
   border: 1px solid $white-unlock;
   border-radius: 50%;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .active-circle {

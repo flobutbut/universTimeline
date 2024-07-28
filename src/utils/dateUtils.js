@@ -16,16 +16,17 @@ export function formatTimelineDate(date) {
   if (date === NEGATIVE_INFINITY_DATE) {
     return "Début de l'univers";
   }
-  if (date === INFINITY_DATE) {
+  if (date === INFINITY_DATE || date === new Date().getFullYear()) {
     return "Aujourd'hui";
   }
   if (typeof date === 'number') {
-    if (date < 0) {
-      return `Il y a ${formatDuration(Math.abs(date))}`;
-    } else if (date === 0) {
-      return "Aujourd'hui";
+    const currentYear = new Date().getFullYear();
+    if (date < currentYear) {
+      return `Il y a ${formatDuration(Math.abs(currentYear - date))}`;
+    } else if (date > currentYear) {
+      return `Dans ${formatDuration(date - currentYear)}`;
     } else {
-      return `Dans ${formatDuration(date)}`;
+      return "Aujourd'hui";
     }
   }
   return new Date(date).toLocaleDateString();

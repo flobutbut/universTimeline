@@ -11,7 +11,6 @@ import {
   MAX_DEPTH
 } from '@/constants/timelineConstants';
 
-
 export function useTimelineCalculations() {
   // État
   const allPeriods = ref([]);
@@ -33,6 +32,41 @@ export function useTimelineCalculations() {
   );
 
   const filteredEvents = computed(() => updateFilteredEvents());
+
+  // Flags
+  const startFlag = computed(() => {
+    if (currentPeriods.value.length === 0 || events.value.length === 0) {
+      return { label: '', eventTitle: null };
+    }
+    const currentPeriod = allPeriods.value.find(p => p.id === currentPeriodId.value);
+    if (!currentPeriod) {
+      return { label: '', eventTitle: null };
+    }
+    const firstEvent = events.value.find(e => parseDate(e.date) === parseDate(currentPeriod.startDate));
+    
+    return {
+      date: currentPeriod.startDate,
+      label: formatTimelineDate(parseDate(currentPeriod.startDate)),
+      eventTitle: firstEvent ? firstEvent.title : null
+    };
+  });
+  
+  const endFlag = computed(() => {
+    if (currentPeriods.value.length === 0 || events.value.length === 0) {
+      return { label: '', eventTitle: null };
+    }
+    const currentPeriod = allPeriods.value.find(p => p.id === currentPeriodId.value);
+    if (!currentPeriod) {
+      return { label: '', eventTitle: null };
+    }
+    const lastEvent = events.value.find(e => parseDate(e.date) === parseDate(currentPeriod.endDate));
+    
+    return {
+      date: currentPeriod.endDate,
+      label: formatTimelineDate(parseDate(currentPeriod.endDate)),
+      eventTitle: lastEvent ? lastEvent.title : null
+    };
+  });
 
   // Fonctions
   function loadPeriod(period) {
@@ -160,6 +194,8 @@ export function useTimelineCalculations() {
     navigateTo,
     handleEventToggle,
     updateHighlightedEvents,
-    shouldDisplayEvent
+    shouldDisplayEvent,
+    startFlag,
+    endFlag
   };
 }
