@@ -17,6 +17,6 @@ Je suis ravi de rendre ce projet open source pour permettre à la communauté de
 - **Suggestions** : Toutes les contributions et suggestions sont les bienvenues.
 - **Décisions** : Les décisions finales concernant la direction du projet et l'intégration des changements seront prises par moi-même pour garantir la cohérence et la vision du projet.
 
-📧 Pour des idées ou des discussions, envoyez-moi un email à [hello@florianbutour.com](mailto:hello@florianbutour.com).
+📧 Pour des idées ou des discussions, ajoutez une issue ou ouvrez une discussion sans l'onglet discussion
 
 Ensemble, faisons évoluer ce projet tout en maintenant une direction claire et cohérente ! 🌌
