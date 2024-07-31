@@ -1,8 +1,9 @@
 node_modules
-node_modules
 .vscode
 dist
-draft.vue
 Ressources
 src/draft.js
 CommandesUtiles.md
+_Drafts
+_Scripts
+_Bin
