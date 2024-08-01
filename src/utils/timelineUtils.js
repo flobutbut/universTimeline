@@ -8,17 +8,19 @@ import {
   EVENT_WEIGHT_BASE
 } from '@/constants/timelineConstants';
 
-export function calculateScaledWidths(periods, parentStartDate, parentEndDate) {
+export function calculateScaledWidths(periods, startDate, endDate) {
+  if (periods.length === 0) return [];
+
   const today = new Date().getFullYear();
-  const sortedPeriods = periods.sort((a, b) => a.startDate - b.startDate);
+  const sortedPeriods = periods.sort((a, b) => parseDate(a.startDate) - parseDate(b.startDate));
   let lastEndPosition = 0;
 
   return sortedPeriods.map(period => {
     const start = period.startDate === INFINITY_DATE ? today : parseDate(period.startDate);
     const end = period.endDate === INFINITY_DATE ? today : parseDate(period.endDate);
 
-    let width = calculateWidth(start, end, parentStartDate, parentEndDate);
-    let position = calculatePosition(start, parentStartDate, parentEndDate);
+    let width = calculateWidth(start, end, startDate, endDate);
+    let position = calculatePosition(start, startDate, endDate);
 
     position = Math.max(position, lastEndPosition);
     const availableWidth = 100 - position;

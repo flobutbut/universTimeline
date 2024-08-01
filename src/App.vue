@@ -36,20 +36,23 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+
+
 
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
-  &__header {
+}  
+.app__header {
     flex-shrink: 0;
   }
   
-  &__main {
+.app__main {
     flex-grow: 1;
+    flex-direction: column;
+    display: flex;
     padding: 16px;
   }
-}
+
 </style>

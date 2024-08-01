@@ -7,6 +7,11 @@
     @mouseleave="handleMouseLeave"
   >
     <div class="timeline-head">
+      <BranchNavigator
+        :branches="availableBranches"
+        :current-branch-id="currentBranchId"
+        @branch-selected="handleBranchSelection"
+      />
       <TimelineBreadcrumb
         :items="breadcrumbItems"
         :historyLength="history.length"
@@ -14,9 +19,9 @@
         @back="goBack"
       />
     </div>
+
     <div class="timeline-content" ref="timelineRef">
       <div class="periods-container">
-        <!-- Flag de début -->
         <TimelineFlag
           v-if="showFlags && startFlag.label"
           :label="startFlag.label"
@@ -25,11 +30,11 @@
         />
 
         <TimelinePeriods
+          v-if="scaledPeriods && scaledPeriods.length > 0"
           :periods="scaledPeriods"
           @load-child="loadChildPeriod"
         />
-
-        <!-- Flag de fin -->
+        <div v-else>Aucune période à afficher</div>
         <TimelineFlag
           v-if="showFlags && endFlag.label"
           :label="endFlag.label"
@@ -49,16 +54,15 @@
         ref="eventsContainerRef"
       >
         <TimelineCursor
-          v-if="isCursorVisible && showCursor && !isHoveringEvent"
+          v-if="isCursorVisible && showCursor && isHoveringEvents"
           :startDate="startDate"
           :endDate="endDate"
           :timelineWidth="timelineWidth"
           :mouseX="relativeMouseX"
           :mouseY="relativeMouseY"
-          :isHoveringEvents="isHoveringEvents"
-          :showCursor="showCursor"
           :containerHeight="timelineHeight"
         />
+
         <TimelineEvents
           @cursor-disable="isCursorVisible = false"
           @cursor-enable="isCursorVisible = true"
@@ -78,7 +82,6 @@
 
 <script>
 import { ref, onMounted, onUnmounted, watch } from "vue";
-import { nextTick } from "vue";
 import { useTimelineCalculations } from "@/composables/useTimelineCalculations";
 import { useTimelineInteractions } from "@/composables/useTimelineInteractions";
 import { useTimelineDimensions } from "@/hooks/useTimelineDimensions";
@@ -87,6 +90,7 @@ import TimelineEvents from "./TimelineEvents.vue";
 import TimelineCursor from "./TimelineCursor.vue";
 import TimelineBreadcrumb from "./TimelineBreadcrumb.vue";
 import TimelineFlag from "./TimelineFlag.vue";
+import BranchNavigator from "./BranchNavigator.vue";
 import dataService from "@/services/dataService";
 
 export default {
@@ -97,10 +101,13 @@ export default {
     TimelineCursor,
     TimelineBreadcrumb,
     TimelineFlag,
+    BranchNavigator,
   },
   setup() {
     const {
       allPeriods,
+      currentPeriods,
+      currentFilteredPeriods,
       events,
       startDate,
       endDate,
@@ -110,18 +117,22 @@ export default {
       breadcrumbItems,
       activeEventId,
       highlightedEventIds,
+      branches,
       scaledPeriods,
       filteredEvents,
+      currentBranch,
+      startFlag,
+      endFlag,
       loadPeriod,
       loadChildPeriod,
       goBack,
       navigateTo,
       handleEventToggle,
-      updateHighlightedEvents,
-      currentPeriodId,
-      currentPeriods,
-      startFlag,
-      endFlag,
+      rootBranches,
+      availableBranches,
+      currentBranchId,
+      loadBranches,
+      setCurrentBranch,
     } = useTimelineCalculations();
 
     const showFlags = ref(false);
@@ -129,6 +140,9 @@ export default {
     const eventsContainerRef = ref(null);
     const relativeMouseX = ref(0);
     const relativeMouseY = ref(0);
+    const isLoading = ref(true);
+    const isCursorVisible = ref(true);
+    const isHoveringEvent = ref(false);
 
     const {
       isHoveringEvents,
@@ -142,9 +156,6 @@ export default {
     const { timelineWidth, timelineHeight, updateTimelineDimensions } =
       useTimelineDimensions(timelineRef);
 
-    //const isLoading = ref(INITIAL_LOADING_STATE);
-    const isLoading = ref(true);
-
     const handleEventsMouseMove = (event) => {
       if (eventsContainerRef.value) {
         const rect = eventsContainerRef.value.getBoundingClientRect();
@@ -152,9 +163,6 @@ export default {
         relativeMouseY.value = event.clientY - rect.top;
       }
     };
-
-    const isCursorVisible = ref(true);
-    const isHoveringEvent = ref(false);
 
     const handleCursorDisable = () => {
       isHoveringEvent.value = true;
@@ -164,15 +172,21 @@ export default {
       isHoveringEvent.value = false;
     };
 
+    const handleBranchSelection = (branchId) => {
+      setCurrentBranch(branchId);
+    };
+
     async function initializeData() {
       try {
         isLoading.value = true;
+        await loadBranches();
         allPeriods.value = await dataService.getPeriods();
         events.value = await dataService.getEvents();
         const rootPeriod = allPeriods.value.find((p) => p.id === 1);
         if (rootPeriod) {
           loadPeriod(rootPeriod);
         }
+        setCurrentBranch("overview");
       } catch (error) {
         console.error("Error loading data:", error);
       } finally {
@@ -182,9 +196,7 @@ export default {
 
     onMounted(() => {
       initializeData().then(() => {
-        nextTick(() => {
-          updateTimelineDimensions();
-        });
+        updateTimelineDimensions();
       });
     });
 
@@ -194,21 +206,23 @@ export default {
 
     watch(timelineRef, (newRef) => {
       if (newRef) {
-        nextTick(() => {
-          updateTimelineDimensions();
-        });
+        updateTimelineDimensions();
       }
     });
 
     return {
-      // État et références de la timeline
+      // État de chargement
       isLoading,
+
+      // Références DOM
       timelineRef,
       eventsContainerRef,
+
+      // Dimensions de la timeline
       timelineWidth,
       timelineHeight,
 
-      // Données de la timeline
+      // Données temporelles et événements
       scaledPeriods,
       filteredEvents,
       startDate,
@@ -216,36 +230,45 @@ export default {
       history,
       currentDepth,
       maxDepth,
-      breadcrumbItems,
 
-      // Gestion des événements
+      // Navigation et interface utilisateur
+      breadcrumbItems,
       activeEventId,
       highlightedEventIds,
+      startFlag,
+      endFlag,
+      showFlags,
 
-      // Méthodes de navigation et d'interaction
+      // Gestion des branches
+      branches,
+      currentBranchId,
+      currentBranch,
+      availableBranches,
+      currentFilteredPeriods,
+
+      // Fonctions de navigation et d'interaction
       loadChildPeriod,
       goBack,
       navigateTo,
       handleEventToggle,
+      availableBranches,
+      currentBranchId,
+      handleBranchSelection,
 
-      // Gestion du curseur et des interactions souris
+      // Gestion du curseur et des événements de souris
       isHoveringEvents,
       showCursor,
       isCursorVisible,
       isHoveringEvent,
       relativeMouseX,
       relativeMouseY,
-
-      // Gestionnaires d'événements
+      handleMouseMove,
       handleMouseLeave,
       handleEventsMouseMove,
       handleEventsMouseEnter,
       handleEventsMouseLeave,
       handleCursorDisable,
       handleCursorEnable,
-      startFlag,
-      endFlag,
-      showFlags,
     };
   },
 };
@@ -255,7 +278,8 @@ export default {
 .timeline-container {
   position: relative;
   width: 100%;
-  height: 300px;
+  flex-grow: 1;
+  min-height: 280px;
   background-color: $white-unlock;
   border: solid 1px rgb(230, 230, 230);
   border-radius: 8px;
@@ -297,21 +321,6 @@ export default {
   position: relative;
 }
 
-.timeline-container {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  background-color: $white-unlock;
-  border: solid 1px rgb(230, 230, 230);
-  border-radius: 8px;
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
 .timeline-content {
   flex-grow: 1;
   display: flex;
@@ -324,5 +333,10 @@ export default {
   flex-direction: column-reverse;
   justify-content: flex-start;
   position: relative;
+}
+.branch-navigator {
+  position: relative;
+  z-index: 10;
+  // Ajustez ces styles selon vos besoins
 }
 </style>

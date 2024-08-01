@@ -3528,6 +3528,11 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
+python3@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/python3/-/python3-0.0.1.tgz#9e3ae876b5b74a8f661dfec9c10bf5b0ea4ca5f7"
+  integrity sha512-VB3Pe0uV1mjWND5Kv1FJQOSuAe979Oo0gRs/C8JGF8wx+ulkWqHC/sWlQz+ezcGpwsJP0tTIh+No/iRaqQlcNg==
+
 qs@6.11.0:
   version "6.11.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.0.tgz#fd0d963446f7a65e1367e01abd85429453f0c37a"

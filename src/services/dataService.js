@@ -1,40 +1,34 @@
+import axios from 'axios';
 import { parseDate } from '@/utils/dateUtils';
 
 const dataService = {
+  async getBranches() {
+    const response = await axios.get('/dataJson/Branches.json');
+    return response.data;
+  },
+
   async getEvents() {
-    const response = await fetch('/dataJson/Events.json');
-    const events = await response.json();
+    const response = await axios.get('/dataJson/Events.json');
+    const events = response.data;
     return events.map(event => ({
       ...event,
       date: parseDate(event.date),
-      active: false // Ajout d'une propriété pour gérer l'état actif
+      active: false,
+      branches: (event.branches || []).map(b => parseInt(b)) // Convertir en nombres
     }));
   },
 
   async getPeriods() {
-    // Cette méthode reste inchangée
-    const response = await fetch('/dataJson/Periods.json');
-    const periods = await response.json();
-
-    periods.forEach(period => {
-      period.startDate = parseDate(period.startDate);
-      period.endDate = parseDate(period.endDate);
-
-      if (Array.isArray(period.childs)) {
-        period.childs = period.childs.map(id => {
-          const child = periods.find(p => p.id == id);
-          if (child) {
-            child.startDate = parseDate(child.startDate);
-            child.endDate = parseDate(child.endDate);
-          }
-          return child || { id, title: 'Unknown', startDate: null, endDate: null, childs: [] };
-        });
-      } else {
-        period.childs = [];
-      }
-    });
-
-    return periods;
+    const response = await axios.get('/dataJson/Periods.json');
+    const periods = response.data;
+  
+    return periods.map(period => ({
+      ...period,
+      startDate: parseDate(period.startDate),
+      endDate: parseDate(period.endDate),
+      branches: (period.branches || []).map(b => parseInt(b)), // Convertir en nombres
+      childs: Array.isArray(period.childs) ? period.childs : []
+    }));
   }
 };
 

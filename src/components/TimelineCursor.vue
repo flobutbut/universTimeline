@@ -87,7 +87,7 @@ export default {
   
   // Appliquez une fonction d'ease-in quadratique
   // Cette fonction commencera lentement et accélérera vers la fin
-  const easeInQuad = (t) => t * t;
+  const easeInQuad = (t) => t * t * t;
   
   // Appliquez la fonction d'ease-in et assurez-vous que l'opacité reste entre 0 et 1
   return Math.max(0, Math.min(1, easeInQuad(ratio)));
@@ -108,10 +108,10 @@ export default {
 
 .timeline-cursor {
   position: absolute;
-  color: $neutral-medium;
+  color: $neutral-hight;
   pointer-events: none;
   z-index: 1000;
   white-space: nowrap;
-  transform: translate(-50%, 100%);
+  transform: translate(-50%, 150%);
 }
 </style>

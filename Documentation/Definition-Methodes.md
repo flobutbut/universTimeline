@@ -2,11 +2,72 @@
 
 ## Table des matières
 1. Configuration du projet
-2. Structure du projet
-3. Composants
-4. Composables (Hooks personnalisés)
-5. Services
-6. Utilitaires
+2. Composants
+3. Composables (Hooks personnalisés)
+4. Services
+5. Utilitaires
+6. Styles
+7. Routing
+
+## Structure du projet
+```
+/project-root
+│
+├── src/
+│   ├── assets/
+│   │   └── icons/
+│   │       └── IconArrowLeft.vue
+│   │
+│   ├── components/
+│   │   ├── TimelineBreadcrumb.vue
+│   │   ├── TimelineComponent.vue
+│   │   ├── TimelineCursor.vue
+│   │   ├── TimelineEvents.vue
+│   │   ├── TimelinePeriods.vue
+│   │   ├── TimelineFlag.vue
+│   │   ├── BranchNavigator.vue
+│   │   ├── Tooltip.vue
+│   │   ├── AppHeader.vue
+│   │   ├── Button.vue
+│   │   └── ContributePage.vue
+│   │
+│   ├── composables/
+│   │   ├── useTimelineCalculations.js
+│   │   └── useTimelineInteractions.js
+│   │
+│   ├── services/
+│   │   └── dataService.js
+│   │
+│   ├── utils/
+│   │   ├── dateUtils.js
+│   │   └── timelineUtils.js
+│   │
+│   ├── hooks/
+│   │   └── useTimelineDimensions.js
+│   │
+│   ├── constants/
+│   │   └── timelineConstants.js
+│   │
+│   ├── router/
+│   │   └── index.js
+│   │
+│   ├── styles/
+│   │   └── main.scss
+│   │
+│   ├── App.vue
+│   └── main.js
+│
+├── public/
+│   ├── dataJson/
+│   │   ├── Branches.json
+│   │   ├── Events.json
+│   │   └── Periods.json
+│   │
+│   └── index.html
+│
+└── package.json
+```
+
 
 ## 1. Configuration du projet
 
@@ -42,49 +103,9 @@
 - **Fonctionnalité**: Ajoute des données supplémentaires à tous les fichiers Sass.
 - **Valeur**: Importe automatiquement le fichier main.scss dans tous les composants.
 
-## 2. Structure du projet
-```
-/project-root
-│
-├── src/
-│   ├── components/
-│   │   ├── TimelineBreadcrumb.vue
-│   │   ├── TimelineComponant.vue (note the spelling)
-│   │   ├── TimelineCursor.vue
-│   │   ├── TimelineEvents.vue
-│   │   ├── TimelinePeriods.vue
-│   │   ├── AppHeader.vue
-│   │   ├── Button.vue
-│   │   └── ContributePage.vue
-│   ├── composables/
-│   │   ├── useTimelineCalculations.js
-│   │   └── useTimelineInteractions.js
-│   ├── services/
-│   │   └── dataService.js
-│   ├── utils/
-│   │   ├── dateUtils.js
-│   │   └── timelineUtils.js
-│   ├── hooks/
-│   │   └── useTimelineDimensions.js
-│   ├── constants/
-│   │   └── timelineConstants.js
-│   ├── router/
-│   │   └── index.js
-│   ├── styles/
-│   │   └── main.scss
-│   ├── assets/
-│   ├── App.vue
-│   └── main.js
-│
-├── public/
-│   └── index.html
-│
-└── package.json
-```
+## 2. Composants
 
-## 3. Composants
-
-### 3.1 TimelineComponant.vue
+### 2.1 TimelineComponent.vue
 
 #### Composable setup
 - Initialise l'état et les fonctions pour le composant Timeline.
@@ -113,7 +134,7 @@
 ##### watch(timelineRef)
 - Met à jour les dimensions de la timeline lorsque la référence change.
 
-### 3.2 TimelineCursor.vue
+### 2.2 TimelineCursor.vue
 
 #### Props:
 - startDate: [Number, String]
@@ -144,7 +165,7 @@
 - watch(mouseX): Met à jour cursorX
 - watch(mouseY): Met à jour cursorY
 
-### 3.3 TimelineEvents.vue
+### 2.3 TimelineEvents.vue
 
 #### Computed Properties:
 ##### processedEvents
@@ -191,7 +212,7 @@
   - event: Object (événement à vérifier)
 - **Retour**: Boolean
 
-### 3.4 TimelinePeriods.vue
+### 2.4 TimelinePeriods.vue
 
 #### Méthodes:
 ##### hasChildren(period)
@@ -211,7 +232,7 @@
 - **Paramètres**: 
   - period: Object (période cliquée)
 
-### 3.5 Tooltip.vue
+### 2.5 Tooltip.vue
 
 #### Computed Properties:
 ##### placementClass
@@ -228,7 +249,7 @@
 ##### adjustPosition()
 - **Fonctionnalité**: Ajuste la position du tooltip pour qu'il reste dans les limites de la timeline.
 
-### 3.6 Button.vue
+### 2.6 Button.vue
 
 #### Props:
 - type: String (default, primary, secondary)
@@ -245,7 +266,11 @@
 - **Paramètres**: 
   - event: Event (événement de clic)
 
-### 3.7 TimelineBreadcrumb.vue
+### 2.7 TimelineBreadcrumb.vue
+
+#### Props:
+- items: Array (requis)
+- historyLength: Number (requis)
 
 #### Méthodes:
 ##### navigate(index)
@@ -256,86 +281,78 @@
 ##### goBack()
 - **Fonctionnalité**: Revient à la période précédente.
 
-### 3.8 AppHeader.vue
+### 2.8 BranchNavigator.vue
 
-#### Composants:
-- Button
-
-#### Méthodes:
-##### openContributePage()
-- **Fonctionnalité**: Ouvre la page de contribution (actuellement affiche une alerte).
-
-## 4. Composables (Hooks personnalisés)
-
-### 4.1 useTimelineCalculations.js
-
-#### État réactif:
-- allPeriods, currentPeriods, events, startDate, endDate, history, currentPeriodId, currentDepth, maxDepth, breadcrumbItems, activeEventId, highlightedEventIds
+#### Props:
+- `branches`: Array (requis)
+- `currentBranchId`: String (défaut: "overview")
 
 #### Computed Properties:
-##### scaledPeriods
-- **Fonctionnalité**: Calcule les largeurs mises à l'échelle des périodes actuelles.
-- **Retour**: Array de périodes avec largeurs calculées
+##### breadcrumbHistory
+- **Fonctionnalité**: Calcule l'historique de navigation des branches.
+- **Retour**: Array of Objects (branches dans le chemin de navigation)
 
-##### filteredEvents
-- **Fonctionnalité**: Filtre et traite les événements pour l'affichage actuel.
-- **Retour**: Array d'événements filtrés et traités
+##### availableBranches
+- **Fonctionnalité**: Calcule les branches disponibles pour la sélection.
+- **Retour**: Array of Objects (branches disponibles)
 
-#### Méthodes principales:
-##### loadPeriod(period)
-- **Fonctionnalité**: Charge une période spécifique dans la timeline.
+#### Méthodes:
+##### onBranchSelect()
+- **Fonctionnalité**: Gère la sélection d'une nouvelle branche.
+
+##### navigateToBranch(index)
+- **Fonctionnalité**: Navigue vers une branche spécifique dans l'historique.
 - **Paramètres**: 
-  - period: Object (période à charger)
-
-##### getChildPeriods(parentPeriod)
-- **Fonctionnalité**: Récupère les périodes enfants d'une période donnée.
-- **Paramètres**: 
-  - parentPeriod: Object (période parente)
-- **Retour**: Array de périodes enfants
-
-##### calculateMaxDepth(period)
-- **Fonctionnalité**: Calcule la profondeur maximale d'une période.
-- **Paramètres**: 
-  - period: Object (période)
-- **Retour**: Number (profondeur maximale)
-
-##### updateBreadcrumb()
-- **Fonctionnalité**: Met à jour les éléments du fil d'Ariane.
-
-##### loadChildPeriod(childId)
-- **Fonctionnalité**: Charge une période enfant.
-- **Paramètres**: 
-  - childId: Number ou String (ID de la période enfant)
+  - index: Number (index de la branche dans l'historique)
 
 ##### goBack()
-- **Fonctionnalité**: Revient à la période précédente.
+- **Fonctionnalité**: Revient à la branche précédente dans l'historique.
 
-##### navigateTo(index)
-- **Fonctionnalité**: Navigue vers une période spécifique dans l'historique.
-- **Paramètres**: 
-  - index: Number (index de la période dans l'historique)
+## 3. Composables (Hooks personnalisés)
 
-##### handleEventToggle(eventId)
-- **Fonctionnalité**: Gère l'activation/désactivation d'un événement.
-- **Paramètres**: 
-  - eventId: Number ou String (ID de l'événement)
+### 3.1 useTimelineCalculations.js
 
-##### updateHighlightedEvents(activeEventId)
-- **Fonctionnalité**: Met à jour les événements mis en évidence.
-- **Paramètres**: 
-  - activeEventId: Number ou String (ID de l'événement actif)
+Ajout des fonctionnalités liées aux branches :
 
-##### shouldDisplayEvent(event)
-- **Fonctionnalité**: Détermine si un événement doit être affiché.
+#### État réactif:
+- `currentBranchId`, `branches`, `rootBranches`, `availableBranches`
+
+#### Computed Properties:
+##### currentBranch
+- **Fonctionnalité**: Renvoie la branche actuelle.
+- **Retour**: Object (branche actuelle)
+
+#### Méthodes:
+##### loadBranches()
+- **Fonctionnalité**: Charge les données des branches.
+
+##### setCurrentBranch(branchId)
+- **Fonctionnalité**: Définit la branche actuelle et met à jour les périodes filtrées.
 - **Paramètres**: 
+  - branchId: String (ID de la branche à définir comme actuelle)
+
+##### updateAvailableBranches()
+- **Fonctionnalité**: Met à jour la liste des branches disponibles en fonction de la branche actuelle.
+
+##### findMacroPeriods(branchId)
+- **Fonctionnalité**: Trouve les périodes macro pour une branche donnée.
+- **Paramètres**:
+  - branchId: String (ID de la branche)
+- **Retour**: Array of Objects (périodes macro)
+
+##### isEventInCurrentBranch(event)
+- **Fonctionnalité**: Vérifie si un événement appartient à la branche actuelle.
+- **Paramètres**:
   - event: Object (événement à vérifier)
 - **Retour**: Boolean
 
 ##### updateFilteredEvents()
-- **Fonctionnalité**: Met à jour la liste des événements filtrés.
-- **Retour**: Array d'événements filtrés et traités
+- **Fonctionnalité**: Met à jour la liste des événements filtrés en fonction de la branche actuelle.
 
-### 4.2 useTimelineInteractions.js
+##### updateFilteredPeriods()
+- **Fonctionnalité**: Met à jour la liste des périodes filtrées en fonction de la branche actuelle.
+
+### 3.2 useTimelineInteractions.js
 
 #### État réactif:
 - isHoveringEvents, showCursor, mouseX, mouseY
@@ -357,7 +374,7 @@
 - **Paramètres**: 
   - timelineWidth: Number (largeur de la timeline)
 
-### 4.3 useTimelineDimensions.js
+### 3.3 useTimelineDimensions.js
 
 #### État réactif:
 - timelineWidth, timelineHeight
@@ -375,22 +392,15 @@
 ##### initializeTimelineDimensions()
 - **Fonctionnalité**: Initialise les dimensions de la timeline.
 
-#### Hooks du cycle de vie:
-##### onMounted
-- Configure l'écouteur de redimensionnement et initialise les dimensions.
+## 4. Services
 
-##### onUnmounted
-- Nettoie l'écouteur de redimensionnement.
-
-#### Watchers:
-##### watch(timelineRef)
-- Met à jour les dimensions lorsque la référence change.
-
-## 5. Services
-
-### 5.1 dataService.js
+### 4.1 dataService.js
 
 #### Méthodes:
+##### getBranches()
+- **Fonctionnalité**: Récupère les données des branches depuis le fichier JSON.
+- **Retour**: Promise<Array> (branches)
+
 ##### getEvents()
 - **Fonctionnalité**: Récupère et traite les événements depuis le fichier JSON.
 - **Retour**: Promise<Array> (événements traités)
@@ -399,9 +409,9 @@
 - **Fonctionnalité**: Récupère et traite les périodes depuis le fichier JSON.
 - **Retour**: Promise<Array> (périodes traitées)
 
-## 6. Utilitaires
+## 5. Utilitaires
 
-### 6.1 dateUtils.js
+### 5.1 dateUtils.js
 
 #### Fonctions:
 ##### parseDate(date)
@@ -428,7 +438,6 @@
 - **Paramètres**: 
   - date: Date
 - **Retour**: Boolean
-
 ##### compareDates(date1, date2)
 - **Fonctionnalité**: Compare deux dates.
 - **Paramètres**: 
@@ -439,10 +448,16 @@
 ##### getYearFromDate(date)
 - **Fonctionnalité**: Extrait l'année d'une date.
 - **Paramètres**:
-- date: String, Number, ou Date
+  - date: String, Number, ou Date
 - **Retour**: Number (année)
 
-### 6.2 timelineUtils.js
+##### formatTimelineDate(date)
+- **Fonctionnalité**: Formate une date pour l'affichage sur la timeline.
+- **Paramètres**: 
+  - date: Number ou String
+- **Retour**: String (date formatée)
+
+### 5.2 timelineUtils.js
 
 #### Fonctions:
 ##### calculateScaledWidths(periods, parentStartDate, parentEndDate)
@@ -483,3 +498,22 @@
   - event: Object (événement)
   - currentDepth, maxDepth: Number
 - **Retour**: Boolean
+
+## 6. Styles
+
+### 6.1 main.scss
+
+- Définit les variables de couleur pour l'application
+- Établit les styles de base pour le corps et l'application
+- Définit des classes utilitaires pour la typographie et l'espacement
+
+## 7. Routing
+
+### 7.1 index.js
+
+#### Routes:
+- '/': Composant Timeline (page d'accueil)
+- '/contribute': Composant ContributePage (page de contribution)
+
+#### Configuration:
+- Utilise createWebHistory pour la gestion de l'historique

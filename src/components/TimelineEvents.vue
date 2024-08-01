@@ -41,13 +41,15 @@
 
 <script>
 import tooltip from "@/components/Tooltip.vue";
-import { parseDate, formatDuration, formatTimelineDate } from "@/utils/dateUtils";
+import {
+  parseDate,
+  formatDuration,
+  formatTimelineDate,
+} from "@/utils/dateUtils";
 import {
   calculateEventPosition,
   shouldDisplayEvent,
 } from "@/utils/timelineUtils";
-
-
 
 export default {
   name: "EventsComponent",
@@ -90,6 +92,8 @@ export default {
     "events-mouseenter",
     "events-mouseleave",
     "event-toggle",
+    "cursor-disable",
+    "cursor-enable"
   ],
 
   data() {
@@ -161,7 +165,11 @@ export default {
     },
 
     calculatePosition(date) {
-      return calculateEventPosition(date, this.startDate, this.endDate);
+      return calculateEventPosition(
+        parseDate(date),
+        parseDate(this.startDate),
+        parseDate(this.endDate)
+      );
     },
 
     formatDate(date) {
@@ -278,5 +286,4 @@ export default {
 .always-top {
   z-index: 999;
 }
-// Supprimez ou commentez les styles pour .content.highlight s'ils existent
 </style>

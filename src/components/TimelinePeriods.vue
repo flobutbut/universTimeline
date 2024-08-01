@@ -1,19 +1,20 @@
 <template>
   <div class="periods-container">
-    <div v-for="period in periods" :key="period.id"
-        class="period"
-        :class="{ 'has-children': hasChildren(period) }"
-        :style="{
-          left: period.position,
-          width: period.width,
-          minWidth: '2px'
-        }"
-        :title="getTitle(period)"
-        @click="handleClick(period)">
+    <div v-if="!periods || periods.length === 0">Aucune période à afficher</div>
+    <div v-else v-for="period in periods" :key="period.id"
+         class="period"
+         :class="{ 'has-children': hasChildren(period) }"
+         :style="{
+           left: period.position,
+           width: period.width,
+           minWidth: '2px'
+         }"
+         :title="getTitle(period)"
+         @click="handleClick(period)">
 
         <div class="period-content">
           <div class="period-info">
-            <p class="textRegular textBlack spacing_xs period-title">{{ period.title }}</p>
+            <p class="textRegular textBlack period-title">{{ period.title }}</p>
             <p class="textRegular textDimmed period-duration">{{ formatDuration(calculateDuration(period.startDate, period.endDate)) }}</p>
           </div>
         </div>
@@ -29,9 +30,10 @@ export default {
   props: {
     periods: {
       type: Array,
-      required: true
+      default: () => []
     }
   },
+
   methods: {
     hasChildren(period) {
       return period.childs && period.childs.length > 0;
@@ -69,7 +71,7 @@ export default {
 
 .period {
   position: absolute;
-  height: 32px;
+  height: 48px;
   min-width: 2px;
   padding: 1px;
   box-sizing: border-box;
@@ -113,12 +115,13 @@ export default {
   z-index: 1;
   transition: background-color 0.3s ease;
   overflow: hidden;
-  padding-left: 6px;
+  padding-left: 12px;
 }
 
 .period-info {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   overflow: hidden;
   min-width: 0;
   width: 100%;

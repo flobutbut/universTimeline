@@ -1,203 +1,512 @@
 [
   {
-    "id": "cosmologie",
+    "id": "1",
     "name": "Cosmologie",
     "tags": ["univers", "galaxies", "étoiles"],
-    "relatedBranches": ["geologie", "astrophysique"],
     "highlightEvent": 1,
-    "subBranches": [
-      {
-        "id": "formation_univers",
-        "name": "Formation de l'Univers",
-        "tags": ["big_bang", "inflation", "nucléosynthèse"],
-        "relatedEvents": [1, 2, 3],
-        "relatedPeriods": [1, 2],
-        "highlightEvent": 1
-      },
-      {
-        "id": "evolution_galaxies",
-        "name": "Évolution des galaxies",
-        "tags": ["formation_galaxies", "fusion_galaxies", "voie_lactée"],
-        "relatedEvents": [4, 5, 6, 7, 8],
-        "relatedPeriods": [3],
-        "highlightEvent": 7
-      }
+    "subBranches": ["2", "3"],
+    "connections": [
+      { "branchId": "4", "type": "related" },
+      { "branchId": "5", "type": "related" },
+      { "branchId": "7", "type": "related" },
+      { "branchId": "14", "type": "related" },
+      { "branchId": "2", "type": "child" },
+      { "branchId": "3", "type": "child" }
     ]
   },
   {
-    "id": "geologie",
+    "id": "2",
+    "name": "Formation de l'Univers",
+    "tags": ["big_bang", "inflation", "nucléosynthèse"],
+    "highlightEvent": 1,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "1", "type": "parent" },
+      { "branchId": "6", "type": "related" }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Évolution des galaxies",
+    "tags": ["formation_galaxies", "fusion_galaxies", "voie_lactée"],
+    "highlightEvent": 7,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "1", "type": "parent" },
+      { "branchId": "7", "type": "related" }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Astrophysique",
+    "tags": ["étoiles", "planètes", "nébuleuses"],
+    "highlightEvent": 12,
+    "subBranches": ["6", "7"],
+    "connections": [
+      { "branchId": "1", "type": "related" },
+      { "branchId": "6", "type": "child" },
+      { "branchId": "7", "type": "child" }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Physique Théorique",
+    "tags": ["théories", "modèles", "quantique"],
+    "highlightEvent": 20,
+    "subBranches": ["8", "9"],
+    "connections": [
+      { "branchId": "1", "type": "related" },
+      { "branchId": "8", "type": "child" },
+      { "branchId": "9", "type": "child" },
+      { "branchId": "14", "type": "related" },
+      { "branchId": "16", "type": "related" }
+    ]
+  },
+  {
+    "id": "6",
+    "name": "Étoiles",
+    "tags": ["formation", "évolution", "supernovae"],
+    "highlightEvent": 14,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "4", "type": "parent" },
+      { "branchId": "2", "type": "related" }
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Planètes",
+    "tags": ["système solaire", "exoplanètes", "formation"],
+    "highlightEvent": 15,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "4", "type": "parent" },
+      { "branchId": "3", "type": "related" }
+    ]
+  },
+  {
+    "id": "8",
+    "name": "Physique Quantique",
+    "tags": ["mécanique quantique", "particules", "ondes"],
+    "highlightEvent": 22,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "5", "type": "parent" },
+      { "branchId": "14", "type": "related" }
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Relativité",
+    "tags": ["relativité générale", "relativité restreinte", "espace-temps"],
+    "highlightEvent": 25,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "5", "type": "parent" },
+      { "branchId": "1", "type": "related" }
+    ]
+  },
+  {
+    "id": "10",
+    "name": "Biologie Évolutive",
+    "tags": ["évolution", "génétique", "biodiversité"],
+    "highlightEvent": 21,
+    "subBranches": ["11", "12"],
+    "connections": [
+      { "branchId": "13", "type": "related" },
+      { "branchId": "17", "type": "related" },
+      { "branchId": "11", "type": "child" },
+      { "branchId": "12", "type": "child" }
+    ]
+  },
+  {
+    "id": "11",
+    "name": "Génétique",
+    "tags": ["ADN", "gènes", "hérédité"],
+    "highlightEvent": 30,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "10", "type": "parent" },
+      { "branchId": "16", "type": "related" }
+    ]
+  },
+  {
+    "id": "12",
+    "name": "Écologie",
+    "tags": ["écosystèmes", "interactions", "biodiversité"],
+    "highlightEvent": 31,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "10", "type": "parent" },
+      { "branchId": "17", "type": "related" }
+    ]
+  },
+  {
+    "id": "13",
+    "name": "Paléontologie",
+    "tags": ["fossiles", "dinosaures", "évolution"],
+    "highlightEvent": 25,
+    "subBranches": ["18", "19"],
+    "connections": [
+      { "branchId": "10", "type": "related" },
+      { "branchId": "15", "type": "related" },
+      { "branchId": "18", "type": "child" },
+      { "branchId": "19", "type": "child" }
+    ]
+  },
+  {
+    "id": "14",
+    "name": "Physique des Particules",
+    "tags": ["particules", "accélérateurs", "quarks"],
+    "highlightEvent": 7,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "1", "type": "related" },
+      { "branchId": "5", "type": "related" },
+      { "branchId": "8", "type": "related" }
+    ]
+  },
+  {
+    "id": "15",
     "name": "Géologie",
-    "tags": ["tectonique", "roches", "minéraux"],
-    "relatedBranches": ["climatologie", "evolution_vie"],
-    "highlightEvent": 11,
-    "subBranches": [
-      {
-        "id": "tectonique_plaques",
-        "name": "Tectonique des plaques",
-        "tags": ["continents", "dérive", "subduction"],
-        "relatedEvents": [31, 34, 39],
-        "relatedPeriods": [16, 17, 21],
-        "highlightEvent": 31
-      },
-      {
-        "id": "formation_terre",
-        "name": "Formation de la Terre",
-        "tags": ["croûte", "manteau", "noyau"],
-        "relatedEvents": [11, 12, 13, 14, 15],
-        "relatedPeriods": [5, 6],
-        "highlightEvent": 11
-      }
+    "tags": ["roches", "tectonique", "minéraux"],
+    "highlightEvent": 23,
+    "subBranches": ["20", "21"],
+    "connections": [
+      { "branchId": "13", "type": "related" },
+      { "branchId": "16", "type": "related" },
+      { "branchId": "20", "type": "child" },
+      { "branchId": "21", "type": "child" }
     ]
   },
   {
-    "id": "evolution_vie",
-    "name": "Évolution de la vie",
-    "tags": ["biodiversité", "espèces", "adaptation"],
-    "relatedBranches": ["geologie", "paleontologie"],
-    "highlightEvent": 18,
-    "subBranches": [
-      {
-        "id": "apparition_especes",
-        "name": "Apparition des espèces",
-        "tags": ["premiers_organismes", "diversification"],
-        "relatedEvents": [18, 19, 21, 26, 27, 28, 29, 30],
-        "relatedPeriods": [7, 10, 15, 16],
-        "highlightEvent": 26
-      },
-      {
-        "id": "extinctions",
-        "name": "Extinctions massives",
-        "tags": ["extinction", "crise_biologique"],
-        "relatedEvents": [36, 37],
-        "relatedPeriods": [16, 17],
-        "highlightEvent": 37
-      }
+    "id": "16",
+    "name": "Chimie",
+    "tags": ["réactions", "composés", "éléments"],
+    "highlightEvent": 10,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "5", "type": "related" },
+      { "branchId": "15", "type": "related" },
+      { "branchId": "11", "type": "related" }
     ]
   },
   {
-    "id": "climatologie",
+    "id": "17",
+    "name": "Botanique",
+    "tags": ["plantes", "écologie", "photosynthèse"],
+    "highlightEvent": 28,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "10", "type": "related" },
+      { "branchId": "12", "type": "related" }
+    ]
+  },
+  {
+    "id": "18",
+    "name": "Paléozoologie",
+    "tags": ["fossiles animaux", "évolution animale"],
+    "highlightEvent": 32,
+    "subBranches": [],
+    "connections": [{ "branchId": "13", "type": "parent" }]
+  },
+  {
+    "id": "19",
+    "name": "Paléobotanique",
+    "tags": ["fossiles végétaux", "évolution végétale"],
+    "highlightEvent": 33,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "13", "type": "parent" },
+      { "branchId": "17", "type": "related" }
+    ]
+  },
+  {
+    "id": "20",
+    "name": "Tectonique des plaques",
+    "tags": ["plaques tectoniques", "dérive des continents"],
+    "highlightEvent": 34,
+    "subBranches": [],
+    "connections": [{ "branchId": "15", "type": "parent" }]
+  },
+  {
+    "id": "21",
     "name": "Climatologie",
     "tags": ["climat", "atmosphère", "glaciations"],
-    "relatedBranches": ["geologie", "evolution_vie"],
-    "highlightEvent": 20,
-    "subBranches": [
-      {
-        "id": "ere_glaciaire",
-        "name": "Ères glaciaires",
-        "tags": ["glaciation", "période_interglaciaire"],
-        "relatedEvents": [22, 24, 41],
-        "relatedPeriods": [28, 40, 41],
-        "highlightEvent": 22
-      }
+    "highlightEvent": 22,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "15", "type": "parent" },
+      { "branchId": "12", "type": "related" }
     ]
   },
+
   {
-    "id": "anthropologie",
-    "name": "Anthropologie",
-    "tags": ["humains", "cultures", "sociétés"],
-    "relatedBranches": ["evolution_vie", "histoire"],
-    "highlightEvent": 44,
-    "subBranches": [
-      {
-        "id": "evolution_humaine",
-        "name": "Évolution humaine",
-        "tags": ["hominidés", "homo_sapiens"],
-        "relatedEvents": [40, 42, 44],
-        "relatedPeriods": [25, 40, 41],
-        "highlightEvent": 44
-      },
-      {
-        "id": "developpement_culturel",
-        "name": "Développement culturel",
-        "tags": ["art", "langage", "outils"],
-        "relatedEvents": [43, 45],
-        "relatedPeriods": [42],
-        "highlightEvent": 45
-      }
-    ]
-  },
-  {
-    "id": "histoire",
-    "name": "Histoire",
-    "tags": ["civilisations", "événements", "périodes"],
-    "relatedBranches": ["anthropologie", "technologie"],
+    "id": "22",
+    "name": "Histoire et Civilisations",
+    "tags": ["civilisations", "sociétés", "époques historiques"],
     "highlightEvent": 48,
-    "subBranches": [
-      {
-        "id": "civilisations_anciennes",
-        "name": "Civilisations anciennes",
-        "tags": ["mésopotamie", "égypte", "grèce", "rome"],
-        "relatedEvents": [48, 49, 51],
-        "relatedPeriods": [42],
-        "highlightEvent": 48
-      },
-      {
-        "id": "ere_moderne",
-        "name": "Ère moderne",
-        "tags": ["renaissance", "révolutions", "mondialisation"],
-        "relatedEvents": [55, 56, 57],
-        "relatedPeriods": [42, 50],
-        "highlightEvent": 56
-      }
+    "subBranches": ["23", "24", "25", "26", "27"],
+    "connections": [
+      { "branchId": "10", "type": "related" },
+      { "branchId": "28", "type": "related" }
     ]
   },
   {
-    "id": "technologie",
-    "name": "Technologie",
-    "tags": ["inventions", "innovations", "progrès"],
-    "relatedBranches": ["histoire", "science"],
+    "id": "23",
+    "name": "Préhistoire",
+    "tags": ["paléolithique", "néolithique", "âge des métaux"],
+    "highlightEvent": 47,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "22", "type": "parent" },
+      { "branchId": "28", "type": "related" }
+    ]
+  },
+  {
+    "id": "24",
+    "name": "Histoire ancienne",
+    "tags": ["antiquité", "civilisations antiques", "empires"],
+    "highlightEvent": 49,
+    "subBranches": [],
+    "connections": [{ "branchId": "22", "type": "parent" }]
+  },
+  {
+    "id": "25",
+    "name": "Histoire médiévale",
+    "tags": ["moyen-âge", "féodalité", "renaissance"],
+    "highlightEvent": 53,
+    "subBranches": [],
+    "connections": [{ "branchId": "22", "type": "parent" }]
+  },
+  {
+    "id": "26",
+    "name": "Histoire moderne",
+    "tags": ["grandes découvertes", "révolutions", "industrialisation"],
     "highlightEvent": 56,
-    "subBranches": [
-      {
-        "id": "revolution_industrielle",
-        "name": "Révolution industrielle",
-        "tags": ["industrie", "machines", "production"],
-        "relatedEvents": [56],
-        "relatedPeriods": [42],
-        "highlightEvent": 56
-      },
-      {
-        "id": "ere_spatiale",
-        "name": "Ère spatiale",
-        "tags": ["exploration_spatiale", "satellites", "missions"],
-        "relatedEvents": [60],
-        "relatedPeriods": [50],
-        "highlightEvent": 60
-      }
-    ]
+    "subBranches": [],
+    "connections": [{ "branchId": "22", "type": "parent" }]
   },
   {
-    "id": "religion",
-    "name": "Religion",
-    "tags": ["croyances", "spiritualité", "traditions"],
-    "relatedBranches": ["histoire", "anthropologie"],
-    "highlightEvent": 52,
-    "subBranches": [
-      {
-        "id": "grandes_religions",
-        "name": "Grandes religions",
-        "tags": ["bouddhisme", "christianisme", "islam"],
-        "relatedEvents": [50, 52, 54],
-        "relatedPeriods": [42],
-        "highlightEvent": 52
-      }
-    ]
-  },
-  {
-    "id": "conflits",
-    "name": "Conflits",
-    "tags": ["guerres", "révolutions", "tensions"],
-    "relatedBranches": ["histoire", "politique"],
+    "id": "27",
+    "name": "Histoire contemporaine",
+    "tags": ["guerres mondiales", "décolonisation", "mondialisation"],
     "highlightEvent": 59,
-    "subBranches": [
-      {
-        "id": "guerres_mondiales",
-        "name": "Guerres mondiales",
-        "tags": ["première_guerre_mondiale", "seconde_guerre_mondiale"],
-        "relatedEvents": [58, 59],
-        "relatedPeriods": [42, 50],
-        "highlightEvent": 59
-      }
+    "subBranches": [],
+    "connections": [{ "branchId": "22", "type": "parent" }]
+  },
+  {
+    "id": "28",
+    "name": "Anthropologie et Archéologie",
+    "tags": ["cultures", "fossiles humains", "artefacts"],
+    "highlightEvent": 44,
+    "subBranches": ["29", "30"],
+    "connections": [
+      { "branchId": "10", "type": "related" },
+      { "branchId": "22", "type": "related" }
+    ]
+  },
+  {
+    "id": "29",
+    "name": "Évolution humaine",
+    "tags": ["hominidés", "homo sapiens", "anthropologie physique"],
+    "highlightEvent": 40,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "28", "type": "parent" },
+      { "branchId": "10", "type": "related" }
+    ]
+  },
+  {
+    "id": "30",
+    "name": "Archéologie",
+    "tags": ["fouilles", "artefacts", "cultures anciennes"],
+    "highlightEvent": 45,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "28", "type": "parent" },
+      { "branchId": "22", "type": "related" }
+    ]
+  },
+  {
+    "id": "31",
+    "name": "Technologie et Innovations",
+    "tags": ["inventions", "progrès technique", "révolutions technologiques"],
+    "highlightEvent": 56,
+    "subBranches": ["32", "33", "34"],
+    "connections": [
+      { "branchId": "22", "type": "related" },
+      { "branchId": "35", "type": "related" }
+    ]
+  },
+  {
+    "id": "32",
+    "name": "Outils préhistoriques",
+    "tags": ["silex", "métallurgie", "techniques primitives"],
+    "highlightEvent": 43,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "31", "type": "parent" },
+      { "branchId": "23", "type": "related" }
+    ]
+  },
+  {
+    "id": "33",
+    "name": "Révolutions technologiques",
+    "tags": ["révolution industrielle", "révolution numérique"],
+    "highlightEvent": 56,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "31", "type": "parent" },
+      { "branchId": "26", "type": "related" }
+    ]
+  },
+  {
+    "id": "34",
+    "name": "Exploration spatiale",
+    "tags": ["fusées", "satellites", "missions lunaires"],
+    "highlightEvent": 60,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "31", "type": "parent" },
+      { "branchId": "7", "type": "related" }
+    ]
+  },
+  {
+    "id": "35",
+    "name": "Religion et Philosophie",
+    "tags": ["croyances", "systèmes de pensée", "spiritualité"],
+    "highlightEvent": 52,
+    "subBranches": ["36", "37"],
+    "connections": [
+      { "branchId": "22", "type": "related" },
+      { "branchId": "28", "type": "related" }
+    ]
+  },
+  {
+    "id": "36",
+    "name": "Origines des religions",
+    "tags": ["animisme", "polythéisme", "monothéisme"],
+    "highlightEvent": 50,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "35", "type": "parent" },
+      { "branchId": "23", "type": "related" }
+    ]
+  },
+  {
+    "id": "37",
+    "name": "Philosophies anciennes",
+    "tags": ["philosophie grecque", "philosophie orientale"],
+    "highlightEvent": 50,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "35", "type": "parent" },
+      { "branchId": "24", "type": "related" }
+    ]
+  },
+  {
+    "id": "38",
+    "name": "Art et Culture",
+    "tags": ["expressions artistiques", "patrimoine culturel"],
+    "highlightEvent": 45,
+    "subBranches": ["39", "40"],
+    "connections": [
+      { "branchId": "22", "type": "related" },
+      { "branchId": "28", "type": "related" }
+    ]
+  },
+  {
+    "id": "39",
+    "name": "Art préhistorique",
+    "tags": ["peintures rupestres", "sculptures primitives"],
+    "highlightEvent": 45,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "38", "type": "parent" },
+      { "branchId": "23", "type": "related" }
+    ]
+  },
+  {
+    "id": "40",
+    "name": "Développement de l'écriture",
+    "tags": ["pictogrammes", "alphabets", "systèmes d'écriture"],
+    "highlightEvent": 48,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "38", "type": "parent" },
+      { "branchId": "24", "type": "related" }
+    ]
+  },
+  {
+    "id": "41",
+    "name": "Économie",
+    "tags": ["systèmes économiques", "échanges", "production"],
+    "highlightEvent": 47,
+    "subBranches": ["42", "43"],
+    "connections": [
+      { "branchId": "22", "type": "related" },
+      { "branchId": "31", "type": "related" }
+    ]
+  },
+  {
+    "id": "42",
+    "name": "Développement de l'agriculture",
+    "tags": ["domestication", "sédentarisation", "révolution néolithique"],
+    "highlightEvent": 47,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "41", "type": "parent" },
+      { "branchId": "23", "type": "related" }
+    ]
+  },
+  {
+    "id": "43",
+    "name": "Révolutions économiques",
+    "tags": [
+      "révolution agricole",
+      "révolution industrielle",
+      "révolution numérique"
+    ],
+    "highlightEvent": 56,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "41", "type": "parent" },
+      { "branchId": "33", "type": "related" }
+    ]
+  },
+  {
+    "id": "44",
+    "name": "Océanographie",
+    "tags": ["océans", "vie marine", "courants océaniques"],
+    "highlightEvent": 14,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "15", "type": "related" },
+      { "branchId": "12", "type": "related" }
+    ]
+  },
+  {
+    "id": "45",
+    "name": "Microbiologie",
+    "tags": ["micro-organismes", "bactéries", "virus"],
+    "highlightEvent": 18,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "10", "type": "related" },
+      { "branchId": "11", "type": "related" }
+    ]
+  },
+  {
+    "id": "46",
+    "name": "Écologie",
+    "tags": ["écosystèmes", "biodiversité", "interactions entre espèces"],
+    "highlightEvent": 28,
+    "subBranches": [],
+    "connections": [
+      { "branchId": "10", "type": "related" },
+      { "branchId": "12", "type": "related" },
+      { "branchId": "17", "type": "related" }
     ]
   }
 ]

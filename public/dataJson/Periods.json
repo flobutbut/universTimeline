@@ -5,7 +5,7 @@
     "startDate": -13798000000,
     "endDate": "today",
     "childs": [2, 3, 21],
-    "branches": ["Cosmologie", "Astrophysique"],
+    "branches": [1, 4],
     "tags": ["univers", "expansion", "galaxies"]
   },
   {
@@ -13,9 +13,9 @@
     "title": "Formation de Univers Moderne",
     "startDate": -13798000000,
     "endDate": -13700000000,
-    "childs": [4, 5, 6, 7 ,8 ,9 ,10 ,11 ,12 ,13 ,14 ,15, 16],
-    "branches": ["Cosmologie", "Astrophysique"],
-    "tags": ["big_bang", "inflation", "nucléosynthèse_primordiale"]
+    "childs": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "branches": [1, 4],
+    "tags": ["big_bang", "inflation", "nucl\u00e9osynth\u00e8se_primordiale"]
   },
   {
     "id": 3,
@@ -23,8 +23,8 @@
     "startDate": -10000000000,
     "endDate": -4600000000,
     "childs": [14],
-    "branches": ["Cosmologie", "Astrophysique"],
-    "tags": ["voie_lactée", "formation_galaxies", "étoiles"]
+    "branches": [1, 4],
+    "tags": ["voie_lact\u00e9e", "formation_galaxies", "\u00e9toiles"]
   },
   {
     "id": 4,
@@ -32,107 +32,115 @@
     "startDate": -13798000000,
     "endDate": -13797000000,
     "childs": [],
-    "branches": ["Cosmologie", "Astrophysique"],
+    "branches": [1, 4],
     "tags": ["big bang", "naissance de l'univers", "cosmologie"]
   },
   {
     "id": 5,
-    "title": "Ère de Planck",
+    "title": "\u00c8re de Planck",
     "startDate": -13798000000,
     "endDate": -13797999999,
     "childs": [],
-    "branches": ["Cosmologie", "Physique Théorique"],
-    "tags": ["ère de Planck", "physique quantique", "cosmologie"]
+    "branches": [1, 5],
+    "tags": ["\u00e8re de Planck", "physique quantique", "cosmologie"]
   },
   {
     "id": 6,
-    "title": "Ère de la Grande Unification",
+    "title": "\u00c8re de la Grande Unification",
     "startDate": -13797999999,
     "endDate": -13797999994,
     "childs": [],
-    "branches": ["Cosmologie", "Physique Théorique"],
+    "branches": [1, 5],
     "tags": ["grande unification", "forces fondamentales", "cosmologie"]
   },
   {
     "id": 7,
-    "title": "Ère Électrofaible",
+    "title": "\u00c8re \u00c9lectrofaible",
     "startDate": -13797999994,
     "endDate": -13797999900,
     "childs": [],
-    "branches": ["Cosmologie", "Physique Théorique"],
-    "tags": ["ère électrofaible", "symétrie brisée", "cosmologie"]
+    "branches": [1, 5],
+    "tags": [
+      "\u00e8re \u00e9lectrofaible",
+      "sym\u00e9trie bris\u00e9e",
+      "cosmologie"
+    ]
   },
   {
     "id": 8,
-    "title": "Ère Hadronique",
+    "title": "\u00c8re Hadronique",
     "startDate": -13797999900,
     "endDate": -13797999800,
     "childs": [],
-    "branches": ["Cosmologie", "Physique des Particules"],
-    "tags": ["ère hadronique", "hadrons", "physique des particules"]
+    "branches": [1, 14],
+    "tags": ["\u00e8re hadronique", "hadrons", "physique des particules"]
   },
   {
     "id": 9,
-    "title": "Ère Leptonique",
+    "title": "\u00c8re Leptonique",
     "startDate": -13797999800,
     "endDate": -13797999700,
     "childs": [],
-    "branches": ["Cosmologie", "Physique des Particules"],
-    "tags": ["ère leptonique", "leptons", "physique des particules"]
+    "branches": [1, 14],
+    "tags": ["\u00e8re leptonique", "leptons", "physique des particules"]
   },
   {
     "id": 10,
-    "title": "Ère de la Nucléosynthèse Primordiale",
+    "title": "\u00c8re de la Nucl\u00e9osynth\u00e8se Primordiale",
     "startDate": -13797999700,
     "endDate": -13797999500,
     "childs": [],
-    "branches": ["Cosmologie", "Astrophysique"],
-    "tags": ["nucléosynthèse primordiale", "formation des noyaux", "cosmologie"]
+    "branches": [1, 4],
+    "tags": [
+      "nucl\u00e9osynth\u00e8se primordiale",
+      "formation des noyaux",
+      "cosmologie"
+    ]
   },
   {
     "id": 11,
-    "title": "Ère de la Recombinaison",
+    "title": "\u00c8re de la Recombinaison",
     "startDate": -13797999500,
     "endDate": -13797990000,
     "childs": [],
-    "branches": ["Cosmologie", "Astrophysique"],
+    "branches": [1, 4],
     "tags": ["recombinaison", "formation des atomes", "cosmologie"]
   },
   {
     "id": 12,
-    "title": "Ère des Âges Sombres",
+    "title": "\u00c8re des \u00c2ges Sombres",
     "startDate": -13797990000,
     "endDate": -13797950000,
     "childs": [],
-    "branches": ["Cosmologie", "Astrophysique"],
-    "tags": ["âges sombres", "absence de lumière", "cosmologie"]
+    "branches": [1, 4],
+    "tags": ["\u00e2ges sombres", "absence de lumi\u00e8re", "cosmologie"]
   },
   {
     "id": 13,
-    "title": "Ère de Réionisation",
+    "title": "\u00c8re de R\u00e9ionisation",
     "startDate": -13797950000,
     "endDate": -13797900000,
     "childs": [],
-    "branches": ["Cosmologie", "Astrophysique"],
-    "tags": ["réionisation", "formation des galaxies", "cosmologie"]
+    "branches": [1, 4],
+    "tags": ["r\u00e9ionisation", "formation des galaxies", "cosmologie"]
   },
   {
     "id": 14,
-    "title": "Formation de la Voie Lactée",
+    "title": "Formation de la Voie Lact\u00e9e",
     "startDate": -13600000000,
     "endDate": -4600000000,
     "childs": [15, 16, 17, 18, 19, 20],
-    "branches": ["Astronomie", "Cosmologie"],
-    "tags": ["voie lactée", "formation galactique", "cosmologie"]
+    "branches": [1],
+    "tags": ["voie lact\u00e9e", "formation galactique", "cosmologie"]
   },
   {
     "id": 15,
-    "title": "Formation des premières étoiles",
+    "title": "Formation des premi\u00e8res \u00e9toiles",
     "startDate": -13600000000,
     "endDate": -13000000000,
     "childs": [],
-    "branches": ["Astronomie", "Astrophysique"],
-    "tags": ["étoiles", "formation stellaire", "cosmologie"]
+    "branches": [4],
+    "tags": ["\u00e9toiles", "formation stellaire", "cosmologie"]
   },
   {
     "id": 16,
@@ -140,16 +148,16 @@
     "startDate": -13000000000,
     "endDate": -12000000000,
     "childs": [],
-    "branches": ["Astronomie", "Astrophysique"],
+    "branches": [4],
     "tags": ["amas globulaires", "formation stellaire", "galaxies"]
   },
   {
     "id": 17,
-    "title": "Formation des premières structures galactiques",
+    "title": "Formation des premi\u00e8res structures galactiques",
     "startDate": -12000000000,
     "endDate": -10000000000,
     "childs": [],
-    "branches": ["Astronomie", "Cosmologie"],
+    "branches": [1],
     "tags": ["structures galactiques", "formation galactique", "cosmologie"]
   },
   {
@@ -158,7 +166,7 @@
     "startDate": -10000000000,
     "endDate": -8000000000,
     "childs": [],
-    "branches": ["Astronomie", "Astrophysique"],
+    "branches": [4],
     "tags": ["disque galactique", "formation galactique", "galaxies"]
   },
   {
@@ -167,7 +175,7 @@
     "startDate": -8000000000,
     "endDate": -6000000000,
     "childs": [],
-    "branches": ["Astronomie", "Astrophysique"],
+    "branches": [4],
     "tags": ["bras spiraux", "formation galactique", "galaxies"]
   },
   {
@@ -176,17 +184,17 @@
     "startDate": -6000000000,
     "endDate": -4000000000,
     "childs": [],
-    "branches": ["Astronomie", "Astrophysique"],
+    "branches": [4],
     "tags": ["bulbe galactique", "formation galactique", "galaxies"]
   },
   {
     "id": 21,
-    "title": "Système solaire",
+    "title": "Syst\u00e8me solaire",
     "startDate": -4600000000,
     "endDate": "today",
     "childs": [22],
-    "branches": ["Astrophysique", "Géologie"],
-    "tags": ["système_solaire", "nébuleuse_solaire", "accrétion"]
+    "branches": [4, 15],
+    "tags": ["syst\u00e8me_solaire", "n\u00e9buleuse_solaire", "accr\u00e9tion"]
   },
   {
     "id": 22,
@@ -194,107 +202,115 @@
     "startDate": -4600000000,
     "endDate": "today",
     "childs": [23, 24, 25, 30],
-    "branches": ["Géologie", "Planétologie"],
-    "tags": ["terre", "planète", "géosphère"]
+    "branches": [15],
+    "tags": ["terre", "plan\u00e8te", "g\u00e9osph\u00e8re"]
   },
   {
     "id": 23,
-    "title": "Éon Hadéen",
+    "title": "\u00c9on Had\u00e9en",
     "startDate": -4600000000,
     "endDate": -4000000000,
     "childs": [],
-    "branches": ["Géologie", "Planétologie"],
-    "tags": ["hadéen", "formation_terre", "bombardement_tardif"]
+    "branches": [15],
+    "tags": ["had\u00e9en", "formation_terre", "bombardement_tardif"]
   },
   {
     "id": 24,
-    "title": "Éon Archéen",
+    "title": "\u00c9on Arch\u00e9en",
     "startDate": -4000000000,
     "endDate": -2500000000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["archéen", "vie_primaire", "cyanobactéries"]
+    "branches": [15],
+    "tags": ["arch\u00e9en", "vie_primaire", "cyanobact\u00e9ries"]
   },
   {
     "id": 25,
-    "title": "Éon Protérozoïque",
+    "title": "\u00c9on Prot\u00e9rozo\u00efque",
     "startDate": -2500000000,
     "endDate": -541000000,
     "childs": [26, 27, 28, 29],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["protérozoïque", "grands_oxygénation", "eucaryotes"]
+    "branches": [15],
+    "tags": ["prot\u00e9rozo\u00efque", "grands_oxyg\u00e9nation", "eucaryotes"]
   },
   {
     "id": 26,
-    "title": "Paléoprotérozoïque",
+    "title": "Pal\u00e9oprot\u00e9rozo\u00efque",
     "startDate": -2500000000,
     "endDate": -1600000000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["paléoprotérozoïque", "glaciations", "stromatolites"]
+    "branches": [15],
+    "tags": [
+      "pal\u00e9oprot\u00e9rozo\u00efque",
+      "glaciations",
+      "stromatolites"
+    ]
   },
   {
     "id": 27,
-    "title": "Mésoprotérozoïque",
+    "title": "M\u00e9soprot\u00e9rozo\u00efque",
     "startDate": -1600000000,
     "endDate": -1000000000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["mésoprotérozoïque", "formation_rodinia", "algues"]
+    "branches": [15],
+    "tags": ["m\u00e9soprot\u00e9rozo\u00efque", "formation_rodinia", "algues"]
   },
   {
     "id": 28,
-    "title": "Néoprotérozoïque",
+    "title": "N\u00e9oprot\u00e9rozo\u00efque",
     "startDate": -1000000000,
     "endDate": -541000000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["néoprotérozoïque", "glaciations", "faune_ediacarienne"]
+    "branches": [15],
+    "tags": [
+      "n\u00e9oprot\u00e9rozo\u00efque",
+      "glaciations",
+      "faune_ediacarienne"
+    ]
   },
   {
     "id": 29,
-    "title": "Cryogénien",
+    "title": "Cryog\u00e9nien",
     "startDate": -720000000,
     "endDate": -635000000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["cryogénien", "terre_boule_de_neige", "faune"]
+    "branches": [15],
+    "tags": ["cryog\u00e9nien", "terre_boule_de_neige", "faune"]
   },
   {
     "id": 30,
-    "title": "Éon Phanérozoïque",
+    "title": "\u00c9on Phan\u00e9rozo\u00efque",
     "startDate": -541000000,
     "endDate": "today",
     "childs": [31, 32, 33],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["phanérozoïque", "diversification", "faune"]
+    "branches": [15],
+    "tags": ["phan\u00e9rozo\u00efque", "diversification", "faune"]
   },
   {
     "id": 31,
-    "title": "Paléozoïque",
+    "title": "Pal\u00e9ozo\u00efque",
     "startDate": -541000000,
     "endDate": -252200000,
     "childs": [34, 35, 36, 37, 38, 39],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["paléozoïque", "explosion_cambrienne", "extinctions"]
+    "branches": [15],
+    "tags": ["pal\u00e9ozo\u00efque", "explosion_cambrienne", "extinctions"]
   },
   {
     "id": 32,
-    "title": "Mésozoïque",
+    "title": "M\u00e9sozo\u00efque",
     "startDate": -252200000,
     "endDate": -66000000,
     "childs": [40, 41, 42],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["mésozoïque", "dinosaures", "extinction"]
+    "branches": [15],
+    "tags": ["m\u00e9sozo\u00efque", "dinosaures", "extinction"]
   },
   {
     "id": 33,
-    "title": "Cénozoïque",
+    "title": "C\u00e9nozo\u00efque",
     "startDate": -66000000,
     "endDate": "today",
     "childs": [43, 44, 45],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["cénozoïque", "mammifères", "évolution"]
+    "branches": [15],
+    "tags": ["c\u00e9nozo\u00efque", "mammif\u00e8res", "\u00e9volution"]
   },
   {
     "id": 34,
@@ -302,7 +318,7 @@
     "startDate": -541000000,
     "endDate": -485400000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
+    "branches": [15],
     "tags": ["cambrien", "explosion_cambrienne", "faune"]
   },
   {
@@ -311,7 +327,7 @@
     "startDate": -485400000,
     "endDate": -443800000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
+    "branches": [15],
     "tags": ["ordovicien", "graptolites", "glaciation"]
   },
   {
@@ -320,26 +336,26 @@
     "startDate": -443800000,
     "endDate": -419200000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
+    "branches": [15],
     "tags": ["silurien", "coraux", "poissons"]
   },
   {
     "id": 37,
-    "title": "Dévonien",
+    "title": "D\u00e9vonien",
     "startDate": -419200000,
     "endDate": -358900000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["dévonien", "poissons", "amphibiens"]
+    "branches": [15],
+    "tags": ["d\u00e9vonien", "poissons", "amphibiens"]
   },
   {
     "id": 38,
-    "title": "Carbonifère",
+    "title": "Carbonif\u00e8re",
     "startDate": -358900000,
     "endDate": -298900000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["carbonifère", "forêts", "insectes"]
+    "branches": [15],
+    "tags": ["carbonif\u00e8re", "for\u00eats", "insectes"]
   },
   {
     "id": 39,
@@ -347,7 +363,7 @@
     "startDate": -298900000,
     "endDate": -252200000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
+    "branches": [15],
     "tags": ["permien", "reptiles", "extinction"]
   },
   {
@@ -356,7 +372,7 @@
     "startDate": -252200000,
     "endDate": -201300000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
+    "branches": [15],
     "tags": ["trias", "dinosaures", "extinction"]
   },
   {
@@ -365,35 +381,35 @@
     "startDate": -201300000,
     "endDate": -145000000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
+    "branches": [15],
     "tags": ["jurassique", "dinosaures", "plantes"]
   },
   {
     "id": 42,
-    "title": "Crétacé",
+    "title": "Cr\u00e9tac\u00e9",
     "startDate": -145000000,
     "endDate": -66000000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["crétacé", "dinosaures", "extinction"]
+    "branches": [15],
+    "tags": ["cr\u00e9tac\u00e9", "dinosaures", "extinction"]
   },
   {
     "id": 43,
-    "title": "Paléogène",
+    "title": "Pal\u00e9og\u00e8ne",
     "startDate": -66000000,
     "endDate": -23030000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["paléogène", "mammifères", "plantes"]
+    "branches": [15],
+    "tags": ["pal\u00e9og\u00e8ne", "mammif\u00e8res", "plantes"]
   },
   {
     "id": 44,
-    "title": "Néogène",
+    "title": "N\u00e9og\u00e8ne",
     "startDate": -23030000,
     "endDate": -2580000,
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["néogène", "mammifères", "climat"]
+    "branches": [15],
+    "tags": ["n\u00e9og\u00e8ne", "mammif\u00e8res", "climat"]
   },
   {
     "id": 45,
@@ -401,7 +417,7 @@
     "startDate": -2580000,
     "endDate": "today",
     "childs": [],
-    "branches": ["Géologie", "Biologie"],
-    "tags": ["quaternaire", "hominidés", "glaciations"]
+    "branches": [15],
+    "tags": ["quaternaire", "hominid\u00e9s", "glaciations"]
   }
 ]

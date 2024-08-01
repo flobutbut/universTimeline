@@ -1,10 +1,12 @@
 <template>
   <div class="breadcrumb-container">
     <div class="breadcrumb">
-      <button v-if="historyLength > 0" @click="goBack" class="back-button">
-        <IconArrowLeft class="back-icon" />
-      </button>
-        <div class="breadcrumb-items">
+      <div class="back-button-container">
+        <button v-if="historyLength > 1" @click="goBack" class="back-button">
+          <IconArrowLeft class="back-icon" />
+        </button>
+      </div>
+      <div class="breadcrumb-items">
         <template v-for="(item, index) in items" :key="index">
           <span v-if="index < items.length - 1" class="breadcrumb-item">
             <span @click="navigate(index)" class="breadcrumb-link textDimmed textRegular truncate">
@@ -57,11 +59,11 @@ export default {
 
 
 <style scoped lang="scss">
-//@import "@/styles/main.scss";
 
 .breadcrumb-container {
   display: flex;
   width: 100%;
+  position: relative;
 }
 
 .breadcrumb {
@@ -70,12 +72,32 @@ export default {
   width: 100%;
 }
 
+.back-button-container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.back-button {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .breadcrumb-items {
   display: flex;
   align-items: center;
   flex-grow: 1;
   overflow: hidden;
-  margin-left: 16px;
+  margin-left: 8px;
 }
 
 .breadcrumb-item {
@@ -112,7 +134,6 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 150px; // Ajustez selon vos besoins
 }
 
 .separator {
@@ -127,5 +148,4 @@ export default {
   }
 }
 
-// Autres styles inchangés...
 </style>
