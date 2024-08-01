@@ -74,14 +74,24 @@ export default {
   const currentBranch = props.branches.find(
     (b) => b.id === props.currentBranchId
   );
+  
+  // Obtenir les IDs des branches déjà dans le fil d'Ariane
+  const breadcrumbBranchIds = new Set(branchHistory.value.map(b => b.id));
+
   if (currentBranch && currentBranch.connections) {
     // Récupérer les IDs des branches connectées
     const connectedBranchIds = currentBranch.connections.map(conn => conn.branchId);
     // Filtrer les branches pour n'inclure que celles qui sont connectées
-    return props.branches.filter(b => connectedBranchIds.includes(b.id));
+    // et qui ne sont pas déjà dans le fil d'Ariane
+    return props.branches.filter(b => 
+      connectedBranchIds.includes(b.id) && !breadcrumbBranchIds.has(b.id)
+    );
   } else {
     // Si pas de connexions ou vue d'ensemble, afficher toutes les branches racines
-    return props.branches.filter(b => !b.parentId && b.id !== "overview");
+    // qui ne sont pas déjà dans le fil d'Ariane
+    return props.branches.filter(b => 
+      !b.parentId && b.id !== "overview" && !breadcrumbBranchIds.has(b.id)
+    );
   }
 });
 
@@ -90,17 +100,14 @@ const onBranchSelect = () => {
     const selectedBranch = props.branches.find(
       (b) => b.id === selectedBranchId.value
     );
-    // Vérifier si la branche sélectionnée est connectée à la branche actuelle
-    const currentBranch = props.branches.find(b => b.id === props.currentBranchId);
-    const isConnected = currentBranch && currentBranch.connections &&
-      currentBranch.connections.some(conn => conn.branchId === selectedBranch.id);
     
-    if (isConnected || props.currentBranchId === "overview") {
+    // Vérifier si la branche n'est pas déjà dans le fil d'Ariane
+    if (!branchHistory.value.some(b => b.id === selectedBranch.id)) {
       branchHistory.value.push(selectedBranch);
       emit("branch-selected", selectedBranchId.value);
       selectedBranchId.value = "";
     } else {
-      console.warn("La branche sélectionnée n'est pas connectée à la branche actuelle");
+      console.warn("Cette branche est déjà dans le fil d'Ariane");
       // Gérer ce cas, peut-être en réinitialisant la sélection ou en affichant un message à l'utilisateur
     }
   }
