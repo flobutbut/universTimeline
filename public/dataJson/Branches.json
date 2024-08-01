@@ -11,7 +11,9 @@
       { "branchId": "7", "type": "related" },
       { "branchId": "14", "type": "related" },
       { "branchId": "2", "type": "child" },
-      { "branchId": "3", "type": "child" }
+      { "branchId": "3", "type": "child" },
+      { "branchId": "15", "type": "related" },
+      { "branchId": "9", "type": "related" }
     ]
   },
   {
@@ -22,7 +24,10 @@
     "subBranches": [],
     "connections": [
       { "branchId": "1", "type": "parent" },
-      { "branchId": "6", "type": "related" }
+      { "branchId": "6", "type": "related" },
+      { "branchId": "14", "type": "related" },
+      { "branchId": "8", "type": "related" },
+      { "branchId": "16", "type": "related" }
     ]
   },
   {
@@ -33,7 +38,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "1", "type": "parent" },
-      { "branchId": "7", "type": "related" }
+      { "branchId": "7", "type": "related" },
+      { "branchId": "6", "type": "related" },
+      { "branchId": "4", "type": "related" }
     ]
   },
   {
@@ -45,7 +52,10 @@
     "connections": [
       { "branchId": "1", "type": "related" },
       { "branchId": "6", "type": "child" },
-      { "branchId": "7", "type": "child" }
+      { "branchId": "7", "type": "child" },
+      { "branchId": "9", "type": "related" },
+      { "branchId": "34", "type": "related" },
+      { "branchId": "5", "type": "related" }
     ]
   },
   {
@@ -59,7 +69,9 @@
       { "branchId": "8", "type": "child" },
       { "branchId": "9", "type": "child" },
       { "branchId": "14", "type": "related" },
-      { "branchId": "16", "type": "related" }
+      { "branchId": "16", "type": "related" },
+      { "branchId": "6", "type": "related" },
+      { "branchId": "4", "type": "related" }
     ]
   },
   {
@@ -70,7 +82,10 @@
     "subBranches": [],
     "connections": [
       { "branchId": "4", "type": "parent" },
-      { "branchId": "2", "type": "related" }
+      { "branchId": "2", "type": "related" },
+      { "branchId": "7", "type": "related" },
+      { "branchId": "16", "type": "related" },
+      { "branchId": "8", "type": "related" }
     ]
   },
   {
@@ -81,7 +96,10 @@
     "subBranches": [],
     "connections": [
       { "branchId": "4", "type": "parent" },
-      { "branchId": "3", "type": "related" }
+      { "branchId": "3", "type": "related" },
+      { "branchId": "15", "type": "related" },
+      { "branchId": "6", "type": "related" },
+      { "branchId": "34", "type": "related" }
     ]
   },
   {
@@ -92,7 +110,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "5", "type": "parent" },
-      { "branchId": "14", "type": "related" }
+      { "branchId": "14", "type": "related" },
+      { "branchId": "9", "type": "related" },
+      { "branchId": "2", "type": "related" }
     ]
   },
   {
@@ -103,7 +123,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "5", "type": "parent" },
-      { "branchId": "1", "type": "related" }
+      { "branchId": "1", "type": "related" },
+      { "branchId": "8", "type": "related" },
+      { "branchId": "4", "type": "related" }
     ]
   },
   {
@@ -116,7 +138,9 @@
       { "branchId": "13", "type": "related" },
       { "branchId": "17", "type": "related" },
       { "branchId": "11", "type": "child" },
-      { "branchId": "12", "type": "child" }
+      { "branchId": "12", "type": "child" },
+      { "branchId": "28", "type": "related" },
+      { "branchId": "45", "type": "related" }
     ]
   },
   {
@@ -127,7 +151,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "10", "type": "parent" },
-      { "branchId": "16", "type": "related" }
+      { "branchId": "16", "type": "related" },
+      { "branchId": "45", "type": "related" }
     ]
   },
   {
@@ -138,7 +163,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "10", "type": "parent" },
-      { "branchId": "17", "type": "related" }
+      { "branchId": "17", "type": "related" },
+      { "branchId": "46", "type": "related" },
+      { "branchId": "21", "type": "related" }
     ]
   },
   {
@@ -151,7 +178,8 @@
       { "branchId": "10", "type": "related" },
       { "branchId": "15", "type": "related" },
       { "branchId": "18", "type": "child" },
-      { "branchId": "19", "type": "child" }
+      { "branchId": "19", "type": "child" },
+      { "branchId": "28", "type": "related" }
     ]
   },
   {
@@ -163,7 +191,9 @@
     "connections": [
       { "branchId": "1", "type": "related" },
       { "branchId": "5", "type": "related" },
-      { "branchId": "8", "type": "related" }
+      { "branchId": "8", "type": "related" },
+      { "branchId": "2", "type": "related" },
+      { "branchId": "16", "type": "related" }
     ]
   },
   {
@@ -176,7 +206,9 @@
       { "branchId": "13", "type": "related" },
       { "branchId": "16", "type": "related" },
       { "branchId": "20", "type": "child" },
-      { "branchId": "21", "type": "child" }
+      { "branchId": "21", "type": "child" },
+      { "branchId": "7", "type": "related" },
+      { "branchId": "44", "type": "related" }
     ]
   },
   {
@@ -188,7 +220,9 @@
     "connections": [
       { "branchId": "5", "type": "related" },
       { "branchId": "15", "type": "related" },
-      { "branchId": "11", "type": "related" }
+      { "branchId": "11", "type": "related" },
+      { "branchId": "6", "type": "related" },
+      { "branchId": "14", "type": "related" }
     ]
   },
   {
@@ -199,7 +233,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "10", "type": "related" },
-      { "branchId": "12", "type": "related" }
+      { "branchId": "12", "type": "related" },
+      { "branchId": "46", "type": "related" },
+      { "branchId": "19", "type": "related" }
     ]
   },
   {
@@ -208,7 +244,10 @@
     "tags": ["fossiles animaux", "évolution animale"],
     "highlightEvent": 32,
     "subBranches": [],
-    "connections": [{ "branchId": "13", "type": "parent" }]
+    "connections": [
+      { "branchId": "13", "type": "parent" },
+      { "branchId": "29", "type": "related" }
+    ]
   },
   {
     "id": "19",
@@ -227,7 +266,10 @@
     "tags": ["plaques tectoniques", "dérive des continents"],
     "highlightEvent": 34,
     "subBranches": [],
-    "connections": [{ "branchId": "15", "type": "parent" }]
+    "connections": [
+      { "branchId": "15", "type": "parent" },
+      { "branchId": "21", "type": "related" }
+    ]
   },
   {
     "id": "21",
@@ -249,7 +291,10 @@
     "subBranches": ["23", "24", "25", "26", "27"],
     "connections": [
       { "branchId": "10", "type": "related" },
-      { "branchId": "28", "type": "related" }
+      { "branchId": "28", "type": "related" },
+      { "branchId": "35", "type": "related" },
+      { "branchId": "38", "type": "related" },
+      { "branchId": "41", "type": "related" }
     ]
   },
   {
@@ -260,7 +305,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "22", "type": "parent" },
-      { "branchId": "28", "type": "related" }
+      { "branchId": "28", "type": "related" },
+      { "branchId": "32", "type": "related" },
+      { "branchId": "39", "type": "related" }
     ]
   },
   {
@@ -269,7 +316,11 @@
     "tags": ["antiquité", "civilisations antiques", "empires"],
     "highlightEvent": 49,
     "subBranches": [],
-    "connections": [{ "branchId": "22", "type": "parent" }]
+    "connections": [
+      { "branchId": "22", "type": "parent" },
+      { "branchId": "37", "type": "related" },
+      { "branchId": "40", "type": "related" }
+    ]
   },
   {
     "id": "25",
@@ -277,7 +328,10 @@
     "tags": ["moyen-âge", "féodalité", "renaissance"],
     "highlightEvent": 53,
     "subBranches": [],
-    "connections": [{ "branchId": "22", "type": "parent" }]
+    "connections": [
+      { "branchId": "22", "type": "parent" },
+      { "branchId": "26", "type": "related" }
+    ]
   },
   {
     "id": "26",
@@ -285,16 +339,24 @@
     "tags": ["grandes découvertes", "révolutions", "industrialisation"],
     "highlightEvent": 56,
     "subBranches": [],
-    "connections": [{ "branchId": "22", "type": "parent" }]
-  },
+    "connections": [
+      { "branchId": "22", "type": "parent" },
+      { "branchId": "33", "type": "related" },
+      { "branchId": "25", "type": "related" },
+      { "branchId": "27", "type": "related" }
+    ]  },
   {
     "id": "27",
     "name": "Histoire contemporaine",
     "tags": ["guerres mondiales", "décolonisation", "mondialisation"],
     "highlightEvent": 59,
     "subBranches": [],
-    "connections": [{ "branchId": "22", "type": "parent" }]
-  },
+    "connections": [
+      { "branchId": "22", "type": "parent" },
+      { "branchId": "26", "type": "related" },
+      { "branchId": "34", "type": "related" }
+    ]
+   },
   {
     "id": "28",
     "name": "Anthropologie et Archéologie",
@@ -303,7 +365,10 @@
     "subBranches": ["29", "30"],
     "connections": [
       { "branchId": "10", "type": "related" },
-      { "branchId": "22", "type": "related" }
+      { "branchId": "22", "type": "related" },
+      { "branchId": "29", "type": "child" },
+      { "branchId": "30", "type": "child" },
+      { "branchId": "23", "type": "related" }
     ]
   },
   {
@@ -314,7 +379,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "28", "type": "parent" },
-      { "branchId": "10", "type": "related" }
+      { "branchId": "10", "type": "related" },
+      { "branchId": "18", "type": "related" }
     ]
   },
   {
@@ -325,7 +391,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "28", "type": "parent" },
-      { "branchId": "22", "type": "related" }
+      { "branchId": "22", "type": "related" },
+      { "branchId": "39", "type": "related" }
     ]
   },
   {
@@ -336,7 +403,11 @@
     "subBranches": ["32", "33", "34"],
     "connections": [
       { "branchId": "22", "type": "related" },
-      { "branchId": "35", "type": "related" }
+      { "branchId": "35", "type": "related" },
+      { "branchId": "32", "type": "child" },
+      { "branchId": "33", "type": "child" },
+      { "branchId": "34", "type": "child" },
+      { "branchId": "41", "type": "related" }
     ]
   },
   {
@@ -347,7 +418,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "31", "type": "parent" },
-      { "branchId": "23", "type": "related" }
+      { "branchId": "23", "type": "related" },
+      { "branchId": "42", "type": "related" }
     ]
   },
   {
@@ -358,7 +430,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "31", "type": "parent" },
-      { "branchId": "26", "type": "related" }
+      { "branchId": "26", "type": "related" },
+      { "branchId": "43", "type": "related" }
     ]
   },
   {
@@ -369,7 +442,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "31", "type": "parent" },
-      { "branchId": "7", "type": "related" }
+      { "branchId": "7", "type": "related" },
+      { "branchId": "4", "type": "related" },
+      { "branchId": "27", "type": "related" }
     ]
   },
   {
@@ -380,7 +455,10 @@
     "subBranches": ["36", "37"],
     "connections": [
       { "branchId": "22", "type": "related" },
-      { "branchId": "28", "type": "related" }
+      { "branchId": "28", "type": "related" },
+      { "branchId": "36", "type": "child" },
+      { "branchId": "37", "type": "child" },
+      { "branchId": "31", "type": "related" }
     ]
   },
   {
@@ -391,7 +469,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "35", "type": "parent" },
-      { "branchId": "23", "type": "related" }
+      { "branchId": "23", "type": "related" },
+      { "branchId": "37", "type": "related" }
     ]
   },
   {
@@ -402,7 +481,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "35", "type": "parent" },
-      { "branchId": "24", "type": "related" }
+      { "branchId": "24", "type": "related" },
+      { "branchId": "36", "type": "related" }
     ]
   },
   {
@@ -413,7 +493,10 @@
     "subBranches": ["39", "40"],
     "connections": [
       { "branchId": "22", "type": "related" },
-      { "branchId": "28", "type": "related" }
+      { "branchId": "28", "type": "related" },
+      { "branchId": "39", "type": "child" },
+      { "branchId": "40", "type": "child" },
+      { "branchId": "35", "type": "related" }
     ]
   },
   {
@@ -424,7 +507,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "38", "type": "parent" },
-      { "branchId": "23", "type": "related" }
+      { "branchId": "23", "type": "related" },
+      { "branchId": "30", "type": "related" }
     ]
   },
   {
@@ -435,7 +519,8 @@
     "subBranches": [],
     "connections": [
       { "branchId": "38", "type": "parent" },
-      { "branchId": "24", "type": "related" }
+      { "branchId": "24", "type": "related" },
+      { "branchId": "42", "type": "related" }
     ]
   },
   {
@@ -446,7 +531,9 @@
     "subBranches": ["42", "43"],
     "connections": [
       { "branchId": "22", "type": "related" },
-      { "branchId": "31", "type": "related" }
+      { "branchId": "31", "type": "related" },
+      { "branchId": "42", "type": "child" },
+      { "branchId": "43", "type": "child" }
     ]
   },
   {
@@ -457,7 +544,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "41", "type": "parent" },
-      { "branchId": "23", "type": "related" }
+      { "branchId": "23", "type": "related" },
+      { "branchId": "32", "type": "related" },
+      { "branchId": "46", "type": "related" }
     ]
   },
   {
@@ -472,7 +561,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "41", "type": "parent" },
-      { "branchId": "33", "type": "related" }
+      { "branchId": "33", "type": "related" },
+      { "branchId": "26", "type": "related" },
+      { "branchId": "27", "type": "related" }
     ]
   },
   {
@@ -483,7 +574,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "15", "type": "related" },
-      { "branchId": "12", "type": "related" }
+      { "branchId": "12", "type": "related" },
+      { "branchId": "21", "type": "related" },
+      { "branchId": "46", "type": "related" }
     ]
   },
   {
@@ -494,7 +587,9 @@
     "subBranches": [],
     "connections": [
       { "branchId": "10", "type": "related" },
-      { "branchId": "11", "type": "related" }
+      { "branchId": "11", "type": "related" },
+      { "branchId": "16", "type": "related" },
+      { "branchId": "46", "type": "related" }
     ]
   },
   {
@@ -506,7 +601,10 @@
     "connections": [
       { "branchId": "10", "type": "related" },
       { "branchId": "12", "type": "related" },
-      { "branchId": "17", "type": "related" }
+      { "branchId": "17", "type": "related" },
+      { "branchId": "44", "type": "related" },
+      { "branchId": "45", "type": "related" },
+      { "branchId": "42", "type": "related" }
     ]
   }
 ]

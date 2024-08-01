@@ -71,24 +71,40 @@ export default {
     const breadcrumbHistory = computed(() => branchHistory.value);
 
     const availableBranches = computed(() => {
-      const currentBranch = props.branches.find(
-        (b) => b.id === props.currentBranchId
-      );
-      return currentBranch && currentBranch.subBranches
-        ? props.branches.filter((b) => currentBranch.subBranches.includes(b.id))
-        : props.branches.filter((b) => !b.parentId && b.id !== "overview");
-    });
+  const currentBranch = props.branches.find(
+    (b) => b.id === props.currentBranchId
+  );
+  if (currentBranch && currentBranch.connections) {
+    // Récupérer les IDs des branches connectées
+    const connectedBranchIds = currentBranch.connections.map(conn => conn.branchId);
+    // Filtrer les branches pour n'inclure que celles qui sont connectées
+    return props.branches.filter(b => connectedBranchIds.includes(b.id));
+  } else {
+    // Si pas de connexions ou vue d'ensemble, afficher toutes les branches racines
+    return props.branches.filter(b => !b.parentId && b.id !== "overview");
+  }
+});
 
-    const onBranchSelect = () => {
-      if (selectedBranchId.value) {
-        const selectedBranch = props.branches.find(
-          (b) => b.id === selectedBranchId.value
-        );
-        branchHistory.value.push(selectedBranch);
-        emit("branch-selected", selectedBranchId.value);
-        selectedBranchId.value = "";
-      }
-    };
+const onBranchSelect = () => {
+  if (selectedBranchId.value) {
+    const selectedBranch = props.branches.find(
+      (b) => b.id === selectedBranchId.value
+    );
+    // Vérifier si la branche sélectionnée est connectée à la branche actuelle
+    const currentBranch = props.branches.find(b => b.id === props.currentBranchId);
+    const isConnected = currentBranch && currentBranch.connections &&
+      currentBranch.connections.some(conn => conn.branchId === selectedBranch.id);
+    
+    if (isConnected || props.currentBranchId === "overview") {
+      branchHistory.value.push(selectedBranch);
+      emit("branch-selected", selectedBranchId.value);
+      selectedBranchId.value = "";
+    } else {
+      console.warn("La branche sélectionnée n'est pas connectée à la branche actuelle");
+      // Gérer ce cas, peut-être en réinitialisant la sélection ou en affichant un message à l'utilisateur
+    }
+  }
+};
 
     const navigateToBranch = (index) => {
       branchHistory.value = branchHistory.value.slice(0, index + 1);
@@ -108,13 +124,12 @@ export default {
       }
     );
     const goBack = () => {
-      if (branchHistory.value.length > 1) {
-        branchHistory.value.pop();
-        const previousBranch =
-          branchHistory.value[branchHistory.value.length - 1];
-        emit("branch-selected", previousBranch.id);
-      }
-    };
+  if (branchHistory.value.length > 1) {
+    branchHistory.value.pop();
+    const previousBranch = branchHistory.value[branchHistory.value.length - 1];
+    emit("branch-selected", previousBranch.id);
+  }
+};
 
     return {
       selectedBranchId,
