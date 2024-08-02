@@ -152,7 +152,7 @@ const onBranchSelect = () => {
 
 <style scoped lang="scss">
 .branch-navigator {
-  background-color: $neutral-lowest;
+  background-color: $neutral-lower;
   min-height: 32px;
   padding: 0 8px;
   display: flex;
