@@ -1,28 +1,37 @@
 <template>
-  <div class="periods-container">
+  <div class="periods-container" :class="{ 'fading': isFading }">
     <div v-if="!periods || periods.length === 0">Aucune période à afficher</div>
-    <div v-else v-for="period in periods" :key="period.id"
-         class="period"
-         :class="{ 'has-children': hasChildren(period) }"
-         :style="{
-           left: period.position,
-           width: period.width,
-           minWidth: '2px'
-         }"
-         :title="getTitle(period)"
-         @click="handleClick(period)">
-
-        <div class="period-content">
-          <div class="period-info">
-            <p class="textRegular textBlack period-title">{{ period.title }}</p>
-            <p class="textRegular textDimmed period-duration">{{ formatDuration(calculateDuration(period.startDate, period.endDate)) }}</p>
-          </div>
+    <div
+      v-for="period in periods"
+      :key="period.id"
+      class="period"
+      :class="{
+        'has-children': hasChildren(period),
+        'expanding': expandingPeriodId === period.id,
+        'hide-period': expandingPeriodId !== null && expandingPeriodId !== period.id
+      }"
+      :style="{
+        left: period.position,
+        width: period.width,
+        minWidth: '1px',
+      }"
+      :title="getTitle(period)"
+      @click="handleClick(period)"
+    >
+      <div class="period-content">
+        <div class="period-info">
+          <p class="textRegular textBlack period-title">{{ period.title }}</p>
+          <p class="textRegular textDimmed period-duration">
+            {{ formatDuration(calculateDuration(period.startDate, period.endDate)) }}
+          </p>
         </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { ref, watch } from 'vue';
 import { parseDate, formatDuration, calculateDuration } from '@/utils/dateUtils';
 
 export default {
@@ -30,43 +39,74 @@ export default {
   props: {
     periods: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
+    expandingPeriodId: {
+      type: [Number, String],
+      default: null,
+    },
   },
+  emits: ['load-child', 'expansion-complete'],
+  setup(props, { emit }) {
+    const isFading = ref(false);
 
-  methods: {
-    hasChildren(period) {
-      return period.childs && period.childs.length > 0;
-    },
+    const hasChildren = (period) => period.childs && period.childs.length > 0;
 
-    getTitle(period) {
-      if (this.hasChildren(period)) {
-        return `${period.title} - Cliquez pour voir les sous-périodes`;
+    const getTitle = (period) => {
+      return hasChildren(period)
+        ? `${period.title} - Cliquez pour voir les sous-périodes`
+        : period.title;
+    };
+
+    const handleClick = (period) => {
+      if (hasChildren(period)) {
+        emit('load-child', period.id);
       }
-      return period.title;
-    },
+    };
 
-
-    handleClick(period) {
-      if (period.childs && period.childs.length > 0) {
-        this.$emit('load-child', period.id);
+    watch(() => props.expandingPeriodId, (newVal, oldVal) => {
+      if (newVal !== null) {
+        // Début de l'expansion
+        // Attendre un court instant pour que la classe 'hide-period' soit appliquée
+        setTimeout(() => {
+          // Début de l'expansion
+          setTimeout(() => {
+            isFading.value = true;
+            setTimeout(() => {
+              emit('expansion-complete');
+            }, 240); // Durée du fondu
+          }, 250); // Durée de l'expansion
+        }, 50); // Court délai pour l'application de 'hide-period'
+      } else if (oldVal !== null) {
+        // Fin de l'expansion, réinitialisation
+        isFading.value = false;
       }
-    },
-    formatDuration,
-    calculateDuration
-  }  
-}
+    });
+
+    return {
+      isFading,
+      hasChildren,
+      getTitle,
+      handleClick,
+      formatDuration,
+      calculateDuration,
+    };
+  },
+};
 </script>
 
 <style scoped lang="scss">
-//@import "@/styles/main.scss";
-
 .periods-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 2px; // Espace entre les périodes et la ligne centrale
+  transition: opacity 0.5s ease;
+  
+  &.fading {
+    opacity: 0;
+  }
 }
 
 .period {
@@ -76,13 +116,14 @@ export default {
   padding: 1px;
   box-sizing: border-box;
   cursor: default;
+  transition: all 0.25s ease;
 
   &.has-children {
     cursor: pointer;
   }
 
   &.has-children::after {
-    content: '▼';
+    content: "▼";
     margin-right: 6px;
     position: absolute;
     right: 5px;
@@ -90,19 +131,35 @@ export default {
     transform: translateY(-50%);
     font-size: 8px;
     color: $neutral-hight;
-    opacity: 0; // Cachez le triangle par défaut
-    transition: opacity 0.3s ease; // Ajoutez une transition douce
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   &.has-children:hover::after {
-    opacity: 1; // Affichez le triangle au survol
+    opacity: 1;
   }
 
   &:hover .period-content {
     background-color: $neutral-low;
   }
+
   &:hover .period-duration {
     color: $neutral-hight;
+  }
+
+  &.hide-period {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  &.expanding {
+    position: absolute;
+    left: 0 !important;
+    width: 100% !important;
+    height: 48px !important;
+    z-index: 10;
+    opacity: 1 !important;
   }
 }
 
@@ -113,9 +170,13 @@ export default {
   height: 100%;
   border-radius: 3px;
   z-index: 1;
-  transition: background-color 0.3s ease;
   overflow: hidden;
   padding-left: 12px;
+  transition: all 0.5s ease;
+
+  .expanding & {
+    background-color: $neutral-low;
+  }
 }
 
 .period-info {
@@ -127,7 +188,8 @@ export default {
   width: 100%;
 }
 
-.period-title, .period-duration {
+.period-title,
+.period-duration {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -141,7 +203,7 @@ export default {
 .period-duration {
   flex: 1 1 auto;
   min-width: 0;
-  transition: color 0.3s ease;
+  transition: color 0.5s ease;
 }
 
 .ellipsis {

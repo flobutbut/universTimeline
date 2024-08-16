@@ -31,6 +31,8 @@ export function useTimelineCalculations() {
   const currentFilteredEvents = ref([]);
   const currentFilteredPeriods = ref([]);
 
+  const isTransitioning = ref(false);
+
   const scaledPeriods = computed(() => {
     const scaled = calculateScaledWidths(
       currentPeriods.value,
@@ -251,12 +253,17 @@ export function useTimelineCalculations() {
   }
 
   function loadChildPeriod(childId) {
-    const childPeriod = allPeriods.value.find((p) => p.id === childId);
-    if (childPeriod) {
-      loadPeriod(childPeriod);
-    } else {
-      console.error(`Child period with id ${childId} not found`);
-    }
+    isTransitioning.value = true;
+    
+    setTimeout(() => {
+      const childPeriod = allPeriods.value.find((p) => p.id === childId);
+      if (childPeriod) {
+        loadPeriod(childPeriod);
+      } else {
+        console.error(`Child period with id ${childId} not found`);
+      }
+      isTransitioning.value = false;
+    }, 500); // Durée de l'animation
   }
 
   function goBack() {
@@ -512,6 +519,7 @@ export function useTimelineCalculations() {
 
     // Fonctions de chargement et de navigation
     loadPeriod,
+    isTransitioning,
     loadChildPeriod,
     goBack,
     navigateTo,

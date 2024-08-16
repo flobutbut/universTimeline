@@ -22,7 +22,8 @@
 
     <div class="timeline-content" ref="timelineRef">
       <div class="periods-container">
-        <TimelineFlag class="flag"
+        <TimelineFlag
+          class="flag"
           v-if="showFlags && startFlag.label"
           :label="startFlag.label"
           :eventTitle="startFlag.eventTitle"
@@ -30,12 +31,15 @@
         />
 
         <TimelinePeriods
-          v-if="scaledPeriods && scaledPeriods.length > 0"
-          :periods="scaledPeriods"
-          @load-child="loadChildPeriod"
-        />
+  v-if="scaledPeriods && scaledPeriods.length > 0"
+  :periods="scaledPeriods"
+  :expandingPeriodId="expandingPeriodId"
+  @load-child="handleLoadChild"
+  @expansion-complete="handleExpansionComplete"
+/>
         <div v-else>Aucune période à afficher</div>
-        <TimelineFlag class="flag"
+        <TimelineFlag
+          class="flag"
           v-if="showFlags && endFlag.label"
           :label="endFlag.label"
           :eventTitle="endFlag.eventTitle"
@@ -176,6 +180,27 @@ export default {
       setCurrentBranch(branchId);
     };
 
+    const expandingPeriodId = ref(null);
+
+    const resetExpansionState = () => {
+      expandingPeriodId.value = null;
+    };
+
+    const handleLoadChild = (periodId) => {
+      expandingPeriodId.value = periodId;
+      setTimeout(() => {
+        loadChildPeriod(periodId);
+      }, 0); // Augmentez la durée pour voir clairement l'animation
+    };
+
+    const handleExpansionComplete = () => {
+      expandingPeriodId.value = null;
+    };
+
+    const handlePeriodExpanding = (periodId) => {
+      expandingPeriodId.value = periodId;
+    };
+
     async function initializeData() {
       try {
         isLoading.value = true;
@@ -239,6 +264,11 @@ export default {
       endFlag,
       showFlags,
 
+      handleLoadChild,
+      handlePeriodExpanding,
+      expandingPeriodId,
+      handleExpansionComplete,
+
       // Gestion des branches
       branches,
       currentBranchId,
@@ -292,7 +322,7 @@ export default {
   padding: 0 16px 0 16px;
 }
 
-.flag{
+.flag {
   z-index: 1;
 }
 
