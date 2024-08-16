@@ -43,12 +43,12 @@
   }
   
   .start-flag {
-    left: 0px;
+    left: -1px;
     align-items: flex-start;
   }
   
   .end-flag {
-    right: 0px;
+    right: -1px;
     align-items: flex-end;
   }
   

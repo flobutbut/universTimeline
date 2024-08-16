@@ -298,7 +298,7 @@ export default {
 
 .timeline-head {
   position: relative;
-  padding: 16px 16px 0;
+  padding: 16px 0 0;
   flex-shrink: 0;
   z-index: 10;
 }
