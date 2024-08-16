@@ -31,12 +31,12 @@
         />
 
         <TimelinePeriods
-  v-if="scaledPeriods && scaledPeriods.length > 0"
-  :periods="scaledPeriods"
-  :expandingPeriodId="expandingPeriodId"
-  @load-child="handleLoadChild"
-  @expansion-complete="handleExpansionComplete"
-/>
+          v-if="scaledPeriods && scaledPeriods.length > 0"
+          :periods="scaledPeriods"
+          :expandingPeriodId="expandingPeriodId"
+          @load-child="handleLoadChild"
+          @expansion-complete="handleExpansionComplete"
+        />
         <div v-else>Aucune période à afficher</div>
         <TimelineFlag
           class="flag"
@@ -188,12 +188,13 @@ export default {
 
     const handleLoadChild = (periodId) => {
       expandingPeriodId.value = periodId;
-      setTimeout(() => {
-        loadChildPeriod(periodId);
-      }, 0); // Augmentez la durée pour voir clairement l'animation
+      // Chargeons immédiatement les nouvelles périodes, mais ne les affichons pas encore
+      loadChildPeriod(periodId);
     };
 
     const handleExpansionComplete = () => {
+      // L'animation est terminée, les nouvelles périodes sont déjà chargées
+      // Nous pouvons maintenant déclencher leur affichage
       expandingPeriodId.value = null;
     };
 

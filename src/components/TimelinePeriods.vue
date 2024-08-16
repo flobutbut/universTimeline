@@ -67,15 +67,15 @@ export default {
     watch(() => props.expandingPeriodId, (newVal, oldVal) => {
       if (newVal !== null) {
         // Début de l'expansion
-        // Attendre un court instant pour que la classe 'hide-period' soit appliquée
         setTimeout(() => {
-          // Début de l'expansion
+          // Attendre que l'expansion soit visible
           setTimeout(() => {
             isFading.value = true;
+            // Attendre que le fondu soit presque terminé
             setTimeout(() => {
               emit('expansion-complete');
-            }, 240); // Durée du fondu
-          }, 250); // Durée de l'expansion
+            }, 200); // Légèrement avant la fin du fondu
+          }, 300); // Durée de l'expansion visible
         }, 50); // Court délai pour l'application de 'hide-period'
       } else if (oldVal !== null) {
         // Fin de l'expansion, réinitialisation
@@ -102,10 +102,10 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 2px; // Espace entre les périodes et la ligne centrale
-  transition: opacity 0.5s ease;
+  transition: opacity 0.25s ease;
   
   &.fading {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -116,7 +116,8 @@ export default {
   padding: 1px;
   box-sizing: border-box;
   cursor: default;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease, opacity 0.25s ease;
+
 
   &.has-children {
     cursor: pointer;
@@ -150,7 +151,6 @@ export default {
   &.hide-period {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease;
   }
 
   &.expanding {
