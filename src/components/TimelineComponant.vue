@@ -22,7 +22,7 @@
 
     <div class="timeline-content" ref="timelineRef">
       <div class="periods-container">
-        <TimelineFlag
+        <TimelineFlag class="flag"
           v-if="showFlags && startFlag.label"
           :label="startFlag.label"
           :eventTitle="startFlag.eventTitle"
@@ -35,7 +35,7 @@
           @load-child="loadChildPeriod"
         />
         <div v-else>Aucune période à afficher</div>
-        <TimelineFlag
+        <TimelineFlag class="flag"
           v-if="showFlags && endFlag.label"
           :label="endFlag.label"
           :eventTitle="endFlag.eventTitle"
@@ -135,7 +135,7 @@ export default {
       setCurrentBranch,
     } = useTimelineCalculations();
 
-    const showFlags = ref(false);
+    const showFlags = ref(true);
     const timelineRef = ref(null);
     const eventsContainerRef = ref(null);
     const relativeMouseX = ref(0);
@@ -289,6 +289,11 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  padding: 0 16px 0 16px;
+}
+
+.flag{
+  z-index: 1;
 }
 
 .timeline-head {
@@ -319,6 +324,7 @@ export default {
 .events-container {
   flex: 1;
   position: relative;
+  z-index: 4;
 }
 
 .timeline-content {
@@ -333,6 +339,7 @@ export default {
   flex-direction: column-reverse;
   justify-content: flex-start;
   position: relative;
+  z-index: 3;
 }
 .branch-navigator {
   position: relative;

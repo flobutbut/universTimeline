@@ -26,7 +26,10 @@
         <p class="textParagraphe textBlack">Que vous soyez développeur, historien, designer ou simplement passionné, vos contributions sont les bienvenues. N'hésitez pas à ouvrir des issues pour signaler des bugs, proposer de nouvelles fonctionnalités ou discuter d'améliorations potentielles.</p>
       </section>
       <div>
-        <Button type="naked" @click="goBack" class="back-button">Retour à la chronologie de l'hunivers</Button>
+        <Button type="naked" @click="goBack" class="back-button">Retour à la chronologie de l'univers</Button>
+      </div>
+      <div>
+        <p class="textParagraphe textDimmed">Fabriqué en france par flobutbut .</p>
       </div>
 
     </div>

@@ -5,6 +5,7 @@
       <router-view v-slot="{ Component }">
         <component :is="Component" @error="handleError" />
       </router-view>
+
     </main>
   </div>
 </template>

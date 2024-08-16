@@ -4,7 +4,7 @@
       :class="{ 'start-flag': isStart, 'end-flag': !isStart }"
     >
       <div class="content">
-        <p class="textRegular textBlack spacing_xs">{{ label }}</p>
+        <p class="textRegular textDimmed spacing_xs">{{ label }}</p>
         <p v-if="eventTitle" class="textRegular textDimmed">{{ eventTitle }}</p>
       </div>
       <div class="circle" :class="{ 'end-circle': !isStart }"></div>
@@ -85,7 +85,7 @@
   .end-flag .content {
     padding: 4px 4px 0 0;
     border-left: none;
-    border-right: 2px solid $neutral-highest;
+    border-right: 2px solid $neutral-highest; 
     text-align: right;
   }
   </style>
